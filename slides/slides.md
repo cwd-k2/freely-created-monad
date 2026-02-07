@@ -182,11 +182,11 @@ style: |
 最終的にこう書ける DSL を **導出** する:
 
 ```typescript
-const program = Do(function* () {
+const program: Program<string> = function* () {
   const name = yield* ask("名前を入力してください");
   yield* tell(`こんにちは、${name}さん！`);
   return name;
-});
+};
 ```
 
 - プログラムの構造が **データ** として存在する
@@ -688,13 +688,13 @@ function* tell(message: string): Generator<Tell, void, void> {
 # DSL プログラム
 
 ```typescript
-const greetProgram = Do(function* () {
+const greetProgram: Program<string> = function* () {
   const name = yield* ask("名前を入力してください");
   yield* tell(`こんにちは、${name}さん！`);
   const age = yield* ask("年齢を入力してください");
   yield* tell(`${age}歳ですね。`);
   return name;
-});
+};
 ```
 
 Haskell の do 記法とほぼ同じ見た目

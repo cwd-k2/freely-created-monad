@@ -64,23 +64,38 @@ function* tell(message: string): Generator<Tell, void, void> {
 
 `yield*` で呼ぶことで、命令を発行して結果を受け取れます。
 
+### プログラム型: `() => Generator` の意味
+
+プログラムの型を定義します。
+
+```typescript
+type Program<A> = () => Generator<TalkInstruction, A, any>;
+```
+
+この `() => Generator<...>` という型が本質的です。Generator は one-shot——一度イテレートすると内部状態が進み、巻き戻せません。つまり `Generator` そのものは**可変で使い捨て**のオブジェクトです。
+
+しかし Generator **関数**（`function*`）は、呼ぶたびに新しい Generator を返します。関数自体は何度呼んでも同じ振る舞いをし、状態を持ちません。つまり `() => Generator<...>` は**不変なプログラム表現**です。
+
+| | Haskell (Freer) | TypeScript (Generator) |
+|---|---|---|
+| プログラム | 純粋なデータ（自由に共有可能） | `() => Generator`（呼ぶたびに新規生成） |
+| 不変性の担保 | 言語レベル（純粋性） | サンク化（関数で包むこと） |
+
+`function*` のリテラルがそのまま `() => Generator` 型を持つため、特別なラッパー関数は不要です。
+
 ### プログラムの記述
 
 ```typescript
-const greetProgram = Do(function* () {
+const greetProgram: Program<string> = function* () {
   const name = yield* ask("名前を入力してください");
   yield* tell(`こんにちは、${name}さん！`);
   const age = yield* ask("年齢を入力してください");
   yield* tell(`${age}歳ですね。`);
   return name;
-});
+};
 ```
 
-Haskell の do 記法と同じ見た目で DSL が書けます。`Do` は Generator 関数をそのまま `Program` 型（= サンク）として返す関数です。`function*` を直接代入しても同じですが、`Do` で包むことで DSL のプログラム定義であることを明示しています。
-
-`Program<A>` がサンク（`() => Generator<...>`）であることは本質的です。Generator は one-shot なので、一度イテレートすると使い切りになります。サンクにしておくことで、呼び出すたびに新しい Generator を生成でき、**同じプログラムを複数のインタプリタで実行**できます。Haskell の Freer 値は純粋なデータなので再利用に問題はありませんが、Generator ではサンク化がそれに代わる役割を果たしています。
-
-`greetProgram` はまだ実行されていません——関数（サンク）として保持されています。
+Haskell の do 記法と同じ見た目で DSL が書けます。`greetProgram` はまだ実行されていません——Generator 関数として保持されているだけです。インタプリタが `greetProgram()` を呼んで初めて Generator が生成され、実行が始まります。そして別のインタプリタがもう一度 `greetProgram()` を呼べば、また新しい Generator で最初から実行できます。
 
 ### インタプリタの実装
 

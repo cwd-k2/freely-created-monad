@@ -36,28 +36,26 @@ function* tell(message: string): Generator<Tell, void, void> {
 }
 
 // ------------------------------------------------------------
-// Do 記法: Generator をモナド的に合成する
+// プログラム型: Generator 関数 = 不変なプログラム表現
 // ------------------------------------------------------------
 
-// Generator を返すサンク（遅延評価のため関数で包む）
+// Generator は one-shot（一度イテレートすると使い切り）だが、
+// Generator *関数* は呼ぶたびに新しい Generator を返す。
+// この () => Generator こそが「不変なプログラム表現」であり、
+// Haskell の純粋な Freer 値に対応するサンクである。
 type Program<A> = () => Generator<TalkInstruction, A, any>;
-
-// Do ブロック: Generator 関数を受け取ってプログラムを作る
-function Do<A>(body: () => Generator<TalkInstruction, A, any>): Program<A> {
-  return body;
-}
 
 // ------------------------------------------------------------
 // プログラムの例
 // ------------------------------------------------------------
 
-const greetProgram: Program<string> = Do(function* () {
+const greetProgram: Program<string> = function* () {
   const name: string = yield* ask("名前を入力してください");
   yield* tell(`こんにちは、${name}さん！`);
   const age: string = yield* ask("年齢を入力してください");
   yield* tell(`${age}歳ですね。`);
   return name;
-});
+};
 
 // ------------------------------------------------------------
 // インタプリタ
