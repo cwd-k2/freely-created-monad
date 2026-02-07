@@ -1,18 +1,10 @@
-# DSL を書こう！
+# Generator と DSL
 
-## モナドであることの担保
-
-ここまでの章で見てきた通り、Freer モナドは以下を保証します。
-
-1. **プログラムはデータである** — 命令の列がデータ構造として表現される
-2. **合成可能である** — `>>=`（bind）によってプログラムを自由に連結できる
-3. **実行は後から決められる** — インタプリタを差し替えることで同じプログラムに異なる意味を与えられる
-
-これは「モナドである」ことの実用的な意味です。モナド則が満たされるからこそ、do 記法や `>>=` の連鎖が直観通りに動きます。
+前章で、Freer モナドのステップ実行に限定継続（shift/reset）の構造が潜んでいることを見ました。そして `yield` が shift に、インタプリタの `while` ループが reset に対応することを確認しました。この章では、その対応関係を TypeScript の Generator で実現し、実用的な DSL を書きます。
 
 ## Generator = 限定継続の言語サポート
 
-TypeScript（JavaScript）の Generator は、`yield` で計算を中断し、外側から値を供給して再開できます。
+TypeScript（JavaScript）の Generator は、限定継続を**言語レベルでサポート**する仕組みです。
 
 ```typescript
 function* myGen(): Generator<string, number, boolean> {
@@ -22,7 +14,7 @@ function* myGen(): Generator<string, number, boolean> {
 }
 ```
 
-これは Freer の構造に対応します。
+Freer との対応：
 
 | Freer (Haskell) | Generator (TypeScript) |
 |---|---|
@@ -30,10 +22,10 @@ function* myGen(): Generator<string, number, boolean> {
 | `fx` — 命令 | `instruction` — yield する値 |
 | `k` — 限定継続 | yield 後の残りの関数本体 |
 | パターンマッチで命令を処理 | `gen.next(value)` で値を供給 |
+| `send` = shift | `yield` = shift |
+| インタプリタのループ = reset | `while` ループ = reset |
 
 ただし重要な違いがあります。Haskell の Freer における継続 `k :: x -> Freer f a` は**通常の関数**なので、同じ `k` に異なる値を何度でも渡せます（multi-shot）。一方、Generator の継続は内部状態を持ち、**一度しか再開できません**（one-shot）。このため、非決定性（バックトラック）のような同じ継続を複数回呼ぶインタプリタは Generator では直接表現できません。本資料の DSL（対話プログラム）では継続を一度しか使わないため、この制約は問題になりません。
-
-この one-shot 性は、前章で触れた Codensity とも関係しています。Codensity は継続を関数として自由に合成・再結合できることを前提とした最適化ですが、one-shot な Generator ではそもそもこの再結合が成立しません。前章で Codensity を先に扱ったのは、multi-shot な継続が可能にする最適化を理解した上で、Generator がその一部を引き換えに言語レベルの `yield`/`next` という簡潔さを得ている、というトレードオフを明確にするためです。
 
 ## TypeScript での DSL 実装
 
@@ -133,6 +125,16 @@ function runPure<A>(program: Program<A>, inputs: string[]): { result: A; outputs
 - `gen.next(value)` → `k value`（限定継続に値を供給）
 
 **IO インタプリタ、ログ収集インタプリタ** なども同じプログラムに対して適用できます。プログラムの定義と実行が完全に分離されています。
+
+## モナドであることの担保
+
+ここまでの章で見てきた通り、Freer モナドは以下を保証します。
+
+1. **プログラムはデータである** — 命令の列がデータ構造として表現される
+2. **合成可能である** — `>>=`（bind）によってプログラムを自由に連結できる
+3. **実行は後から決められる** — インタプリタを差し替えることで同じプログラムに異なる意味を与えられる
+
+これは「モナドである」ことの実用的な意味です。モナド則が満たされるからこそ、do 記法や `>>=` の連鎖が直観通りに動きます。
 
 ## まとめ
 

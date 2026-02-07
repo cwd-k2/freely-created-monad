@@ -148,6 +148,43 @@ runTalkPure inputs (Bind (Tell msg) k) =
    in (a, msg : msgs)
 
 -- ============================================================
+-- ステップ実行
+-- ============================================================
+
+-- | ステップ実行: 一命令ずつ処理する
+data Step f a where
+  Done  :: a -> Step f a
+  Await :: f x -> (x -> Freer f a) -> Step f a
+
+-- | Freer をステップに分解する
+viewFreer :: Freer f a -> Step f a
+viewFreer (Pure a)    = Done a
+viewFreer (Bind fx k) = Await fx k
+
+-- | ステップ実行のインタプリタ（IO 版）
+runStepIO :: Freer Talk a -> IO a
+runStepIO m = case viewFreer m of
+  Done a -> pure a
+  Await (Ask prompt) k -> do
+    putStrLn prompt
+    input <- getLine
+    runStepIO (k input)
+  Await (Tell msg) k -> do
+    putStrLn msg
+    runStepIO (k ())
+
+-- | ステップ実行のインタプリタ（純粋版）
+interpretPure :: [String] -> Freer Talk a -> (a, [String])
+interpretPure inputs m = case viewFreer m of
+  Done a -> (a, [])
+  Await (Ask _) k -> case inputs of
+    (x:xs) -> interpretPure xs (k x)
+    []     -> error "入力が足りません"
+  Await (Tell msg) k ->
+    let (a, msgs) = interpretPure inputs (k ())
+     in (a, msg : msgs)
+
+-- ============================================================
 -- 実行例
 -- ============================================================
 
