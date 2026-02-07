@@ -124,10 +124,13 @@ function runPure<A>(program: Program<A>, inputs: string[]): { result: A; outputs
 | 概念 | Haskell | TypeScript |
 |---|---|---|
 | 命令セット | GADT | Tagged union |
-| 継続 | `(x -> Freer f a)`（multi-shot） | Generator の残り（one-shot） |
+| 継続 | `(x -> Freer f a)` | Generator の残り |
+| 継続の性質 | 素の Freer: multi-shot / Codensity 適用時: one-shot | one-shot |
 | モナド合成 | `>>=` / do 記法 | `yield*` / Generator |
 | プログラムの再利用 | 純粋なデータ（自由に共有可能） | サンク（呼び出すたびに新規生成） |
 | インタプリタ | パターンマッチ | switch + `gen.next()` |
+
+素の Freer の `k` は通常の関数なので multi-shot（同じ継続を複数回呼べる）ですが、Codensity で最適化すると継続の再結合が起きるため、実質的に one-shot 前提の動作になります。Generator の one-shot 制約は、この Codensity 適用後の Haskell 側と同じ地平に立っています。
 
 Freer モナドの本質——**プログラムをデータとして記述し、実行を後から決める**——は、言語が変わっても同じです。Generator による実装は one-shot 制約などの違いがありますが、「命令の発行 → 中断 → インタプリタが値を供給して再開」というプロトコルは共通しています。
 
