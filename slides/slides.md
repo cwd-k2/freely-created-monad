@@ -418,9 +418,12 @@ instance Functor f => Monad (Free f) where
 --                       Functor 制約が必要！
 ```
 
-`>>=` は `fmap` で命令の中に潜る → `f` が **Functor** でなければならない
+`>>=` は `fmap` で命令の中に潜り、`next`（続き先）を差し替える
 
-`TalkF` の `(String -> next)` は、この `fmap` を通すためだけに存在する
+`fmap` が `next` を差し替えるには、`next` が構造の中に見えている必要がある
+→ `Ask` は結果が継続の中にあるので `(String -> next)` を持たざるを得ない
+
+この `(String -> next)` は `fmap` のためだけに存在し、命令の本質ではない
 
 ```haskell
 talkProgram :: Free TalkF String

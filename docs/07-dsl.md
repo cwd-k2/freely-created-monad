@@ -62,7 +62,7 @@ function* tell(message: string): Generator<Tell, void, void> {
 
 > **`as string` について**: TypeScript の Generator 型は `yield` の返り値型を単一の `TNext` パラメータで管理するため、`yield*` で合成する際に型情報が `any` に落ちることがあります。`as string` はインタプリタが正しい型の値を供給する前提での型アサーションです。
 
-`yield*` で呼ぶことで、命令を発行して結果を受け取れます。
+`ask` や `tell` は `yield` で命令を外に渡し、自身は中断します。プログラム側ではこれらを `yield*` で呼びます。`yield*` は**サブジェネレータへの委譲**——呼び出し先の Generator が `yield` した値をそのまま外側に伝播し、外側から供給された値を呼び出し先に戻します。つまり `yield*` が Haskell の do 記法（`>>=` による合成）に対応するモナド合成の仕組みです。
 
 ### プログラム型: `() => Generator` の意味
 
