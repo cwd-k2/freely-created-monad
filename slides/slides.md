@@ -1,50 +1,171 @@
 ---
 marp: true
 theme: default
+class: invert
 paginate: true
 style: |
+  :root {
+    --color-bg: #1b1d2a;
+    --color-fg: #d4d6e4;
+    --color-accent: #7cacf8;
+    --color-accent-dim: #4a6fa5;
+    --color-surface: #252840;
+    --color-border: #363850;
+    --color-highlight: #f0c674;
+  }
+
   section {
-    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', sans-serif;
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0.01em;
+    padding: 50px 60px;
+    text-align: left;
   }
+
+  h1 {
+    color: var(--color-accent);
+    font-size: 1.5em;
+    font-weight: 600;
+    border-bottom: 2px solid var(--color-border);
+    padding-bottom: 0.25em;
+    margin-bottom: 0.6em;
+  }
+
+  h2 { color: var(--color-accent-dim); font-weight: 400; }
+
+  strong { color: var(--color-highlight); font-weight: 600; }
+
+  a { color: var(--color-accent); }
+
+  /* ── Code ── */
+
   code {
+    font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
     font-size: 0.85em;
+    background: var(--color-surface) !important;
+    color: var(--color-fg) !important;
+    padding: 0.1em 0.35em;
+    border-radius: 4px;
   }
+
+  pre {
+    background: var(--color-surface) !important;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 0.8em 1em !important;
+    margin: 0.5em 0;
+    line-height: 1.45;
+    text-align: left;
+  }
+
+  pre code {
+    background: transparent !important;
+    color: var(--color-fg) !important;
+    padding: 0;
+    font-size: 0.82em;
+    text-align: left;
+  }
+
+  /* ── Table ── */
+
+  table {
+    font-size: 0.82em;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  table th {
+    background: var(--color-surface);
+    color: var(--color-accent);
+    font-weight: 600;
+    border-bottom: 2px solid var(--color-accent-dim);
+    padding: 0.5em 0.8em;
+    text-align: left;
+  }
+
+  table td {
+    border-bottom: 1px solid var(--color-border);
+    padding: 0.45em 0.8em;
+    text-align: left;
+  }
+
+  /* ── Blockquote ── */
+
+  blockquote {
+    font-size: 0.88em;
+    border-left: 3px solid var(--color-accent-dim);
+    background: var(--color-surface);
+    padding: 0.5em 1em;
+    border-radius: 0 6px 6px 0;
+    color: #a8abbe;
+  }
+
+  blockquote strong { color: var(--color-highlight); }
+
+  /* ── List ── */
+
+  ul, ol { margin: 0.3em 0; }
+  li { margin: 0.2em 0; line-height: 1.5; }
+  li::marker { color: var(--color-accent-dim); }
+
+  /* ── Lead slides ── */
+
+  section.lead {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
   section.lead h1 {
     font-size: 2.2em;
-  }
-  section.lead h2 {
-    font-size: 1.2em;
-    font-weight: normal;
-    color: #666;
-  }
-  table {
-    font-size: 0.85em;
-  }
-  blockquote {
-    font-size: 0.9em;
-    border-left: 4px solid #4a86c8;
-    background: #f0f4f8;
-    padding: 0.5em 1em;
-  }
-  section.dense {
-    font-size: 0.78em;
-    padding: 30px 40px;
-  }
-  section.dense code {
-    font-size: 0.82em;
-  }
-  section.dense h1 {
-    font-size: 1.5em;
+    border-bottom: none;
+    padding-bottom: 0;
     margin-bottom: 0.3em;
+    letter-spacing: 0.02em;
   }
-  section.dense table {
+
+  section.lead h2 {
+    font-size: 1.05em;
+    color: #7a7d94;
+    font-weight: 300;
+    margin-top: 0;
+  }
+
+  section.lead p {
+    color: #8a8da6;
     font-size: 0.95em;
   }
-  section.dense blockquote {
-    font-size: 0.95em;
+
+  /* ── Dense slides ── */
+
+  section.dense {
+    font-size: 22px;
+    padding: 35px 50px;
   }
+
+  section.dense h1 {
+    font-size: 1.4em;
+    margin-bottom: 0.35em;
+  }
+
   section.dense pre {
-    margin: 0.4em 0;
+    padding: 0.6em 0.9em !important;
+    margin: 0.35em 0;
+  }
+
+  section.dense pre code { font-size: 0.8em; }
+  section.dense table { font-size: 0.88em; }
+  section.dense blockquote { font-size: 0.9em; }
+
+  /* ── Page number ── */
+
+  section::after {
+    color: #4a4d64;
+    font-size: 0.6em;
   }
 ---
 
