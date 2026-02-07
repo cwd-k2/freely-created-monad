@@ -1,0 +1,26 @@
+cabal-version: 2.4
+name:          freely-created-monad
+version:       0.1.0.0
+synopsis:      勉強会資料: 自由モナドから Freer へ
+license:       NONE
+
+common defaults
+  default-language: GHC2021
+  ghc-options:      -Wall
+  build-depends:    base >= 4.16 && < 5
+
+library
+  import:          defaults
+  hs-source-dirs:  src
+  exposed-modules:
+    Continuation
+    Defunctionalization
+    Free
+    Freer
+    Codensity
+
+executable freely-created-monad
+  import:          defaults
+  hs-source-dirs:  app
+  main-is:         Main.hs
+  build-depends:   freely-created-monad

@@ -1,0 +1,8 @@
+# Haskell
+haskell/dist-newstyle/
+
+# TypeScript
+typescript/node_modules/
+
+# Claude Code
+.claude/

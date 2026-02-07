@@ -1,0 +1,14 @@
+{
+  "name": "freely-created-monad-ts",
+  "version": "0.1.0",
+  "private": true,
+  "description": "勉強会資料: DSL の TypeScript 実装例",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "run": "npx tsx src/dsl-example.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0"
+  }
+}
