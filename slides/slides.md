@@ -402,7 +402,9 @@ Free:        Free       (f next)
 ContChain で不透明だった `(a -> b)` のうち、
 **命令** (Ask, Tell) がデータとして見えるようになった
 
-> Free = ContChain の命令部分を Defunctionalization したもの
+ただし **継続** (`String -> next`) は関数のまま残っている
+
+> Free = 命令を Defunctionalization + 継続を構造化（継続は関数のまま）
 
 ---
 
@@ -478,6 +480,8 @@ Bind fx k >>= f = Bind fx ((>>= f) . k)
 data Coyoneda f a where
   Coyoneda :: (x -> a) -> f x -> Coyoneda f a
 ```
+
+`f x`（素材）と `x -> a`（変換関数）のペア。`fmap` を `f` に適用せず **蓄積** する
 
 **核心的性質**: `f` が Functor でなくても `Coyoneda f` は **常に Functor**
 
@@ -632,8 +636,8 @@ newtype Codensity m a = Codensity
 - `>>=` が常に **O(1)** — 差分リストと同じアイデア
 - `forall r.` のパラメトリシティが結合順序の入れ替えを保証
 
-> do 記法は **右結合** にデシュガーされるため O(n²) は発生しない
-> → DSL 実装では Codensity は **省略**
+> O(n²) が顕在化するのは `foldl (>>=)` のようにプログラム的に左結合チェーンを構築する場合。
+> do 記法は **右結合** にデシュガーされるため発生しない → DSL 実装では Codensity は **省略**
 
 ---
 
@@ -657,7 +661,7 @@ Generator = 言語レベルの限定継続
 **重要な違い**: one-shot vs multi-shot
 
 - 素の Freer: `k` は通常の関数 → 何度でも呼べる (multi-shot)
-- Codensity で最適化: 継続の再結合が起きる → **one-shot 前提**
+- Codensity 適用後: 継続が再結合されるため、実質 **one-shot 前提** の動作に
 - Generator: 内部状態あり → 一度しか再開できない (one-shot)
 
 ---
