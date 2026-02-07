@@ -5096,12 +5096,10 @@ Free:        Free       (f next)
                          ^^^^^^
                          構造化された命令 + 残りのチェーン
 </code></pre>
-<ul>
-<li>命令部分 (Ask, Tell データ) → <strong>Defunc 済み</strong></li>
-<li>継続 <code>(String -&gt; next)</code> → <strong>構造化されたが関数のまま</strong></li>
-</ul>
+<p>ContChain で不透明だった <code>(a -&gt; b)</code> のうち、<br />
+<strong>命令</strong> (Ask, Tell) がデータとして見えるようになった</p>
 <blockquote>
-<p>Free の命令セット = 「命令の Defunc + 継続の構造化」</p>
+<p>Free = ContChain の命令部分を Defunctionalization したもの</p>
 </blockquote>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
@@ -5438,13 +5436,14 @@ section::after {
 <span class="hljs-comment">--                       ^^^^</span>
 <span class="hljs-comment">--                       Functor 制約が必要！</span>
 </code></pre>
+<p><code>&gt;&gt;=</code> は <code>fmap</code> で命令の中に潜る → <code>f</code> が <strong>Functor</strong> でなければならない</p>
+<p><code>TalkF</code> の <code>(String -&gt; next)</code> は、この <code>fmap</code> を通すためだけに存在する</p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-title">talkProgram</span> :: <span class="hljs-type">Free</span> <span class="hljs-type">TalkF</span> <span class="hljs-type">String</span>
 <span class="hljs-title">talkProgram</span> = <span class="hljs-keyword">do</span>
   name &lt;- ask <span class="hljs-string">&quot;名前を入力してください&quot;</span>
   tell (<span class="hljs-string">&quot;こんにちは、&quot;</span> ++ name ++ <span class="hljs-string">&quot;さん！&quot;</span>)
   pure name
 </code></pre>
-<p>プログラムは <strong>データ構造</strong> → インタプリタで実行方法を決める</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;

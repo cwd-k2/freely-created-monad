@@ -399,10 +399,10 @@ Free:        Free       (f next)
                          構造化された命令 + 残りのチェーン
 ```
 
-- 命令部分 (Ask, Tell データ) → **Defunc 済み**
-- 継続 `(String -> next)` → **構造化されたが関数のまま**
+ContChain で不透明だった `(a -> b)` のうち、
+**命令** (Ask, Tell) がデータとして見えるようになった
 
-> Free の命令セット = 「命令の Defunc + 継続の構造化」
+> Free = ContChain の命令部分を Defunctionalization したもの
 
 ---
 
@@ -416,6 +416,10 @@ instance Functor f => Monad (Free f) where
 --                       Functor 制約が必要！
 ```
 
+`>>=` は `fmap` で命令の中に潜る → `f` が **Functor** でなければならない
+
+`TalkF` の `(String -> next)` は、この `fmap` を通すためだけに存在する
+
 ```haskell
 talkProgram :: Free TalkF String
 talkProgram = do
@@ -423,8 +427,6 @@ talkProgram = do
   tell ("こんにちは、" ++ name ++ "さん！")
   pure name
 ```
-
-プログラムは **データ構造** → インタプリタで実行方法を決める
 
 ---
 
