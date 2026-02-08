@@ -196,31 +196,6 @@ const program: Program<string> = function* () {
 
 ---
 
-# 4つのリフレーミング
-
-この資料を貫く4つの軸:
-
-1. DSL のプログラムは離散的な命令の列として **具象化** できる
-2. 具象化されたプログラムは **ステップ実行** に分解できる
-3. ステップ実行を Freer で整理すると **限定継続** が浮かび上がる
-4. 限定継続は **Generator** の `yield`/`next` に対応する
-
----
-
-# ロードマップ
-
-| #   | テーマ                         | 軸                    |
-| --- | ------------------------------ | --------------------- |
-| 2   | **計算の具象化**               | 軸1: 具象化           |
-| 3   | **自由モナドとステップ実行**   | 軸1→軸2: ステップ実行 |
-| 4   | **Freer と限定継続**           | 軸2→軸3: 限定継続     |
-| 5   | **Generator と DSL**           | 軸3→軸4: Generator    |
-| 6   | **補遺: Codensity**            | 性能の問題            |
-
-各ステップで **前章の課題 → 本章の解決** を繰り返す
-
----
-
 <!-- _class: lead -->
 
 # Ch.2 — 計算の具象化
@@ -413,8 +388,14 @@ talkProgram = do
 
 この `talkProgram` は **データ構造** — 実行はまだ起きていない
 
+- `do` 記法は `>>=` に脱糖される → Free のツリーが組み上がるだけ
+- IO は一切発生していない — **プログラムの記述と実行が分離** されている
+
+---
+
+# Free のインタプリタ
+
 ```haskell
--- IO で対話的に実行
 runTalkIO :: Free TalkF a -> IO a
 runTalkIO (Pure a) = pure a
 runTalkIO (Free (Ask prompt next)) = do
@@ -423,6 +404,9 @@ runTalkIO (Free (Ask prompt next)) = do
 runTalkIO (Free (Tell msg next)) = do
   putStrLn msg; runTalkIO next
 ```
+
+同じプログラムに対して **異なるインタプリタ** を差し替えられる
+→ テスト用の純粋実行、ログ出力など
 
 ---
 
@@ -552,19 +536,25 @@ send fa = Bind fa Pure
 
 ---
 
-# ステップ実行の整理
+# Step — ステップ実行の型
 
-命令と継続が分離されたことで、ステップ実行がより明確に:
+命令と継続が分離されたことで、ステップ実行を型として表現できる:
 
 ```haskell
 data Step f a where
-  Done  :: a -> Step f a
-  Await :: f x -> (x -> Freer f a) -> Step f a
+  Done  :: a -> Step f a                        -- 計算完了
+  Await :: f x -> (x -> Freer f a) -> Step f a  -- 命令 + 継続
 
 viewFreer :: Freer f a -> Step f a
 viewFreer (Pure a)    = Done a
 viewFreer (Bind fx k) = Await fx k
 ```
+
+インタプリタは `Freer` の内部構造に依存せず、**Done か Await か** だけを見る
+
+---
+
+# Step によるインタプリタ
 
 ```haskell
 runStepIO m = case viewFreer m of
@@ -575,6 +565,10 @@ runStepIO m = case viewFreer m of
   Await (Tell msg) k -> do
     putStrLn msg; runStepIO (k ())
 ```
+
+Free 版と同じ構造——**先頭を覗き、命令を処理し、継続に値を渡す**
+
+命令 `Ask prompt` と継続 `k` が型レベルで分離されていることで、この対応が鮮明になる
 
 ---
 
@@ -711,30 +705,6 @@ newtype Codensity m a = Codensity
 <!-- _class: lead -->
 
 # まとめ
-
----
-
-<!-- _class: dense -->
-
-# 導出の全体像 — 4つの軸
-
-```
-軸1: 具象化
-  CPS — 「計算の残り」を関数にする
-  Defunctionalization — 関数をデータにする
-  Free モナド — 命令セットを Functor で構造化
-      ↓
-軸2: ステップ実行
-  インタプリタは「先頭を覗き、命令を処理し、継続に値を渡す」
-  これが可能なのはプログラムがデータだから
-      ↓
-軸3: 限定継続
-  Freer で命令と継続を分離 → send = shift, インタプリタ = reset
-      ↓
-軸4: Generator
-  yield = shift, while ループ = reset
-  TypeScript で DSL が書ける
-```
 
 ---
 
