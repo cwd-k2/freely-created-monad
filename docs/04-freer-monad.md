@@ -1,6 +1,8 @@
 # Freer と限定継続
 
-前章で、Free モナドのインタプリタがステップ実行のパターンであることを認識しました。しかし Free モナドには Functor 制約という荷物が残っています。この章では Functor 制約を取り除いて Freer モナドを導出し、さらにステップ実行を整理することで、そこに**限定継続**（shift/reset）の構造が潜んでいることを見出します。これが ch01 で示した軸3の到達点であり、次章の Generator への直接的な橋渡しになります。
+前章で、Free モナドのインタプリタがステップ実行のパターンであることを認識しました。しかし Free モナドには Functor 制約という荷物が残っています。この章では、まず Functor 制約を取り除いた **Freer モナド**を導出します。
+
+次に、Freer のステップ実行を整理すると、そこに**限定継続**（shift/reset）の構造が潜んでいることを見出します。限定継続は「値を外に渡して中断し、外側から値を供給されて再開する」というプロトコルであり、これはまさに Generator の `yield`/`next` そのものです。つまり、限定継続を認識することで、Haskell の Freer モナドと TypeScript の Generator が**同じ構造の別表現**であることが明らかになり、次章での TypeScript 実装への道が開けます。
 
 ## Free モナドの bind を観察する
 
@@ -115,7 +117,15 @@ data Talk a where
   Tell :: String -> Talk ()       -- メッセージを表示する
 ```
 
-`(String -> next)` のような継続パラメータは完全に消えました。命令の**本質だけ**が残っています。
+`(String -> next)` のような継続パラメータは完全に消えました。命令の**本質だけ**が残っています。この GADT は TypeScript の tagged union にそのまま対応します。
+
+```typescript
+type Ask = { readonly tag: "ask"; readonly prompt: string };   // 結果: string
+type Tell = { readonly tag: "tell"; readonly message: string }; // 結果: void
+type TalkInstruction = Ask | Tell;
+```
+
+Free 版の `TalkF` では Functor のために `(next: string) => next` のような継続フィールドが必要でしたが、Freer 版では命令データだけが残ります。TypeScript の union type で自然に表現できる形になったことは、次章で Generator による DSL を実装する際の土台になります。
 
 ```haskell
 -- 使い方は Free 版と同じ
@@ -180,6 +190,18 @@ Freer 版:  Await (Ask prompt) k              -> ... runStepIO (k input)
 ```
 
 構造は同じ——**先頭を覗き、命令を処理し、継続に値を渡す**——ですが、Freer 版では命令 `Ask prompt` と継続 `k` が型レベルで分離されています。この分離が、次節の限定継続という見方を自然にします。
+
+この `Step` は TypeScript の `IteratorResult` にそのまま対応します。
+
+```typescript
+const step: IteratorResult<TalkInstruction, string> = gen.next();
+
+// step.done === true  → Done a     （計算完了、step.value が結果）
+// step.done === false → Await fx k （命令待ち、step.value が命令）
+//   gen.next(value) で継続 k に値を供給して再開
+```
+
+Haskell の `viewFreer` でパターンマッチする操作が、TypeScript では `gen.next()` の返り値の `.done` を見る操作に対応しています。
 
 ## 限定継続
 

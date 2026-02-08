@@ -177,6 +177,17 @@ style: |
 
 ---
 
+# 問題: 定義と実行の密結合
+
+ビジネスロジックに `console.log` を書けば、そのコードはコンソールでしか動かない
+
+- テストするにはモック
+- Web API に転用するには書き直し
+
+→ **プログラムの定義と実行を分離したい**
+
+---
+
 # 今日のゴール
 
 最終的にこう書ける DSL を **導出** する:
@@ -200,7 +211,8 @@ const program: Program<string> = function* () {
 
 # Ch.2 — 計算の具象化
 
-CPS と Defunctionalization で「計算」をデータにする
+実行を差し替えるには、インタプリタが命令を識別できる必要がある
+→ 制御フローを **データとして見える形** にする
 
 ---
 
@@ -242,7 +254,26 @@ applyIntFun Square   x = x * x
 
 関数がデータになった → パターンマッチで **識別** できる
 
-> TypeScript では tagged union + switch がまさにこれ
+---
+
+# TypeScript で見る Defunctionalization
+
+tagged union + switch がまさに Defunctionalization:
+
+```typescript
+type IntFun = { tag: "addN"; n: number } | { tag: "mulN"; n: number } | { tag: "square" };
+
+const applyIntFun = (fun: IntFun, x: number): number => {
+  switch (fun.tag) {
+    case "addN":  return x + fun.n;
+    case "mulN":  return x * fun.n;
+    case "square": return x * x;
+  }
+};
+```
+
+- `tag` によるパターンマッチ = Haskell のコンストラクタに対するパターンマッチ
+- コールバック関数を tagged union に置き換える — これが Defunctionalization
 
 ---
 
@@ -439,7 +470,9 @@ Free fx >>= f = Free (fmap (>>= f) fx)
    - 命令の本質には不要
 2. **性能**: `>>=` のたびに構造全体を走査 → O(n²)
 
-→ 命令と継続を **分離** できないか？
+どちらも `fmap` で**命令の内部に潜る**構造に起因している
+
+→ 内部に潜らずに済む構造はないか？
 
 ---
 
@@ -448,6 +481,7 @@ Free fx >>= f = Free (fmap (>>= f) fx)
 # Ch.4 — Freer と限定継続
 
 Functor 制約を取り除き、ステップ実行を整理すると限定継続が現れる
+→ Generator の `yield`/`next` と**同じ構造**であることが見える
 
 ---
 
@@ -536,6 +570,22 @@ send fa = Bind fa Pure
 
 ---
 
+# Freer の命令 = TypeScript の tagged union
+
+Freer の GADT は TypeScript の tagged union にそのまま対応する:
+
+```typescript
+type Ask  = { readonly tag: "ask";  readonly prompt: string };  // → string
+type Tell = { readonly tag: "tell"; readonly message: string }; // → void
+type TalkInstruction = Ask | Tell;
+```
+
+- Free 版で必要だった `(String -> next)` のような継続フィールドは**不要**
+- 命令の本質（種類 + 引数）だけが残っている
+- ch05 の Generator DSL は、この tagged union をそのまま使う
+
+---
+
 # Step — ステップ実行の型
 
 命令と継続が分離されたことで、ステップ実行を型として表現できる:
@@ -568,7 +618,25 @@ runStepIO m = case viewFreer m of
 
 Free 版と同じ構造——**先頭を覗き、命令を処理し、継続に値を渡す**
 
-命令 `Ask prompt` と継続 `k` が型レベルで分離されていることで、この対応が鮮明になる
+---
+
+# Step = TypeScript の IteratorResult
+
+TypeScript の `IteratorResult` がまさにこの `Step`:
+
+```typescript
+const step = gen.next();    // viewFreer に対応
+// step.done === true   → Done（計算完了）
+// step.done === false  → Await（命令待ち、step.value が命令）
+// gen.next(value)      → k value（継続に値を供給して再開）
+```
+
+| Step (Haskell)   | IteratorResult (TypeScript) |
+| ---------------- | --------------------------- |
+| `Done a`         | `{ done: true, value: a }`  |
+| `Await fx k`     | `{ done: false, value: fx }`|
+| `viewFreer m`    | `gen.next()`                |
+| `k value`        | `gen.next(value)`           |
 
 ---
 
