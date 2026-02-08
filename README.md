@@ -1,16 +1,22 @@
-# 自由に作られたモナド — 自由モナドから Freer へ
+# Generator で DSL — 自由に手に入るモナド
 
-社内向け勉強会の資料です。Freer モナドを「天下り」で与えるのではなく、継続・Defunctionalization・自由モナドというステップを経て自然に導出します。
+社内向け勉強会の資料です。Freer モナドを「天下り」で与えるのではなく、継続・Defunctionalization・自由モナドというステップを経て自然に導出し、最終的に TypeScript の Generator で DSL を実装するところまでを扱います。
+
+## 4 つのリフレーミング軸
+
+1. DSL のプログラムは離散的な命令の列として**具象化**できる
+2. 具象化されたプログラムは**ステップ実行**に分解できる
+3. ステップ実行を Freer で整理すると**限定継続**が浮かび上がる
+4. 限定継続は **Generator** の `yield`/`next` に対応する
 
 ## 目次
 
 1. **[はじめに](docs/01-introduction.md)** — ゴールの提示
-2. **[プログラムは継続で書ける](docs/02-continuations.md)** — CPS 変換の基本
-3. **[Defunctionalization](docs/03-defunctionalization.md)** — 高階関数をデータにする
-4. **[自由モナド](docs/04-free-monad.md)** — Defunctionalization された継続からモナドへ
-5. **[Free から Freer へ](docs/05-free-to-freer.md)** — Functor 制約の除去と米田の補題
-6. **[Freer の実行基盤](docs/06-freer-execution.md)** — Codensity モナドと限定継続
-7. **[DSL を書こう！](docs/07-dsl.md)** — TypeScript での実装
+2. **[計算の具象化](docs/02-reification.md)** — CPS と Defunctionalization
+3. **[自由モナドとステップ実行](docs/03-free-monad.md)** — 具象化からモナドへ
+4. **[Freer と限定継続](docs/04-freer-monad.md)** — Coyoneda による Functor 制約の除去
+5. **[Generator と DSL](docs/05-dsl.md)** — TypeScript での実装
+6. **[補遺: Codensity モナド](docs/06-codensity.md)** — 左結合ボトルネックの解消
 
 ## コード
 
@@ -21,13 +27,13 @@ cd haskell && cabal build
 cabal run freely-created-monad
 ```
 
-| モジュール | 対応セクション |
+| モジュール | 対応章 |
 |---|---|
-| `Continuations` | 02: 継続 |
-| `Defunctionalization` | 03: Defunctionalization |
-| `FreeMonad` | 04: 自由モナド |
-| `Freer` | 05: Freer モナド |
-| `Codensity` | 06: 実行基盤 |
+| `Continuation` | 02: 計算の具象化 |
+| `Defunctionalization` | 02: 計算の具象化 |
+| `Free` | 03: 自由モナドとステップ実行 |
+| `Freer` | 04: Freer と限定継続 |
+| `Codensity` | 06: 補遺: Codensity モナド |
 
 ### TypeScript
 
