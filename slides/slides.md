@@ -171,9 +171,9 @@ style: |
 
 <!-- _class: lead -->
 
-# 自由モナドから Freer モナドへ
+# Generator で DSL
 
-## 継続・Defunctionalization・自由モナドの段階的導出
+## 自由に手に入るモナド
 
 ---
 
@@ -196,16 +196,26 @@ const program: Program<string> = function* () {
 
 ---
 
+# 4つのリフレーミング
+
+この資料を貫く4つの軸:
+
+1. DSL のプログラムは離散的な命令の列として **具象化** できる
+2. 具象化されたプログラムは **ステップ実行** に分解できる
+3. ステップ実行を Freer で整理すると **限定継続** が浮かび上がる
+4. 限定継続は **Generator** の `yield`/`next` に対応する
+
+---
+
 # ロードマップ
 
-| #   | テーマ                  | キーワード                |
-| --- | ----------------------- | ------------------------- |
-| 1   | **継続**                | CPS, `Cont r a`           |
-| 2   | **Defunctionalization** | 関数→データ, `apply`      |
-| 3   | **Free モナド**         | 命令の構造化, `Functor`   |
-| 4   | **Freer モナド**        | Coyoneda, Functor 不要    |
-| 5   | **実行基盤**            | Step, 限定継続, Codensity |
-| 6   | **TypeScript DSL**      | Generator, one-shot       |
+| #   | テーマ                         | 軸                    |
+| --- | ------------------------------ | --------------------- |
+| 2   | **計算の具象化**               | 軸1: 具象化           |
+| 3   | **自由モナドとステップ実行**   | 軸1→軸2: ステップ実行 |
+| 4   | **Freer と限定継続**           | 軸2→軸3: 限定継続     |
+| 5   | **Generator と DSL**           | 軸3→軸4: Generator    |
+| 6   | **補遺: Codensity**            | 性能の問題            |
 
 各ステップで **前章の課題 → 本章の解決** を繰り返す
 
@@ -213,13 +223,13 @@ const program: Program<string> = function* () {
 
 <!-- _class: lead -->
 
-# Ch.2 — 継続
+# Ch.2 — 計算の具象化
 
-「計算の残り」を値にする
+CPS と Defunctionalization で「計算」をデータにする
 
 ---
 
-# Direct Style vs CPS
+# CPS: 具象化の第一段階
 
 ```haskell
 -- Direct Style: 値を返す
@@ -233,51 +243,14 @@ addCPS x y k = k (x + y)
 
 **継続 `k`** = 「この値を受け取って、残りの計算を行う関数」
 
-- 計算を **中断・再開** できる
-- 制御の流れを **プログラマブル** にする
+- 「計算の残り」が **関数として明示化** される — 具象化の第一段階
+- しかし関数は **中身が見えない** → DSL のインタプリタは命令を判別できない
+
+→ 関数を **データ** にする必要がある
 
 ---
 
-# Cont 型と bindCont
-
-```haskell
-type Cont r a = (a -> r) -> r
-
-bindCont :: Cont r a -> (a -> Cont r b) -> Cont r b
-bindCont m f = \k -> m (\a -> f a k)
-```
-
-- `m`: 値 `a` を生む計算
-- `f`: `a` を受けて次の計算を作る
-- `bindCont` で継続を **体系的に合成** できる
-
----
-
-# 継続の壁
-
-継続は **関数** → 中身を見られない
-
-```
-bindCont m f = \k -> m (\a -> f a k)
-                        ^^^^^^^^^^^^^
-                        ブラックボックス
-```
-
-DSL のインタプリタは **命令の種類を判別** して分岐したい
-
-→ 継続を **データ** にする必要がある
-
----
-
-<!-- _class: lead -->
-
-# Ch.3 — Defunctionalization
-
-関数値をデータに変換する
-
----
-
-# Defunctionalization の手順
+# Defunctionalization
 
 **関数値** → **データ型 + apply 関数**
 
@@ -292,7 +265,9 @@ applyIntFun (MulN n) x = x * n
 applyIntFun Square   x = x * x
 ```
 
-関数の **「何をするか」** がデータとして見える
+関数がデータになった → パターンマッチで **識別** できる
+
+> TypeScript では tagged union + switch がまさにこれ
 
 ---
 
@@ -316,6 +291,16 @@ StepChain  (a -> b)         (ContChain b)
 
 **`(a -> b)` をどうデータ化する？**
 
+→ 一般の `(a -> b)` は Defunc できないが、**DSL の命令** はもっと構造が単純なはず
+
+---
+
+<!-- _class: lead -->
+
+# Ch.3 — 自由モナドとステップ実行
+
+命令を構造化してモナドにし、ステップ実行のパターンを認識する
+
 ---
 
 # ContChain の壁と突破口
@@ -330,85 +315,79 @@ StepChain  (a -> b)         (ContChain b)
 ここで「結果を受け取って**次を選ぶ**」がポイント:
 
 - 単なるリストでは不十分 — 後の命令が前の **結果に依存** する
-- この **依存的逐次実行** を扱う仕組みが必要 → **モナド**
-
-命令セットを構造化しつつ、モナドとして合成する → **Free モナド** へ
+- この **依存的逐次実行** こそが `>>=`（bind）の仕事 → **モナド** が必要
 
 ---
 
-<!-- _class: lead -->
+# (a → b) の分解
 
-# Ch.4 — Free モナド
+DSL のステップの構造:
 
-命令セットを Functor で構造化する
+1. **命令を実行する**（`ask "名前は？"`、`tell msg`）
+2. **命令の結果を受け取る**（`String`、`()`）
+3. **結果を使って次のステップへ進む**
+
+これを型で表す:
+
+```haskell
+data TalkF next
+  = Ask String (String -> next)  -- 命令 + 結果を受け取る継続
+  | Tell String next             -- 命令 + 次のステップ
+```
+
+`next` = 「このステップの後に何が続くか」
 
 ---
 
-# なぜモナドが必要か
-
-単なる命令リスト `[Instruction]` では不十分:
-
-```typescript
-const name = yield * ask("名前は？");
-yield * tell(`こんにちは、${name}さん！`);
-//                       ^^^^ 前の結果に依存！
-```
-
-後の命令が前の **結果に依存** する → **依存的逐次実行**
-
-これには命令間の **継続** が必要 → まさに `>>=` の仕事
+# ContChain → TalkF: 何が見えるようになったか
 
 ```
-命令 → 結果 → (結果に基づいて次の命令を選ぶ) → 結果 → ...
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-              この関数が >>= の第二引数
+ContChain:  StepChain  (a -> b)              (ContChain b)
+                        ^^^^^^^^              ^^^^^^^^^^^^
+                        不透明な関数            残りのチェーン
+
+TalkF:      Ask "名前？" (String -> next)
+            ^^^^^^^^^^   ^^^^^^^^^^^^^^^
+            命令データ    結果を受け取る継続
+            (識別可能)    (next が「残り」を表す)
 ```
+
+- **命令部分** (`Ask "名前？"`) → データとして識別可能になった
+- **継続部分** (`String -> next`) → 関数のまま残っている
+
+> **命令の Defunctionalization + 継続の構造化**
 
 ---
 
-# Free モナドの定義
+# なぜ next を差し替える必要があるか — Functor
+
+命令をチェーンにするには、`next`（続き先）を差し替える操作が必要
+
+例: `ask` の後に `tell` を繋ぐ → `ask` の `next` を差し替える
+
+```haskell
+fmap f (Ask prompt k) = Ask prompt (f . k)
+-- 命令はそのまま、継続の先に f を合成
+
+fmap f (Tell msg next) = Tell msg (f next)
+-- 命令はそのまま、次を差し替え
+```
+
+この「命令の内容を変えずに `next` だけを差し替える」操作が `fmap`
+
+→ `TalkF` は **Functor**
+
+---
+
+# 自由モナドの定義
+
+`TalkF` の `next` に「残りの計算」を再帰的に入れると:
 
 ```haskell
 data Free f a
   = Pure a                -- 計算完了、結果は a
   | Free (f (Free f a))   -- 命令を1つ実行し、残りが続く
 ```
-
-命令セットは **Functor** で表現:
-
-```haskell
-data TalkF next
-  = Ask String (String -> next)  -- 質問 + 継続
-  | Tell String next             -- 出力 + 継続
-  deriving Functor
-```
-
-`next` = 「この命令の後に何が続くか」
-
----
-
-# ContChain → Free
-
-```
-ContChain:   StepChain  (a -> b)        (ContChain b)
-                         ^^^^^^^^        ^^^^^^^^^^^^
-                         不透明な関数      残りのチェーン
-
-Free:        Free       (f next)
-                         ^^^^^^
-                         構造化された命令 + 残りのチェーン
-```
-
-ContChain で不透明だった `(a -> b)` のうち、
-**命令** (Ask, Tell) がデータとして見えるようになった
-
-ただし **継続** (`String -> next`) は関数のまま残っている
-
-> Free = 命令を Defunctionalization + 継続を構造化（継続は関数のまま）
-
----
-
-# Free の bind と DSL プログラム
 
 ```haskell
 instance Functor f => Monad (Free f) where
@@ -418,12 +397,11 @@ instance Functor f => Monad (Free f) where
 --                       Functor 制約が必要！
 ```
 
-`>>=` は `fmap` で命令の中に潜り、`next`（続き先）を差し替える
+`>>=` は `fmap` で命令の中に潜り、末尾に新しい計算を接ぎ木する
 
-`fmap` が `next` を差し替えるには、`next` が構造の中に見えている必要がある
-→ `Ask` は結果が継続の中にあるので `(String -> next)` を持たざるを得ない
+---
 
-この `(String -> next)` は `fmap` のためだけに存在し、命令の本質ではない
+# DSL プログラムと Free
 
 ```haskell
 talkProgram :: Free TalkF String
@@ -432,6 +410,35 @@ talkProgram = do
   tell ("こんにちは、" ++ name ++ "さん！")
   pure name
 ```
+
+この `talkProgram` は **データ構造** — 実行はまだ起きていない
+
+```haskell
+-- IO で対話的に実行
+runTalkIO :: Free TalkF a -> IO a
+runTalkIO (Pure a) = pure a
+runTalkIO (Free (Ask prompt next)) = do
+  putStrLn prompt; input <- getLine
+  runTalkIO (next input)
+runTalkIO (Free (Tell msg next)) = do
+  putStrLn msg; runTalkIO next
+```
+
+---
+
+# ステップ実行の認識
+
+`runTalkIO` は何をしている？
+
+1. プログラムの **先頭を覗く**（`Pure` か `Free` か）
+2. 命令を **処理する**（`putStrLn`、`getLine`）
+3. 継続に **結果を渡す**（`next input`）
+4. 再帰的に **次のステップへ**
+
+これは **ステップ実行** — プログラムを一命令ずつ処理するパターン
+
+> このパターンが可能なのは、プログラムが Free で**データとして具象化**されているから
+> 一般のモナド（`IO`、`Reader`）の `>>=` では中を覗けない
 
 ---
 
@@ -444,9 +451,8 @@ Free fx >>= f = Free (fmap (>>= f) fx)
 **2つの問題:**
 
 1. **Functor 制約**: `fmap` のために `f` が Functor でなければならない
-   - `(String -> next)` は `fmap` のためだけに存在
+   - `Ask` の `(String -> next)` は `fmap` のためだけに存在
    - 命令の本質には不要
-
 2. **性能**: `>>=` のたびに構造全体を走査 → O(n²)
 
 → 命令と継続を **分離** できないか？
@@ -455,9 +461,9 @@ Free fx >>= f = Free (fmap (>>= f) fx)
 
 <!-- _class: lead -->
 
-# Ch.5 — Free から Freer へ
+# Ch.4 — Freer と限定継続
 
-Functor 制約を取り除く
+Functor 制約を取り除き、ステップ実行を整理すると限定継続が現れる
 
 ---
 
@@ -467,13 +473,16 @@ Functor 制約を取り除く
 -- Free: fmap で命令の中に潜る
 Free fx >>= f = Free (fmap (>>= f) fx)
 
--- Freer: 継続を合成するだけ
+-- もし分離できたら: 継続を合成するだけ
 Bind fx k >>= f = Bind fx ((>>= f) . k)
 ```
 
 命令 `fx` には触らず、継続 `k` を合成するだけ
 
 → `fmap` 不要 → **Functor 制約が消える**
+
+しかし `Free (f (Free f a))` がどうしてこの形になるのか？
+→ 存在量化された型変数 `x` はどこから来る？
 
 ---
 
@@ -494,8 +503,6 @@ instance Functor (Coyoneda f) where
   -- f の fmap を呼ばず、関数合成だけ
 ```
 
-米田の補題に由来するが、使うのは「常に Functor になる」構成的事実
-
 ---
 
 # 導出: Free (Coyoneda f) → Freer f
@@ -515,59 +522,39 @@ data Freer f a where
 
 `f` に **Functor 制約なし！**
 
----
-
-# Freer の Monad インスタンス
-
 ```haskell
 instance Monad (Freer f) where
   Pure a    >>= f = f a
   Bind fx k >>= f = Bind fx ((>>= f) . k)
-  -- 継続の合成だけ、fmap 不要
 ```
-
-命令セットもシンプルに:
-
-```haskell
-data Talk a where
-  Ask  :: String -> Talk String  -- 質問 → 文字列を返す
-  Tell :: String -> Talk ()      -- 出力 → () を返す
-```
-
-`(String -> next)` が消え、**本質的な情報だけ** が残る
 
 ---
 
-# send ヘルパー
+# 命令セットの簡素化
+
+```haskell
+-- Free 版: Functor のための (String -> next) が必要
+data TalkF next
+  = Ask String (String -> next)
+  | Tell String next
+
+-- Freer 版: 本質だけが残る
+data Talk a where
+  Ask  :: String -> Talk String
+  Tell :: String -> Talk ()
+```
 
 ```haskell
 send :: f a -> Freer f a
 send fa = Bind fa Pure
+-- 「命令を発行して結果をそのまま返す」最小のプログラム
 ```
-
-命令を Freer に持ち上げる — 「命令を発行して結果をそのまま返す」
-
-```haskell
-ask :: String -> Freer Talk String
-ask prompt = send (Ask prompt)
-
-tell :: String -> Freer Talk ()
-tell msg = send (Tell msg)
-```
-
-Freer の構造は完成 → 次は **どう実行するか**
 
 ---
 
-<!-- _class: lead -->
+# ステップ実行の整理
 
-# Ch.6 — 実行基盤
-
-Step 実行・限定継続・Codensity
-
----
-
-# Step 型と viewFreer
+命令と継続が分離されたことで、ステップ実行がより明確に:
 
 ```haskell
 data Step f a where
@@ -579,34 +566,21 @@ viewFreer (Pure a)    = Done a
 viewFreer (Bind fx k) = Await fx k
 ```
 
-インタプリタに必要な情報だけを公開する抽象化層
-
-現在の実装では自明だが、**内部表現を変えたときに非自明になる**
-
----
-
-# Step ベースのインタプリタ
-
 ```haskell
-runStepIO :: Freer Talk a -> IO a
 runStepIO m = case viewFreer m of
   Done a             -> pure a
   Await (Ask prompt) k -> do
-    putStrLn prompt
-    input <- getLine
-    runStepIO (k input)   -- 値を継続に渡して再開
+    putStrLn prompt; input <- getLine
+    runStepIO (k input)   -- 継続に値を渡して再開
   Await (Tell msg) k -> do
-    putStrLn msg
-    runStepIO (k ())
+    putStrLn msg; runStepIO (k ())
 ```
-
-ループ構造: 命令を覗く → 処理 → 結果を `k` に渡す → 再帰
 
 ---
 
 # 限定継続としての Freer
 
-Step 実行は **限定継続** の shift/reset 構造そのもの
+ステップ実行は **限定継続** の shift/reset 構造そのもの
 
 | 限定継続           | Freer                                   |
 | ------------------ | --------------------------------------- |
@@ -617,38 +591,28 @@ Step 実行は **限定継続** の shift/reset 構造そのもの
 
 ```haskell
 send (Ask "名前は？") >>= \name -> send (Tell ("こんにちは、" ++ name))
--- = Bind (Ask "名前は？") (\name -> send (Tell (...)))
---                          ^^^^^^^^^^^^^^^^^^^^^^^^^
---                          限定継続
+-- = Bind (Ask "名前は？") (\name -> ...)
+--                          ^^^^^^^^^^^^^ 限定継続
 ```
 
 ---
 
-# Codensity — O(n²) の解決
+# Generator への橋渡し
 
-```haskell
-Bind fx k >>= f = Bind fx ((>>= f) . k)
--- 左結合チェーンで継続がネスト → 実行時 O(n²)
-```
+- **shift** = 命令を発行し、残りの計算を継続として捕捉。制御はインタプリタへ
+- **`yield`** = 値を外に渡して中断。制御は呼び出し元へ。再開時に値を受け取る
 
-```haskell
-newtype Codensity m a = Codensity
-  { runCodensity :: forall r. (a -> m r) -> m r }
-```
+どちらも「値を外に渡して中断し、外側から値を供給されて再開する」
 
-- `>>=` が常に **O(1)** — 差分リストと同じアイデア
-- `forall r.` のパラメトリシティが結合順序の入れ替えを保証
-
-> O(n²) が顕在化するのは `foldl (>>=)` のようにプログラム的に左結合チェーンを構築する場合。
-> do 記法は **右結合** にデシュガーされるため発生しない → DSL 実装では Codensity は **省略**
+→ `yield` = shift、`while` ループ = reset — **同じプロトコル**
 
 ---
 
 <!-- _class: lead -->
 
-# Ch.7 — TypeScript DSL
+# Ch.5 — Generator と DSL
 
-Generator = 言語レベルの限定継続
+限定継続を TypeScript の Generator で実現する
 
 ---
 
@@ -660,56 +624,34 @@ Generator = 言語レベルの限定継続
 | `fx` — 命令          | `instruction` — yield された値 |
 | `k` — 限定継続       | yield 後の関数本体の残り       |
 | パターンマッチで処理 | `gen.next(value)` で値を渡す   |
+| `send` = shift       | `yield` = shift                |
+| インタプリタ = reset | `while` ループ = reset         |
 
-**重要な違い**: one-shot vs multi-shot
-
-- 素の Freer: `k` は通常の関数 → 何度でも呼べる (multi-shot)
-- Codensity 適用後: 継続が再結合されるため、実質 **one-shot 前提** の動作に
-- Generator: 内部状態あり → 一度しか再開できない (one-shot)
+**重要な違い**: Freer の `k` は何度でも呼べる (multi-shot)
+Generator は一度しか再開できない (one-shot)
 
 ---
 
-# 命令定義
+# 命令定義と DSL プログラム
 
 ```typescript
 type Ask = { readonly tag: "ask"; readonly prompt: string };
 type Tell = { readonly tag: "tell"; readonly message: string };
 
-type TalkInstruction = Ask | Tell;
-```
-
-Defunc された命令セット（Haskell の GADT に対応）
-
-```typescript
 function* ask(prompt: string): Generator<Ask, string, string> {
   return (yield { tag: "ask", prompt }) as string;
 }
-
-function* tell(message: string): Generator<Tell, void, void> {
-  return (yield { tag: "tell", message }) as void;
-}
 ```
-
----
-
-# DSL プログラム
 
 ```typescript
 const greetProgram: Program<string> = function* () {
   const name = yield* ask("名前を入力してください");
   yield* tell(`こんにちは、${name}さん！`);
-  const age = yield* ask("年齢を入力してください");
-  yield* tell(`${age}歳ですね。`);
   return name;
 };
 ```
 
-Haskell の do 記法とほぼ同じ見た目
-
-**サンク化が重要**: `Program<A> = () => Generator<...>`
-
-- Generator は one-shot → 使い切り
-- サンクで毎回新しい Generator を生成 → 同じプログラムを複数インタプリタで実行可能
+`Program<A> = () => Generator<...>` — サンク化で不変性を担保
 
 ---
 
@@ -745,6 +687,27 @@ function runPure<A>(
 
 ---
 
+# 補遺: Codensity
+
+```haskell
+Bind fx k >>= f = Bind fx ((>>= f) . k)
+-- 左結合チェーンで継続がネスト → 実行時 O(n²)
+```
+
+```haskell
+newtype Codensity m a = Codensity
+  { runCodensity :: forall r. (a -> m r) -> m r }
+```
+
+- `>>=` が常に **O(1)** — 差分リストと同じアイデア
+- `forall r.` のパラメトリシティが結合順序の入れ替えを保証
+
+> do 記法は **右結合** にデシュガーされるため O(n²) は発生しない
+> → DSL 実装では Codensity は **省略**
+> → one-shot な Generator ではそもそも Codensity は **適用不可**
+
+---
+
 <!-- _class: lead -->
 
 # まとめ
@@ -753,27 +716,24 @@ function runPure<A>(
 
 <!-- _class: dense -->
 
-# 導出の全体像
+# 導出の全体像 — 4つの軸
 
 ```
-継続 (CPS)
-  │  「計算の残り」を値にする
-  │  課題: 関数は中身が見えない
-  ▼
-Defunctionalization
-  │  関数→データに変換
-  │  課題: 継続の (a→b) がまだ関数
-  ▼
-Free モナド
-  │  命令セットを Functor で構造化
-  │  課題: Functor 制約が不要に重い
-  ▼
-Freer モナド (Coyoneda)
-  │  命令と継続を分離、Functor 不要
-  │  実行基盤: Step + 限定継続
-  ▼
-TypeScript DSL
-    Generator = 限定継続の言語サポート
+軸1: 具象化
+  CPS — 「計算の残り」を関数にする
+  Defunctionalization — 関数をデータにする
+  Free モナド — 命令セットを Functor で構造化
+      ↓
+軸2: ステップ実行
+  インタプリタは「先頭を覗き、命令を処理し、継続に値を渡す」
+  これが可能なのはプログラムがデータだから
+      ↓
+軸3: 限定継続
+  Freer で命令と継続を分離 → send = shift, インタプリタ = reset
+      ↓
+軸4: Generator
+  yield = shift, while ループ = reset
+  TypeScript で DSL が書ける
 ```
 
 ---

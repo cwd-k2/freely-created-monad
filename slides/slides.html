@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en-US"><head><title>自由モナドから Freer モナドへ</title><meta property="og:title" content="自由モナドから Freer モナドへ"><meta charset="UTF-8"><meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta property="og:type" content="website"><meta name="twitter:card" content="summary"><style>@media screen{body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button{appearance:none;background-color:initial;border:0;color:inherit;cursor:pointer;font-size:inherit;opacity:.8;outline:none;padding:0;transition:opacity .2s linear;-webkit-tap-highlight-color:transparent}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:disabled,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:disabled,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:disabled,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:disabled{cursor:not-allowed;opacity:.15!important}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover{opacity:1}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:active,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:active,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover:active,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover:active{opacity:.6}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:not(:disabled),body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:not(:disabled),body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover:not(:disabled),body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover:not(:disabled){transition:none}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button.bespoke-marp-presenter-info-page-prev{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNNjggOTAgMjggNTBsNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button.bespoke-marp-presenter-info-page-next{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJtMzIgOTAgNDAtNDAtNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen]{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgeD0iMTAiIHk9IjIwIiBjbGFzcz0iYSIgcng9IjUuNjciLz48cGF0aCBkPSJNNDAgNzBIMjBWNTBtMjAgMEwyMCA3MG00MC00MGgyMHYyMG0tMjAgMCAyMC0yMCIgY2xhc3M9ImEiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button.exit[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button.exit[data-bespoke-marp-osc=fullscreen]{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgeD0iMTAiIHk9IjIwIiBjbGFzcz0iYSIgcng9IjUuNjciLz48cGF0aCBkPSJNMjAgNTBoMjB2MjBtLTIwIDAgMjAtMjBtNDAgMEg2MFYzMG0yMCAwTDYwIDUwIiBjbGFzcz0iYSIvPjwvc3ZnPg==")}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter]{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNODcuOCA0Ny41Qzg5IDUwIDg3LjcgNTIgODUgNTJIMzVhOC43IDguNyAwIDAgMS03LjItNC41bC0xNS42LTMxQzExIDE0IDEyLjIgMTIgMTUgMTJoNTBhOC44IDguOCAwIDAgMSA3LjIgNC41ek02MCA1MnYzNm0tMTAgMGgyME00NSA0MmgyMCIvPjwvc3ZnPg==") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button.bespoke-marp-presenter-note-bigger{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNMTIgNTBoODBNNTIgOTBWMTAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button.bespoke-marp-presenter-note-smaller{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNMTIgNTBoODAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}}@keyframes __bespoke_marp_transition_reduced_outgoing__{0%{opacity:1}to{opacity:0}}@keyframes __bespoke_marp_transition_reduced_incoming__{0%{mix-blend-mode:plus-lighter;opacity:0}to{mix-blend-mode:plus-lighter;opacity:1}}.bespoke-marp-note,.bespoke-marp-osc,.bespoke-progress-parent{display:none;transition:none}@media screen{::view-transition-group(*){animation-duration:var(--marp-bespoke-transition-animation-duration,.5s);animation-timing-function:ease}::view-transition-new(*),::view-transition-old(*){animation-delay:0s;animation-direction:var(--marp-bespoke-transition-animation-direction,normal);animation-duration:var(--marp-bespoke-transition-animation-duration,.5s);animation-fill-mode:both;animation-name:var(--marp-bespoke-transition-animation-name,var(--marp-bespoke-transition-animation-name-fallback,__bespoke_marp_transition_no_animation__));mix-blend-mode:normal}::view-transition-old(*){--marp-bespoke-transition-animation-name-fallback:__bespoke_marp_transition_reduced_outgoing__;animation-timing-function:ease}::view-transition-new(*){--marp-bespoke-transition-animation-name-fallback:__bespoke_marp_transition_reduced_incoming__;animation-timing-function:ease}::view-transition-new(root),::view-transition-old(root){animation-timing-function:linear}::view-transition-new(__bespoke_marp_transition_osc__),::view-transition-old(__bespoke_marp_transition_osc__){animation-duration:0s!important;animation-name:__bespoke_marp_transition_osc__!important}::view-transition-new(__bespoke_marp_transition_osc__){opacity:0!important}.bespoke-marp-transition-warming-up::view-transition-group(*),.bespoke-marp-transition-warming-up::view-transition-new(*),.bespoke-marp-transition-warming-up::view-transition-old(*){animation-play-state:paused!important}body,html{height:100%;margin:0}body{background:#000;overflow:hidden}svg.bespoke-marp-slide{content-visibility:hidden;opacity:0;pointer-events:none;z-index:-1}svg.bespoke-marp-slide:not(.bespoke-marp-active) *{view-transition-name:none!important}svg.bespoke-marp-slide.bespoke-marp-active{content-visibility:visible;opacity:1;pointer-events:auto;z-index:0}svg.bespoke-marp-slide.bespoke-marp-active.bespoke-marp-active-ready *{animation-name:__bespoke_marp__!important}@supports not (content-visibility:hidden){svg.bespoke-marp-slide[data-bespoke-marp-load=hideable]{display:none}svg.bespoke-marp-slide[data-bespoke-marp-load=hideable].bespoke-marp-active{display:block}}}@media screen and (prefers-reduced-motion:reduce){svg.bespoke-marp-slide *{view-transition-name:none!important}}@media screen{[data-bespoke-marp-fragment=inactive]{visibility:hidden}body[data-bespoke-view=""] .bespoke-marp-parent,body[data-bespoke-view=next] .bespoke-marp-parent{inset:0;position:absolute}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc{background:#000000a6;border-radius:7px;bottom:50px;color:#fff;contain:paint;display:block;font-family:Helvetica,Arial,sans-serif;font-size:16px;left:50%;line-height:0;opacity:1;padding:12px;position:absolute;touch-action:manipulation;transform:translateX(-50%);transition:opacity .2s linear;-webkit-user-select:none;user-select:none;white-space:nowrap;will-change:transform;z-index:1;view-transition-name:__bespoke_marp_transition_osc__}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>*,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>*{margin-left:6px}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>:first-child,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>:first-child{margin-left:0}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>span,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>span{opacity:.8}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>span[data-bespoke-marp-osc=page],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>span[data-bespoke-marp-osc=page]{display:inline-block;min-width:140px;text-align:center}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev]{height:32px;line-height:32px;width:32px}body[data-bespoke-view=""] .bespoke-marp-parent.bespoke-marp-inactive,body[data-bespoke-view=next] .bespoke-marp-parent.bespoke-marp-inactive{cursor:none}body[data-bespoke-view=""] .bespoke-marp-parent.bespoke-marp-inactive>.bespoke-marp-osc,body[data-bespoke-view=next] .bespoke-marp-parent.bespoke-marp-inactive>.bespoke-marp-osc{opacity:0;pointer-events:none}body[data-bespoke-view=""] svg.bespoke-marp-slide,body[data-bespoke-view=next] svg.bespoke-marp-slide{height:100%;left:0;position:absolute;top:0;width:100%}body[data-bespoke-view=""] .bespoke-progress-parent{background:#222;display:flex;height:5px;width:100%}body[data-bespoke-view=""] .bespoke-progress-parent+.bespoke-marp-parent{top:5px}body[data-bespoke-view=""] .bespoke-progress-parent .bespoke-progress-bar{background:#0288d1;flex:0 0 0;transition:flex-basis .2s cubic-bezier(0,1,1,1)}body[data-bespoke-view=next]{background:#0000}body[data-bespoke-view=presenter]{background:#161616}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container{display:grid;font-family:Helvetica,Arial,sans-serif;grid-template:"current dragbar next" minmax(140px,1fr) "current dragbar note" 2fr "info    dragbar note" 3em;grid-template-columns:minmax(3px,var(--bespoke-marp-presenter-split-ratio,66%)) 0 minmax(3px,1fr);height:100%;left:0;position:absolute;top:0;width:100%}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent{grid-area:current;overflow:hidden;position:relative}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent svg.bespoke-marp-slide{height:calc(100% - 40px);left:20px;pointer-events:none;position:absolute;top:20px;-webkit-user-select:none;user-select:none;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent svg.bespoke-marp-slide.bespoke-marp-active{filter:drop-shadow(0 3px 10px rgba(0,0,0,.5))}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container{background:#0288d1;cursor:col-resize;grid-area:dragbar;margin-left:-3px;opacity:0;position:relative;transition:opacity .4s linear .1s;width:6px;z-index:10}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container:hover{opacity:1}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container.active{opacity:1;transition-delay:0s}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container{background:#222;cursor:pointer;display:none;grid-area:next;overflow:hidden;position:relative}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container.active{display:block}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container iframe.bespoke-marp-presenter-next{background:#0000;border:0;display:block;filter:drop-shadow(0 3px 10px rgba(0,0,0,.5));height:calc(100% - 40px);left:20px;pointer-events:none;position:absolute;top:20px;-webkit-user-select:none;user-select:none;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container{background:#222;color:#eee;grid-area:note;position:relative;z-index:1}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button{height:1.5em;line-height:1.5em;width:1.5em}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-wrapper{display:block;inset:0;position:absolute}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-buttons{background:#000000a6;border-radius:4px;bottom:0;display:flex;gap:4px;margin:12px;opacity:0;padding:6px;pointer-events:none;position:absolute;right:0;transition:opacity .2s linear}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-buttons:focus-within,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-wrapper:focus-within+.bespoke-marp-presenter-note-buttons,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container:hover .bespoke-marp-presenter-note-buttons{opacity:1;pointer-events:auto}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note{box-sizing:border-box;font-size:calc(1.1em*var(--bespoke-marp-note-font-scale, 1));height:calc(100% - 40px);margin:20px;overflow:auto;padding-right:3px;white-space:pre-wrap;width:calc(100% - 40px);word-wrap:break-word;scrollbar-color:#eeeeee80 #0000;scrollbar-width:thin}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar{width:6px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar-track{background:#0000}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar-thumb{background:#eeeeee80;border-radius:6px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note:empty{pointer-events:none}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note.active{display:block}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note p:first-child{margin-top:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note p:last-child{margin-bottom:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container{align-items:center;box-sizing:border-box;color:#eee;display:flex;flex-wrap:nowrap;grid-area:info;justify-content:center;overflow:hidden;padding:0 10px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-time,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer{box-sizing:border-box;display:block;padding:0 10px;white-space:nowrap;width:100%}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button{height:1.5em;line-height:1.5em;width:1.5em}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page{order:2;text-align:center}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page .bespoke-marp-presenter-info-page-text{display:inline-block;min-width:120px;text-align:center}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-time{color:#999;order:1;text-align:left}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer{color:#999;order:3;text-align:right}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer:hover{cursor:pointer}}@media print{.bespoke-marp-presenter-info-container,.bespoke-marp-presenter-next-container,.bespoke-marp-presenter-note-container{display:none}}</style><style>div#\:\$p > svg > foreignObject > section{width:1280px;height:720px;box-sizing:border-box;overflow:hidden;position:relative;scroll-snap-align:center center;-webkit-text-size-adjust:100%;text-size-adjust:100%}div#\:\$p > svg > foreignObject > section::after{bottom:0;content:attr(data-marpit-pagination);padding:inherit;pointer-events:none;position:absolute;right:0}div#\:\$p > svg > foreignObject > section:not([data-marpit-pagination])::after{display:none}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1){font-size:2em;margin-block:0.67em}div#\:\$p > svg > foreignObject > section video::-webkit-media-controls{will-change:transform}@page {size:1280px 720px;margin:0}@media print{html, body{background-color:#fff;margin:0;page-break-inside:avoid;break-inside:avoid-page}div#\:\$p > svg > foreignObject > section{page-break-before:always;break-before:page}div#\:\$p > svg > foreignObject > section, div#\:\$p > svg > foreignObject > section *{-webkit-print-color-adjust:exact!important;animation-delay:0s!important;animation-duration:0s!important;color-adjust:exact!important;print-color-adjust:exact!important;transition:none!important}div#\:\$p > svg[data-marpit-svg]{display:block;height:100vh;width:100vw}}div#\:\$p > svg > foreignObject > :where(section){container-type:size}div#\:\$p > svg > foreignObject > section img[data-marp-twemoji]{background:transparent;height:1em;margin:0 .05em 0 .1em;vertical-align:-.1em;width:1em}div#\:\$p > svg > foreignObject > section{--focus-outlineColor:light-dark(#0969da, #1f6feb);--fgColor-default:light-dark(#1f2328, #f0f6fc);--fgColor-muted:light-dark(#59636e, #9198a1);--fgColor-accent:light-dark(#0969da, #4493f8);--fgColor-success:light-dark(#1a7f37, #3fb950);--fgColor-attention:light-dark(#9a6700, #d29922);--fgColor-danger:light-dark(#d1242f, #f85149);--fgColor-done:light-dark(#8250df, #ab7df8);--bgColor-default:light-dark(#fff, #0d1117);--bgColor-muted:light-dark(#f6f8fa, #151b23);--bgColor-neutral-muted:light-dark(#818b981f, #656c7633);--bgColor-attention-muted:light-dark(#fff8c5, #bb800926);--borderColor-default:light-dark(#d1d9e0, #3d444d);--borderColor-muted:light-dark(#d1d9e0b3, #3d444db3);--borderColor-neutral-muted:light-dark(#d1d9e0b3, #3d444db3);--borderColor-accent-emphasis:light-dark(#0969da, #1f6feb);--borderColor-success-emphasis:light-dark(#1a7f37, #238636);--borderColor-attention-emphasis:light-dark(#9a6700, #9e6a03);--borderColor-danger-emphasis:light-dark(#cf222e, #da3633);--borderColor-done-emphasis:light-dark(#8250df, #8957e5);--color-prettylights-syntax-comment:light-dark(#59636e, #9198a1);--color-prettylights-syntax-constant:light-dark(#0550ae, #79c0ff);--color-prettylights-syntax-constant-other-reference-link:light-dark(#0a3069, #a5d6ff);--color-prettylights-syntax-entity:light-dark(#6639ba, #d2a8ff);--color-prettylights-syntax-storage-modifier-import:light-dark(#1f2328, #f0f6fc);--color-prettylights-syntax-entity-tag:light-dark(#0550ae, #7ee787);--color-prettylights-syntax-keyword:light-dark(#cf222e, #ff7b72);--color-prettylights-syntax-string:light-dark(#0a3069, #a5d6ff);--color-prettylights-syntax-variable:light-dark(#953800, #ffa657);--color-prettylights-syntax-brackethighlighter-unmatched:light-dark(#82071e, #f85149);--color-prettylights-syntax-brackethighlighter-angle:light-dark(#59636e, #9198a1);--color-prettylights-syntax-invalid-illegal-text:light-dark(#f6f8fa, #f0f6fc);--color-prettylights-syntax-invalid-illegal-bg:light-dark(#82071e, #8e1519);--color-prettylights-syntax-carriage-return-text:light-dark(#f6f8fa, #f0f6fc);--color-prettylights-syntax-carriage-return-bg:light-dark(#cf222e, #b62324);--color-prettylights-syntax-string-regexp:light-dark(#116329, #7ee787);--color-prettylights-syntax-markup-list:light-dark(#3b2300, #f2cc60);--color-prettylights-syntax-markup-heading:light-dark(#0550ae, #1f6feb);--color-prettylights-syntax-markup-italic:light-dark(#1f2328, #f0f6fc);--color-prettylights-syntax-markup-bold:light-dark(#1f2328, #f0f6fc);--color-prettylights-syntax-markup-deleted-text:light-dark(#82071e, #ffdcd7);--color-prettylights-syntax-markup-deleted-bg:light-dark(#ffebe9, #67060c);--color-prettylights-syntax-markup-inserted-text:light-dark(#116329, #aff5b4);--color-prettylights-syntax-markup-inserted-bg:light-dark(#dafbe1, #033a16);--color-prettylights-syntax-markup-changed-text:light-dark(#953800, #ffdfb6);--color-prettylights-syntax-markup-changed-bg:light-dark(#ffd8b5, #5a1e02);--color-prettylights-syntax-markup-ignored-text:light-dark(#d1d9e0, #f0f6fc);--color-prettylights-syntax-markup-ignored-bg:light-dark(#0550ae, #1158c7);--color-prettylights-syntax-meta-diff-range:light-dark(#8250df, #d2a8ff);--color-prettylights-syntax-sublimelinter-gutter-mark:light-dark(#818b98, #3d444d);--base-size-4:calc(var(--marpit-root-font-size, 1rem) * 0.25);--base-size-8:calc(var(--marpit-root-font-size, 1rem) * 0.5);--base-size-16:calc(var(--marpit-root-font-size, 1rem) * 1);--base-size-24:calc(var(--marpit-root-font-size, 1rem) * 1.5);--base-size-40:calc(var(--marpit-root-font-size, 1rem) * 2.5);--base-text-weight-normal:400;--base-text-weight-medium:500;--base-text-weight-semibold:600;--fontStack-monospace:ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;--fgColor-accent:Highlight;}/*!
+<!DOCTYPE html><html lang="en-US"><head><title>Generator で DSL</title><meta property="og:title" content="Generator で DSL"><meta charset="UTF-8"><meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta property="og:type" content="website"><meta name="twitter:card" content="summary"><style>@media screen{body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button{appearance:none;background-color:initial;border:0;color:inherit;cursor:pointer;font-size:inherit;opacity:.8;outline:none;padding:0;transition:opacity .2s linear;-webkit-tap-highlight-color:transparent}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:disabled,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:disabled,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:disabled,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:disabled{cursor:not-allowed;opacity:.15!important}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover{opacity:1}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:active,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:active,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover:active,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover:active{opacity:.6}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:not(:disabled),body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:not(:disabled),body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover:not(:disabled),body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover:not(:disabled){transition:none}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button.bespoke-marp-presenter-info-page-prev{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNNjggOTAgMjggNTBsNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button.bespoke-marp-presenter-info-page-next{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJtMzIgOTAgNDAtNDAtNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen]{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgeD0iMTAiIHk9IjIwIiBjbGFzcz0iYSIgcng9IjUuNjciLz48cGF0aCBkPSJNNDAgNzBIMjBWNTBtMjAgMEwyMCA3MG00MC00MGgyMHYyMG0tMjAgMCAyMC0yMCIgY2xhc3M9ImEiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button.exit[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button.exit[data-bespoke-marp-osc=fullscreen]{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgeD0iMTAiIHk9IjIwIiBjbGFzcz0iYSIgcng9IjUuNjciLz48cGF0aCBkPSJNMjAgNTBoMjB2MjBtLTIwIDAgMjAtMjBtNDAgMEg2MFYzMG0yMCAwTDYwIDUwIiBjbGFzcz0iYSIvPjwvc3ZnPg==")}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter]{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNODcuOCA0Ny41Qzg5IDUwIDg3LjcgNTIgODUgNTJIMzVhOC43IDguNyAwIDAgMS03LjItNC41bC0xNS42LTMxQzExIDE0IDEyLjIgMTIgMTUgMTJoNTBhOC44IDguOCAwIDAgMSA3LjIgNC41ek02MCA1MnYzNm0tMTAgMGgyME00NSA0MmgyMCIvPjwvc3ZnPg==") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button.bespoke-marp-presenter-note-bigger{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNMTIgNTBoODBNNTIgOTBWMTAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button.bespoke-marp-presenter-note-smaller{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNMTIgNTBoODAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}}@keyframes __bespoke_marp_transition_reduced_outgoing__{0%{opacity:1}to{opacity:0}}@keyframes __bespoke_marp_transition_reduced_incoming__{0%{mix-blend-mode:plus-lighter;opacity:0}to{mix-blend-mode:plus-lighter;opacity:1}}.bespoke-marp-note,.bespoke-marp-osc,.bespoke-progress-parent{display:none;transition:none}@media screen{::view-transition-group(*){animation-duration:var(--marp-bespoke-transition-animation-duration,.5s);animation-timing-function:ease}::view-transition-new(*),::view-transition-old(*){animation-delay:0s;animation-direction:var(--marp-bespoke-transition-animation-direction,normal);animation-duration:var(--marp-bespoke-transition-animation-duration,.5s);animation-fill-mode:both;animation-name:var(--marp-bespoke-transition-animation-name,var(--marp-bespoke-transition-animation-name-fallback,__bespoke_marp_transition_no_animation__));mix-blend-mode:normal}::view-transition-old(*){--marp-bespoke-transition-animation-name-fallback:__bespoke_marp_transition_reduced_outgoing__;animation-timing-function:ease}::view-transition-new(*){--marp-bespoke-transition-animation-name-fallback:__bespoke_marp_transition_reduced_incoming__;animation-timing-function:ease}::view-transition-new(root),::view-transition-old(root){animation-timing-function:linear}::view-transition-new(__bespoke_marp_transition_osc__),::view-transition-old(__bespoke_marp_transition_osc__){animation-duration:0s!important;animation-name:__bespoke_marp_transition_osc__!important}::view-transition-new(__bespoke_marp_transition_osc__){opacity:0!important}.bespoke-marp-transition-warming-up::view-transition-group(*),.bespoke-marp-transition-warming-up::view-transition-new(*),.bespoke-marp-transition-warming-up::view-transition-old(*){animation-play-state:paused!important}body,html{height:100%;margin:0}body{background:#000;overflow:hidden}svg.bespoke-marp-slide{content-visibility:hidden;opacity:0;pointer-events:none;z-index:-1}svg.bespoke-marp-slide:not(.bespoke-marp-active) *{view-transition-name:none!important}svg.bespoke-marp-slide.bespoke-marp-active{content-visibility:visible;opacity:1;pointer-events:auto;z-index:0}svg.bespoke-marp-slide.bespoke-marp-active.bespoke-marp-active-ready *{animation-name:__bespoke_marp__!important}@supports not (content-visibility:hidden){svg.bespoke-marp-slide[data-bespoke-marp-load=hideable]{display:none}svg.bespoke-marp-slide[data-bespoke-marp-load=hideable].bespoke-marp-active{display:block}}}@media screen and (prefers-reduced-motion:reduce){svg.bespoke-marp-slide *{view-transition-name:none!important}}@media screen{[data-bespoke-marp-fragment=inactive]{visibility:hidden}body[data-bespoke-view=""] .bespoke-marp-parent,body[data-bespoke-view=next] .bespoke-marp-parent{inset:0;position:absolute}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc{background:#000000a6;border-radius:7px;bottom:50px;color:#fff;contain:paint;display:block;font-family:Helvetica,Arial,sans-serif;font-size:16px;left:50%;line-height:0;opacity:1;padding:12px;position:absolute;touch-action:manipulation;transform:translateX(-50%);transition:opacity .2s linear;-webkit-user-select:none;user-select:none;white-space:nowrap;will-change:transform;z-index:1;view-transition-name:__bespoke_marp_transition_osc__}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>*,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>*{margin-left:6px}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>:first-child,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>:first-child{margin-left:0}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>span,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>span{opacity:.8}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>span[data-bespoke-marp-osc=page],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>span[data-bespoke-marp-osc=page]{display:inline-block;min-width:140px;text-align:center}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev]{height:32px;line-height:32px;width:32px}body[data-bespoke-view=""] .bespoke-marp-parent.bespoke-marp-inactive,body[data-bespoke-view=next] .bespoke-marp-parent.bespoke-marp-inactive{cursor:none}body[data-bespoke-view=""] .bespoke-marp-parent.bespoke-marp-inactive>.bespoke-marp-osc,body[data-bespoke-view=next] .bespoke-marp-parent.bespoke-marp-inactive>.bespoke-marp-osc{opacity:0;pointer-events:none}body[data-bespoke-view=""] svg.bespoke-marp-slide,body[data-bespoke-view=next] svg.bespoke-marp-slide{height:100%;left:0;position:absolute;top:0;width:100%}body[data-bespoke-view=""] .bespoke-progress-parent{background:#222;display:flex;height:5px;width:100%}body[data-bespoke-view=""] .bespoke-progress-parent+.bespoke-marp-parent{top:5px}body[data-bespoke-view=""] .bespoke-progress-parent .bespoke-progress-bar{background:#0288d1;flex:0 0 0;transition:flex-basis .2s cubic-bezier(0,1,1,1)}body[data-bespoke-view=next]{background:#0000}body[data-bespoke-view=presenter]{background:#161616}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container{display:grid;font-family:Helvetica,Arial,sans-serif;grid-template:"current dragbar next" minmax(140px,1fr) "current dragbar note" 2fr "info    dragbar note" 3em;grid-template-columns:minmax(3px,var(--bespoke-marp-presenter-split-ratio,66%)) 0 minmax(3px,1fr);height:100%;left:0;position:absolute;top:0;width:100%}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent{grid-area:current;overflow:hidden;position:relative}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent svg.bespoke-marp-slide{height:calc(100% - 40px);left:20px;pointer-events:none;position:absolute;top:20px;-webkit-user-select:none;user-select:none;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent svg.bespoke-marp-slide.bespoke-marp-active{filter:drop-shadow(0 3px 10px rgba(0,0,0,.5))}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container{background:#0288d1;cursor:col-resize;grid-area:dragbar;margin-left:-3px;opacity:0;position:relative;transition:opacity .4s linear .1s;width:6px;z-index:10}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container:hover{opacity:1}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container.active{opacity:1;transition-delay:0s}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container{background:#222;cursor:pointer;display:none;grid-area:next;overflow:hidden;position:relative}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container.active{display:block}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container iframe.bespoke-marp-presenter-next{background:#0000;border:0;display:block;filter:drop-shadow(0 3px 10px rgba(0,0,0,.5));height:calc(100% - 40px);left:20px;pointer-events:none;position:absolute;top:20px;-webkit-user-select:none;user-select:none;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container{background:#222;color:#eee;grid-area:note;position:relative;z-index:1}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button{height:1.5em;line-height:1.5em;width:1.5em}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-wrapper{display:block;inset:0;position:absolute}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-buttons{background:#000000a6;border-radius:4px;bottom:0;display:flex;gap:4px;margin:12px;opacity:0;padding:6px;pointer-events:none;position:absolute;right:0;transition:opacity .2s linear}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-buttons:focus-within,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-wrapper:focus-within+.bespoke-marp-presenter-note-buttons,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container:hover .bespoke-marp-presenter-note-buttons{opacity:1;pointer-events:auto}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note{box-sizing:border-box;font-size:calc(1.1em*var(--bespoke-marp-note-font-scale, 1));height:calc(100% - 40px);margin:20px;overflow:auto;padding-right:3px;white-space:pre-wrap;width:calc(100% - 40px);word-wrap:break-word;scrollbar-color:#eeeeee80 #0000;scrollbar-width:thin}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar{width:6px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar-track{background:#0000}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar-thumb{background:#eeeeee80;border-radius:6px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note:empty{pointer-events:none}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note.active{display:block}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note p:first-child{margin-top:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note p:last-child{margin-bottom:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container{align-items:center;box-sizing:border-box;color:#eee;display:flex;flex-wrap:nowrap;grid-area:info;justify-content:center;overflow:hidden;padding:0 10px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-time,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer{box-sizing:border-box;display:block;padding:0 10px;white-space:nowrap;width:100%}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button{height:1.5em;line-height:1.5em;width:1.5em}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page{order:2;text-align:center}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page .bespoke-marp-presenter-info-page-text{display:inline-block;min-width:120px;text-align:center}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-time{color:#999;order:1;text-align:left}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer{color:#999;order:3;text-align:right}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer:hover{cursor:pointer}}@media print{.bespoke-marp-presenter-info-container,.bespoke-marp-presenter-next-container,.bespoke-marp-presenter-note-container{display:none}}</style><style>div#\:\$p > svg > foreignObject > section{width:1280px;height:720px;box-sizing:border-box;overflow:hidden;position:relative;scroll-snap-align:center center;-webkit-text-size-adjust:100%;text-size-adjust:100%}div#\:\$p > svg > foreignObject > section::after{bottom:0;content:attr(data-marpit-pagination);padding:inherit;pointer-events:none;position:absolute;right:0}div#\:\$p > svg > foreignObject > section:not([data-marpit-pagination])::after{display:none}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1){font-size:2em;margin-block:0.67em}div#\:\$p > svg > foreignObject > section video::-webkit-media-controls{will-change:transform}@page {size:1280px 720px;margin:0}@media print{html, body{background-color:#fff;margin:0;page-break-inside:avoid;break-inside:avoid-page}div#\:\$p > svg > foreignObject > section{page-break-before:always;break-before:page}div#\:\$p > svg > foreignObject > section, div#\:\$p > svg > foreignObject > section *{-webkit-print-color-adjust:exact!important;animation-delay:0s!important;animation-duration:0s!important;color-adjust:exact!important;print-color-adjust:exact!important;transition:none!important}div#\:\$p > svg[data-marpit-svg]{display:block;height:100vh;width:100vw}}div#\:\$p > svg > foreignObject > :where(section){container-type:size}div#\:\$p > svg > foreignObject > section img[data-marp-twemoji]{background:transparent;height:1em;margin:0 .05em 0 .1em;vertical-align:-.1em;width:1em}div#\:\$p > svg > foreignObject > section{--focus-outlineColor:light-dark(#0969da, #1f6feb);--fgColor-default:light-dark(#1f2328, #f0f6fc);--fgColor-muted:light-dark(#59636e, #9198a1);--fgColor-accent:light-dark(#0969da, #4493f8);--fgColor-success:light-dark(#1a7f37, #3fb950);--fgColor-attention:light-dark(#9a6700, #d29922);--fgColor-danger:light-dark(#d1242f, #f85149);--fgColor-done:light-dark(#8250df, #ab7df8);--bgColor-default:light-dark(#fff, #0d1117);--bgColor-muted:light-dark(#f6f8fa, #151b23);--bgColor-neutral-muted:light-dark(#818b981f, #656c7633);--bgColor-attention-muted:light-dark(#fff8c5, #bb800926);--borderColor-default:light-dark(#d1d9e0, #3d444d);--borderColor-muted:light-dark(#d1d9e0b3, #3d444db3);--borderColor-neutral-muted:light-dark(#d1d9e0b3, #3d444db3);--borderColor-accent-emphasis:light-dark(#0969da, #1f6feb);--borderColor-success-emphasis:light-dark(#1a7f37, #238636);--borderColor-attention-emphasis:light-dark(#9a6700, #9e6a03);--borderColor-danger-emphasis:light-dark(#cf222e, #da3633);--borderColor-done-emphasis:light-dark(#8250df, #8957e5);--color-prettylights-syntax-comment:light-dark(#59636e, #9198a1);--color-prettylights-syntax-constant:light-dark(#0550ae, #79c0ff);--color-prettylights-syntax-constant-other-reference-link:light-dark(#0a3069, #a5d6ff);--color-prettylights-syntax-entity:light-dark(#6639ba, #d2a8ff);--color-prettylights-syntax-storage-modifier-import:light-dark(#1f2328, #f0f6fc);--color-prettylights-syntax-entity-tag:light-dark(#0550ae, #7ee787);--color-prettylights-syntax-keyword:light-dark(#cf222e, #ff7b72);--color-prettylights-syntax-string:light-dark(#0a3069, #a5d6ff);--color-prettylights-syntax-variable:light-dark(#953800, #ffa657);--color-prettylights-syntax-brackethighlighter-unmatched:light-dark(#82071e, #f85149);--color-prettylights-syntax-brackethighlighter-angle:light-dark(#59636e, #9198a1);--color-prettylights-syntax-invalid-illegal-text:light-dark(#f6f8fa, #f0f6fc);--color-prettylights-syntax-invalid-illegal-bg:light-dark(#82071e, #8e1519);--color-prettylights-syntax-carriage-return-text:light-dark(#f6f8fa, #f0f6fc);--color-prettylights-syntax-carriage-return-bg:light-dark(#cf222e, #b62324);--color-prettylights-syntax-string-regexp:light-dark(#116329, #7ee787);--color-prettylights-syntax-markup-list:light-dark(#3b2300, #f2cc60);--color-prettylights-syntax-markup-heading:light-dark(#0550ae, #1f6feb);--color-prettylights-syntax-markup-italic:light-dark(#1f2328, #f0f6fc);--color-prettylights-syntax-markup-bold:light-dark(#1f2328, #f0f6fc);--color-prettylights-syntax-markup-deleted-text:light-dark(#82071e, #ffdcd7);--color-prettylights-syntax-markup-deleted-bg:light-dark(#ffebe9, #67060c);--color-prettylights-syntax-markup-inserted-text:light-dark(#116329, #aff5b4);--color-prettylights-syntax-markup-inserted-bg:light-dark(#dafbe1, #033a16);--color-prettylights-syntax-markup-changed-text:light-dark(#953800, #ffdfb6);--color-prettylights-syntax-markup-changed-bg:light-dark(#ffd8b5, #5a1e02);--color-prettylights-syntax-markup-ignored-text:light-dark(#d1d9e0, #f0f6fc);--color-prettylights-syntax-markup-ignored-bg:light-dark(#0550ae, #1158c7);--color-prettylights-syntax-meta-diff-range:light-dark(#8250df, #d2a8ff);--color-prettylights-syntax-sublimelinter-gutter-mark:light-dark(#818b98, #3d444d);--base-size-4:calc(var(--marpit-root-font-size, 1rem) * 0.25);--base-size-8:calc(var(--marpit-root-font-size, 1rem) * 0.5);--base-size-16:calc(var(--marpit-root-font-size, 1rem) * 1);--base-size-24:calc(var(--marpit-root-font-size, 1rem) * 1.5);--base-size-40:calc(var(--marpit-root-font-size, 1rem) * 2.5);--base-text-weight-normal:400;--base-text-weight-medium:500;--base-text-weight-semibold:600;--fontStack-monospace:ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;--fgColor-accent:Highlight;}/*!
  * Marp default theme.
  *
  * @theme default
@@ -334,9 +334,9 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
-<h1 id="%E8%87%AA%E7%94%B1%E3%83%A2%E3%83%8A%E3%83%89%E3%81%8B%E3%82%89-freer-%E3%83%A2%E3%83%8A%E3%83%89%E3%81%B8">自由モナドから Freer モナドへ</h1>
-<h2 id="%E7%B6%99%E7%B6%9A%E3%83%BBdefunctionalization%E3%83%BB%E8%87%AA%E7%94%B1%E3%83%A2%E3%83%8A%E3%83%89%E3%81%AE%E6%AE%B5%E9%9A%8E%E7%9A%84%E5%B0%8E%E5%87%BA">継続・Defunctionalization・自由モナドの段階的導出</h2>
+;" data-marpit-pagination-total="33">
+<h1 id="generator-%E3%81%A7-dsl">Generator で DSL</h1>
+<h2 id="%E8%87%AA%E7%94%B1%E3%81%AB%E6%89%8B%E3%81%AB%E5%85%A5%E3%82%8B%E3%83%A2%E3%83%8A%E3%83%89">自由に手に入るモナド</h2>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="2" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
@@ -664,14 +664,14 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
+;" data-marpit-pagination-total="33">
 <h1 id="%E4%BB%8A%E6%97%A5%E3%81%AE%E3%82%B4%E3%83%BC%E3%83%AB">今日のゴール</h1>
 <p>最終的にこう書ける DSL を <strong>導出</strong> する:</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-typescript"><span class="hljs-keyword">const</span> program = <span class="hljs-title class_">Do</span>(<span class="hljs-keyword">function</span>* () {
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-typescript"><span class="hljs-keyword">const</span> <span class="hljs-attr">program</span>: <span class="hljs-title class_">Program</span>&lt;<span class="hljs-built_in">string</span>&gt; = <span class="hljs-keyword">function</span>* () {
   <span class="hljs-keyword">const</span> name = <span class="hljs-keyword">yield</span>* <span class="hljs-title function_">ask</span>(<span class="hljs-string">&quot;名前を入力してください&quot;</span>);
   <span class="hljs-keyword">yield</span>* <span class="hljs-title function_">tell</span>(<span class="hljs-string">`こんにちは、<span class="hljs-subst">${name}</span>さん！`</span>);
   <span class="hljs-keyword">return</span> name;
-});
+};
 </code></pre>
 <ul>
 <li>プログラムの構造が <strong>データ</strong> として存在する</li>
@@ -1007,52 +1007,383 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
+;" data-marpit-pagination-total="33">
+<h1 id="4%E3%81%A4%E3%81%AE%E3%83%AA%E3%83%95%E3%83%AC%E3%83%BC%E3%83%9F%E3%83%B3%E3%82%B0">4つのリフレーミング</h1>
+<p>この資料を貫く4つの軸:</p>
+<ol>
+<li>DSL のプログラムは離散的な命令の列として <strong>具象化</strong> できる</li>
+<li>具象化されたプログラムは <strong>ステップ実行</strong> に分解できる</li>
+<li>ステップ実行を Freer で整理すると <strong>限定継続</strong> が浮かび上がる</li>
+<li>限定継続は <strong>Generator</strong> の <code>yield</code>/<code>next</code> に対応する</li>
+</ol>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="4" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
+  --color-bg: #1b1d2a;
+  --color-fg: #d4d6e4;
+  --color-accent: #7cacf8;
+  --color-accent-dim: #4a6fa5;
+  --color-surface: #252840;
+  --color-border: #363850;
+  --color-highlight: #f0c674;
+}
+
+section {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.01em;
+  padding: 50px 60px;
+  text-align: left;
+}
+
+h1 {
+  color: var(--color-accent);
+  font-size: 1.5em;
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: 0.25em;
+  margin-bottom: 0.6em;
+}
+
+h2 { color: var(--color-accent-dim); font-weight: 400; }
+
+strong { color: var(--color-highlight); font-weight: 600; }
+
+a { color: var(--color-accent); }
+
+/* ── Code ── */
+
+code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+  font-size: 0.85em;
+  background: var(--color-surface) !important;
+  color: var(--color-fg) !important;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+
+pre {
+  background: var(--color-surface) !important;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.8em 1em !important;
+  margin: 0.5em 0;
+  line-height: 1.45;
+  text-align: left;
+}
+
+pre code {
+  background: transparent !important;
+  color: var(--color-fg) !important;
+  padding: 0;
+  font-size: 0.82em;
+  text-align: left;
+}
+
+/* ── Table ── */
+
+table {
+  font-size: 0.82em;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table th {
+  background: var(--color-surface);
+  color: var(--color-accent);
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-accent-dim);
+  padding: 0.5em 0.8em;
+  text-align: left;
+}
+
+table td {
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.45em 0.8em;
+  text-align: left;
+}
+
+/* ── Blockquote ── */
+
+blockquote {
+  font-size: 0.88em;
+  border-left: 3px solid var(--color-accent-dim);
+  background: var(--color-surface);
+  padding: 0.5em 1em;
+  border-radius: 0 6px 6px 0;
+  color: #a8abbe;
+}
+
+blockquote strong { color: var(--color-highlight); }
+
+/* ── List ── */
+
+ul, ol { margin: 0.3em 0; }
+li { margin: 0.2em 0; line-height: 1.5; }
+li::marker { color: var(--color-accent-dim); }
+
+/* ── Lead slides ── */
+
+section.lead {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+section.lead h1 {
+  font-size: 2.2em;
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0.3em;
+  letter-spacing: 0.02em;
+}
+
+section.lead h2 {
+  font-size: 1.05em;
+  color: #7a7d94;
+  font-weight: 300;
+  margin-top: 0;
+}
+
+section.lead p {
+  color: #8a8da6;
+  font-size: 0.95em;
+}
+
+/* ── Dense slides ── */
+
+section.dense {
+  font-size: 22px;
+  padding: 35px 50px;
+}
+
+section.dense h1 {
+  font-size: 1.4em;
+  margin-bottom: 0.35em;
+}
+
+section.dense pre {
+  padding: 0.6em 0.9em !important;
+  margin: 0.35em 0;
+}
+
+section.dense pre code { font-size: 0.8em; }
+section.dense table { font-size: 0.88em; }
+section.dense blockquote { font-size: 0.9em; }
+
+/* ── Page number ── */
+
+section::after {
+  color: #4a4d64;
+  font-size: 0.6em;
+}
+" lang="en-US" class="invert" data-marpit-pagination="4" style="--class:invert;--paginate:true;--theme:default;--style::root {
+  --color-bg: #1b1d2a;
+  --color-fg: #d4d6e4;
+  --color-accent: #7cacf8;
+  --color-accent-dim: #4a6fa5;
+  --color-surface: #252840;
+  --color-border: #363850;
+  --color-highlight: #f0c674;
+}
+
+section {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.01em;
+  padding: 50px 60px;
+  text-align: left;
+}
+
+h1 {
+  color: var(--color-accent);
+  font-size: 1.5em;
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: 0.25em;
+  margin-bottom: 0.6em;
+}
+
+h2 { color: var(--color-accent-dim); font-weight: 400; }
+
+strong { color: var(--color-highlight); font-weight: 600; }
+
+a { color: var(--color-accent); }
+
+/* ── Code ── */
+
+code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+  font-size: 0.85em;
+  background: var(--color-surface) !important;
+  color: var(--color-fg) !important;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+
+pre {
+  background: var(--color-surface) !important;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.8em 1em !important;
+  margin: 0.5em 0;
+  line-height: 1.45;
+  text-align: left;
+}
+
+pre code {
+  background: transparent !important;
+  color: var(--color-fg) !important;
+  padding: 0;
+  font-size: 0.82em;
+  text-align: left;
+}
+
+/* ── Table ── */
+
+table {
+  font-size: 0.82em;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table th {
+  background: var(--color-surface);
+  color: var(--color-accent);
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-accent-dim);
+  padding: 0.5em 0.8em;
+  text-align: left;
+}
+
+table td {
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.45em 0.8em;
+  text-align: left;
+}
+
+/* ── Blockquote ── */
+
+blockquote {
+  font-size: 0.88em;
+  border-left: 3px solid var(--color-accent-dim);
+  background: var(--color-surface);
+  padding: 0.5em 1em;
+  border-radius: 0 6px 6px 0;
+  color: #a8abbe;
+}
+
+blockquote strong { color: var(--color-highlight); }
+
+/* ── List ── */
+
+ul, ol { margin: 0.3em 0; }
+li { margin: 0.2em 0; line-height: 1.5; }
+li::marker { color: var(--color-accent-dim); }
+
+/* ── Lead slides ── */
+
+section.lead {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+section.lead h1 {
+  font-size: 2.2em;
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0.3em;
+  letter-spacing: 0.02em;
+}
+
+section.lead h2 {
+  font-size: 1.05em;
+  color: #7a7d94;
+  font-weight: 300;
+  margin-top: 0;
+}
+
+section.lead p {
+  color: #8a8da6;
+  font-size: 0.95em;
+}
+
+/* ── Dense slides ── */
+
+section.dense {
+  font-size: 22px;
+  padding: 35px 50px;
+}
+
+section.dense h1 {
+  font-size: 1.4em;
+  margin-bottom: 0.35em;
+}
+
+section.dense pre {
+  padding: 0.6em 0.9em !important;
+  margin: 0.35em 0;
+}
+
+section.dense pre code { font-size: 0.8em; }
+section.dense table { font-size: 0.88em; }
+section.dense blockquote { font-size: 0.9em; }
+
+/* ── Page number ── */
+
+section::after {
+  color: #4a4d64;
+  font-size: 0.6em;
+}
+;" data-marpit-pagination-total="33">
 <h1 id="%E3%83%AD%E3%83%BC%E3%83%89%E3%83%9E%E3%83%83%E3%83%97">ロードマップ</h1>
 <table>
 <thead>
 <tr>
 <th>#</th>
 <th>テーマ</th>
-<th>キーワード</th>
+<th>軸</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>1</td>
-<td><strong>継続</strong></td>
-<td>CPS, <code>Cont r a</code></td>
-</tr>
-<tr>
 <td>2</td>
-<td><strong>Defunctionalization</strong></td>
-<td>関数→データ, <code>apply</code></td>
+<td><strong>計算の具象化</strong></td>
+<td>軸1: 具象化</td>
 </tr>
 <tr>
 <td>3</td>
-<td><strong>Free モナド</strong></td>
-<td>命令の構造化, <code>Functor</code></td>
+<td><strong>自由モナドとステップ実行</strong></td>
+<td>軸1→軸2: ステップ実行</td>
 </tr>
 <tr>
 <td>4</td>
-<td><strong>Freer モナド</strong></td>
-<td>Coyoneda, Functor 不要</td>
+<td><strong>Freer と限定継続</strong></td>
+<td>軸2→軸3: 限定継続</td>
 </tr>
 <tr>
 <td>5</td>
-<td><strong>実行基盤</strong></td>
-<td>Step, 限定継続, Codensity</td>
+<td><strong>Generator と DSL</strong></td>
+<td>軸3→軸4: Generator</td>
 </tr>
 <tr>
 <td>6</td>
-<td><strong>TypeScript DSL</strong></td>
-<td>Generator, one-shot</td>
+<td><strong>補遺: Codensity</strong></td>
+<td>性能の問題</td>
 </tr>
 </tbody>
 </table>
 <p>各ステップで <strong>前章の課題 → 本章の解決</strong> を繰り返す</p>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="4" data-class="lead" data-paginate="true" data-theme="default" data-style=":root {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-class="lead" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
   --color-fg: #d4d6e4;
   --color-accent: #7cacf8;
@@ -1215,7 +1546,7 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-" lang="en-US" class="lead" data-marpit-pagination="4" style="--class:lead;--paginate:true;--theme:default;--style::root {
+" lang="en-US" class="lead" data-marpit-pagination="5" style="--class:lead;--paginate:true;--theme:default;--style::root {
   --color-bg: #1b1d2a;
   --color-fg: #d4d6e4;
   --color-accent: #7cacf8;
@@ -1378,351 +1709,9 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
-<h1 id="ch2--%E7%B6%99%E7%B6%9A">Ch.2 — 継続</h1>
-<p>「計算の残り」を値にする</p>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
-  --color-bg: #1b1d2a;
-  --color-fg: #d4d6e4;
-  --color-accent: #7cacf8;
-  --color-accent-dim: #4a6fa5;
-  --color-surface: #252840;
-  --color-border: #363850;
-  --color-highlight: #f0c674;
-}
-
-section {
-  background: var(--color-bg);
-  color: var(--color-fg);
-  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
-  font-size: 28px;
-  letter-spacing: 0.01em;
-  padding: 50px 60px;
-  text-align: left;
-}
-
-h1 {
-  color: var(--color-accent);
-  font-size: 1.5em;
-  font-weight: 600;
-  border-bottom: 2px solid var(--color-border);
-  padding-bottom: 0.25em;
-  margin-bottom: 0.6em;
-}
-
-h2 { color: var(--color-accent-dim); font-weight: 400; }
-
-strong { color: var(--color-highlight); font-weight: 600; }
-
-a { color: var(--color-accent); }
-
-/* ── Code ── */
-
-code {
-  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
-  font-size: 0.85em;
-  background: var(--color-surface) !important;
-  color: var(--color-fg) !important;
-  padding: 0.1em 0.35em;
-  border-radius: 4px;
-}
-
-pre {
-  background: var(--color-surface) !important;
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: 0.8em 1em !important;
-  margin: 0.5em 0;
-  line-height: 1.45;
-  text-align: left;
-}
-
-pre code {
-  background: transparent !important;
-  color: var(--color-fg) !important;
-  padding: 0;
-  font-size: 0.82em;
-  text-align: left;
-}
-
-/* ── Table ── */
-
-table {
-  font-size: 0.82em;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-table th {
-  background: var(--color-surface);
-  color: var(--color-accent);
-  font-weight: 600;
-  border-bottom: 2px solid var(--color-accent-dim);
-  padding: 0.5em 0.8em;
-  text-align: left;
-}
-
-table td {
-  border-bottom: 1px solid var(--color-border);
-  padding: 0.45em 0.8em;
-  text-align: left;
-}
-
-/* ── Blockquote ── */
-
-blockquote {
-  font-size: 0.88em;
-  border-left: 3px solid var(--color-accent-dim);
-  background: var(--color-surface);
-  padding: 0.5em 1em;
-  border-radius: 0 6px 6px 0;
-  color: #a8abbe;
-}
-
-blockquote strong { color: var(--color-highlight); }
-
-/* ── List ── */
-
-ul, ol { margin: 0.3em 0; }
-li { margin: 0.2em 0; line-height: 1.5; }
-li::marker { color: var(--color-accent-dim); }
-
-/* ── Lead slides ── */
-
-section.lead {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-section.lead h1 {
-  font-size: 2.2em;
-  border-bottom: none;
-  padding-bottom: 0;
-  margin-bottom: 0.3em;
-  letter-spacing: 0.02em;
-}
-
-section.lead h2 {
-  font-size: 1.05em;
-  color: #7a7d94;
-  font-weight: 300;
-  margin-top: 0;
-}
-
-section.lead p {
-  color: #8a8da6;
-  font-size: 0.95em;
-}
-
-/* ── Dense slides ── */
-
-section.dense {
-  font-size: 22px;
-  padding: 35px 50px;
-}
-
-section.dense h1 {
-  font-size: 1.4em;
-  margin-bottom: 0.35em;
-}
-
-section.dense pre {
-  padding: 0.6em 0.9em !important;
-  margin: 0.35em 0;
-}
-
-section.dense pre code { font-size: 0.8em; }
-section.dense table { font-size: 0.88em; }
-section.dense blockquote { font-size: 0.9em; }
-
-/* ── Page number ── */
-
-section::after {
-  color: #4a4d64;
-  font-size: 0.6em;
-}
-" lang="en-US" class="invert" data-marpit-pagination="5" style="--class:invert;--paginate:true;--theme:default;--style::root {
-  --color-bg: #1b1d2a;
-  --color-fg: #d4d6e4;
-  --color-accent: #7cacf8;
-  --color-accent-dim: #4a6fa5;
-  --color-surface: #252840;
-  --color-border: #363850;
-  --color-highlight: #f0c674;
-}
-
-section {
-  background: var(--color-bg);
-  color: var(--color-fg);
-  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
-  font-size: 28px;
-  letter-spacing: 0.01em;
-  padding: 50px 60px;
-  text-align: left;
-}
-
-h1 {
-  color: var(--color-accent);
-  font-size: 1.5em;
-  font-weight: 600;
-  border-bottom: 2px solid var(--color-border);
-  padding-bottom: 0.25em;
-  margin-bottom: 0.6em;
-}
-
-h2 { color: var(--color-accent-dim); font-weight: 400; }
-
-strong { color: var(--color-highlight); font-weight: 600; }
-
-a { color: var(--color-accent); }
-
-/* ── Code ── */
-
-code {
-  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
-  font-size: 0.85em;
-  background: var(--color-surface) !important;
-  color: var(--color-fg) !important;
-  padding: 0.1em 0.35em;
-  border-radius: 4px;
-}
-
-pre {
-  background: var(--color-surface) !important;
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: 0.8em 1em !important;
-  margin: 0.5em 0;
-  line-height: 1.45;
-  text-align: left;
-}
-
-pre code {
-  background: transparent !important;
-  color: var(--color-fg) !important;
-  padding: 0;
-  font-size: 0.82em;
-  text-align: left;
-}
-
-/* ── Table ── */
-
-table {
-  font-size: 0.82em;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-table th {
-  background: var(--color-surface);
-  color: var(--color-accent);
-  font-weight: 600;
-  border-bottom: 2px solid var(--color-accent-dim);
-  padding: 0.5em 0.8em;
-  text-align: left;
-}
-
-table td {
-  border-bottom: 1px solid var(--color-border);
-  padding: 0.45em 0.8em;
-  text-align: left;
-}
-
-/* ── Blockquote ── */
-
-blockquote {
-  font-size: 0.88em;
-  border-left: 3px solid var(--color-accent-dim);
-  background: var(--color-surface);
-  padding: 0.5em 1em;
-  border-radius: 0 6px 6px 0;
-  color: #a8abbe;
-}
-
-blockquote strong { color: var(--color-highlight); }
-
-/* ── List ── */
-
-ul, ol { margin: 0.3em 0; }
-li { margin: 0.2em 0; line-height: 1.5; }
-li::marker { color: var(--color-accent-dim); }
-
-/* ── Lead slides ── */
-
-section.lead {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-section.lead h1 {
-  font-size: 2.2em;
-  border-bottom: none;
-  padding-bottom: 0;
-  margin-bottom: 0.3em;
-  letter-spacing: 0.02em;
-}
-
-section.lead h2 {
-  font-size: 1.05em;
-  color: #7a7d94;
-  font-weight: 300;
-  margin-top: 0;
-}
-
-section.lead p {
-  color: #8a8da6;
-  font-size: 0.95em;
-}
-
-/* ── Dense slides ── */
-
-section.dense {
-  font-size: 22px;
-  padding: 35px 50px;
-}
-
-section.dense h1 {
-  font-size: 1.4em;
-  margin-bottom: 0.35em;
-}
-
-section.dense pre {
-  padding: 0.6em 0.9em !important;
-  margin: 0.35em 0;
-}
-
-section.dense pre code { font-size: 0.8em; }
-section.dense table { font-size: 0.88em; }
-section.dense blockquote { font-size: 0.9em; }
-
-/* ── Page number ── */
-
-section::after {
-  color: #4a4d64;
-  font-size: 0.6em;
-}
-;" data-marpit-pagination-total="36">
-<h1 id="direct-style-vs-cps">Direct Style vs CPS</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-comment">-- Direct Style: 値を返す</span>
-<span class="hljs-title">add</span> :: <span class="hljs-type">Int</span> -&gt; <span class="hljs-type">Int</span> -&gt; <span class="hljs-type">Int</span>
-<span class="hljs-title">add</span> x y = x + y
-
-<span class="hljs-comment">-- CPS: 「次にやること」を受け取る</span>
-<span class="hljs-title">addCPS</span> :: <span class="hljs-type">Int</span> -&gt; <span class="hljs-type">Int</span> -&gt; (<span class="hljs-type">Int</span> -&gt; r) -&gt; r
-<span class="hljs-title">addCPS</span> x y k = k (x + y)
-</code></pre>
-<p><strong>継続 <code>k</code></strong> = 「この値を受け取って、残りの計算を行う関数」</p>
-<ul>
-<li>計算を <strong>中断・再開</strong> できる</li>
-<li>制御の流れを <strong>プログラマブル</strong> にする</li>
-</ul>
+;" data-marpit-pagination-total="33">
+<h1 id="ch2--%E8%A8%88%E7%AE%97%E3%81%AE%E5%85%B7%E8%B1%A1%E5%8C%96">Ch.2 — 計算の具象化</h1>
+<p>CPS と Defunctionalization で「計算」をデータにする</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
@@ -2050,18 +2039,22 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
-<h1 id="cont-%E5%9E%8B%E3%81%A8-bindcont">Cont 型と bindCont</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-type">Cont</span> r a = (<span class="hljs-title">a</span> -&gt; <span class="hljs-title">r</span>) -&gt; r</span>
+;" data-marpit-pagination-total="33">
+<h1 id="cps-%E5%85%B7%E8%B1%A1%E5%8C%96%E3%81%AE%E7%AC%AC%E4%B8%80%E6%AE%B5%E9%9A%8E">CPS: 具象化の第一段階</h1>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-comment">-- Direct Style: 値を返す</span>
+<span class="hljs-title">add</span> :: <span class="hljs-type">Int</span> -&gt; <span class="hljs-type">Int</span> -&gt; <span class="hljs-type">Int</span>
+<span class="hljs-title">add</span> x y = x + y
 
-<span class="hljs-title">bindCont</span> :: <span class="hljs-type">Cont</span> r a -&gt; (a -&gt; <span class="hljs-type">Cont</span> r b) -&gt; <span class="hljs-type">Cont</span> r b
-<span class="hljs-title">bindCont</span> m f = \k -&gt; m (\a -&gt; f a k)
+<span class="hljs-comment">-- CPS: 「次にやること」を受け取る</span>
+<span class="hljs-title">addCPS</span> :: <span class="hljs-type">Int</span> -&gt; <span class="hljs-type">Int</span> -&gt; (<span class="hljs-type">Int</span> -&gt; r) -&gt; r
+<span class="hljs-title">addCPS</span> x y k = k (x + y)
 </code></pre>
+<p><strong>継続 <code>k</code></strong> = 「この値を受け取って、残りの計算を行う関数」</p>
 <ul>
-<li><code>m</code>: 値 <code>a</code> を生む計算</li>
-<li><code>f</code>: <code>a</code> を受けて次の計算を作る</li>
-<li><code>bindCont</code> で継続を <strong>体系的に合成</strong> できる</li>
+<li>「計算の残り」が <strong>関数として明示化</strong> される — 具象化の第一段階</li>
+<li>しかし関数は <strong>中身が見えない</strong> → DSL のインタプリタは命令を判別できない</li>
 </ul>
+<p>→ 関数を <strong>データ</strong> にする必要がある</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
@@ -2389,674 +2382,8 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
-<h1 id="%E7%B6%99%E7%B6%9A%E3%81%AE%E5%A3%81">継続の壁</h1>
-<p>継続は <strong>関数</strong> → 中身を見られない</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code>bindCont m f = \k -&gt; m (\a -&gt; f a k)
-                        ^^^^^^^^^^^^^
-                        ブラックボックス
-</code></pre>
-<p>DSL のインタプリタは <strong>命令の種類を判別</strong> して分岐したい</p>
-<p>→ 継続を <strong>データ</strong> にする必要がある</p>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-class="lead" data-paginate="true" data-theme="default" data-style=":root {
-  --color-bg: #1b1d2a;
-  --color-fg: #d4d6e4;
-  --color-accent: #7cacf8;
-  --color-accent-dim: #4a6fa5;
-  --color-surface: #252840;
-  --color-border: #363850;
-  --color-highlight: #f0c674;
-}
-
-section {
-  background: var(--color-bg);
-  color: var(--color-fg);
-  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
-  font-size: 28px;
-  letter-spacing: 0.01em;
-  padding: 50px 60px;
-  text-align: left;
-}
-
-h1 {
-  color: var(--color-accent);
-  font-size: 1.5em;
-  font-weight: 600;
-  border-bottom: 2px solid var(--color-border);
-  padding-bottom: 0.25em;
-  margin-bottom: 0.6em;
-}
-
-h2 { color: var(--color-accent-dim); font-weight: 400; }
-
-strong { color: var(--color-highlight); font-weight: 600; }
-
-a { color: var(--color-accent); }
-
-/* ── Code ── */
-
-code {
-  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
-  font-size: 0.85em;
-  background: var(--color-surface) !important;
-  color: var(--color-fg) !important;
-  padding: 0.1em 0.35em;
-  border-radius: 4px;
-}
-
-pre {
-  background: var(--color-surface) !important;
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: 0.8em 1em !important;
-  margin: 0.5em 0;
-  line-height: 1.45;
-  text-align: left;
-}
-
-pre code {
-  background: transparent !important;
-  color: var(--color-fg) !important;
-  padding: 0;
-  font-size: 0.82em;
-  text-align: left;
-}
-
-/* ── Table ── */
-
-table {
-  font-size: 0.82em;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-table th {
-  background: var(--color-surface);
-  color: var(--color-accent);
-  font-weight: 600;
-  border-bottom: 2px solid var(--color-accent-dim);
-  padding: 0.5em 0.8em;
-  text-align: left;
-}
-
-table td {
-  border-bottom: 1px solid var(--color-border);
-  padding: 0.45em 0.8em;
-  text-align: left;
-}
-
-/* ── Blockquote ── */
-
-blockquote {
-  font-size: 0.88em;
-  border-left: 3px solid var(--color-accent-dim);
-  background: var(--color-surface);
-  padding: 0.5em 1em;
-  border-radius: 0 6px 6px 0;
-  color: #a8abbe;
-}
-
-blockquote strong { color: var(--color-highlight); }
-
-/* ── List ── */
-
-ul, ol { margin: 0.3em 0; }
-li { margin: 0.2em 0; line-height: 1.5; }
-li::marker { color: var(--color-accent-dim); }
-
-/* ── Lead slides ── */
-
-section.lead {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-section.lead h1 {
-  font-size: 2.2em;
-  border-bottom: none;
-  padding-bottom: 0;
-  margin-bottom: 0.3em;
-  letter-spacing: 0.02em;
-}
-
-section.lead h2 {
-  font-size: 1.05em;
-  color: #7a7d94;
-  font-weight: 300;
-  margin-top: 0;
-}
-
-section.lead p {
-  color: #8a8da6;
-  font-size: 0.95em;
-}
-
-/* ── Dense slides ── */
-
-section.dense {
-  font-size: 22px;
-  padding: 35px 50px;
-}
-
-section.dense h1 {
-  font-size: 1.4em;
-  margin-bottom: 0.35em;
-}
-
-section.dense pre {
-  padding: 0.6em 0.9em !important;
-  margin: 0.35em 0;
-}
-
-section.dense pre code { font-size: 0.8em; }
-section.dense table { font-size: 0.88em; }
-section.dense blockquote { font-size: 0.9em; }
-
-/* ── Page number ── */
-
-section::after {
-  color: #4a4d64;
-  font-size: 0.6em;
-}
-" lang="en-US" class="lead" data-marpit-pagination="8" style="--class:lead;--paginate:true;--theme:default;--style::root {
-  --color-bg: #1b1d2a;
-  --color-fg: #d4d6e4;
-  --color-accent: #7cacf8;
-  --color-accent-dim: #4a6fa5;
-  --color-surface: #252840;
-  --color-border: #363850;
-  --color-highlight: #f0c674;
-}
-
-section {
-  background: var(--color-bg);
-  color: var(--color-fg);
-  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
-  font-size: 28px;
-  letter-spacing: 0.01em;
-  padding: 50px 60px;
-  text-align: left;
-}
-
-h1 {
-  color: var(--color-accent);
-  font-size: 1.5em;
-  font-weight: 600;
-  border-bottom: 2px solid var(--color-border);
-  padding-bottom: 0.25em;
-  margin-bottom: 0.6em;
-}
-
-h2 { color: var(--color-accent-dim); font-weight: 400; }
-
-strong { color: var(--color-highlight); font-weight: 600; }
-
-a { color: var(--color-accent); }
-
-/* ── Code ── */
-
-code {
-  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
-  font-size: 0.85em;
-  background: var(--color-surface) !important;
-  color: var(--color-fg) !important;
-  padding: 0.1em 0.35em;
-  border-radius: 4px;
-}
-
-pre {
-  background: var(--color-surface) !important;
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: 0.8em 1em !important;
-  margin: 0.5em 0;
-  line-height: 1.45;
-  text-align: left;
-}
-
-pre code {
-  background: transparent !important;
-  color: var(--color-fg) !important;
-  padding: 0;
-  font-size: 0.82em;
-  text-align: left;
-}
-
-/* ── Table ── */
-
-table {
-  font-size: 0.82em;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-table th {
-  background: var(--color-surface);
-  color: var(--color-accent);
-  font-weight: 600;
-  border-bottom: 2px solid var(--color-accent-dim);
-  padding: 0.5em 0.8em;
-  text-align: left;
-}
-
-table td {
-  border-bottom: 1px solid var(--color-border);
-  padding: 0.45em 0.8em;
-  text-align: left;
-}
-
-/* ── Blockquote ── */
-
-blockquote {
-  font-size: 0.88em;
-  border-left: 3px solid var(--color-accent-dim);
-  background: var(--color-surface);
-  padding: 0.5em 1em;
-  border-radius: 0 6px 6px 0;
-  color: #a8abbe;
-}
-
-blockquote strong { color: var(--color-highlight); }
-
-/* ── List ── */
-
-ul, ol { margin: 0.3em 0; }
-li { margin: 0.2em 0; line-height: 1.5; }
-li::marker { color: var(--color-accent-dim); }
-
-/* ── Lead slides ── */
-
-section.lead {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-section.lead h1 {
-  font-size: 2.2em;
-  border-bottom: none;
-  padding-bottom: 0;
-  margin-bottom: 0.3em;
-  letter-spacing: 0.02em;
-}
-
-section.lead h2 {
-  font-size: 1.05em;
-  color: #7a7d94;
-  font-weight: 300;
-  margin-top: 0;
-}
-
-section.lead p {
-  color: #8a8da6;
-  font-size: 0.95em;
-}
-
-/* ── Dense slides ── */
-
-section.dense {
-  font-size: 22px;
-  padding: 35px 50px;
-}
-
-section.dense h1 {
-  font-size: 1.4em;
-  margin-bottom: 0.35em;
-}
-
-section.dense pre {
-  padding: 0.6em 0.9em !important;
-  margin: 0.35em 0;
-}
-
-section.dense pre code { font-size: 0.8em; }
-section.dense table { font-size: 0.88em; }
-section.dense blockquote { font-size: 0.9em; }
-
-/* ── Page number ── */
-
-section::after {
-  color: #4a4d64;
-  font-size: 0.6em;
-}
-;" data-marpit-pagination-total="36">
-<h1 id="ch3--defunctionalization">Ch.3 — Defunctionalization</h1>
-<p>関数値をデータに変換する</p>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
-  --color-bg: #1b1d2a;
-  --color-fg: #d4d6e4;
-  --color-accent: #7cacf8;
-  --color-accent-dim: #4a6fa5;
-  --color-surface: #252840;
-  --color-border: #363850;
-  --color-highlight: #f0c674;
-}
-
-section {
-  background: var(--color-bg);
-  color: var(--color-fg);
-  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
-  font-size: 28px;
-  letter-spacing: 0.01em;
-  padding: 50px 60px;
-  text-align: left;
-}
-
-h1 {
-  color: var(--color-accent);
-  font-size: 1.5em;
-  font-weight: 600;
-  border-bottom: 2px solid var(--color-border);
-  padding-bottom: 0.25em;
-  margin-bottom: 0.6em;
-}
-
-h2 { color: var(--color-accent-dim); font-weight: 400; }
-
-strong { color: var(--color-highlight); font-weight: 600; }
-
-a { color: var(--color-accent); }
-
-/* ── Code ── */
-
-code {
-  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
-  font-size: 0.85em;
-  background: var(--color-surface) !important;
-  color: var(--color-fg) !important;
-  padding: 0.1em 0.35em;
-  border-radius: 4px;
-}
-
-pre {
-  background: var(--color-surface) !important;
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: 0.8em 1em !important;
-  margin: 0.5em 0;
-  line-height: 1.45;
-  text-align: left;
-}
-
-pre code {
-  background: transparent !important;
-  color: var(--color-fg) !important;
-  padding: 0;
-  font-size: 0.82em;
-  text-align: left;
-}
-
-/* ── Table ── */
-
-table {
-  font-size: 0.82em;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-table th {
-  background: var(--color-surface);
-  color: var(--color-accent);
-  font-weight: 600;
-  border-bottom: 2px solid var(--color-accent-dim);
-  padding: 0.5em 0.8em;
-  text-align: left;
-}
-
-table td {
-  border-bottom: 1px solid var(--color-border);
-  padding: 0.45em 0.8em;
-  text-align: left;
-}
-
-/* ── Blockquote ── */
-
-blockquote {
-  font-size: 0.88em;
-  border-left: 3px solid var(--color-accent-dim);
-  background: var(--color-surface);
-  padding: 0.5em 1em;
-  border-radius: 0 6px 6px 0;
-  color: #a8abbe;
-}
-
-blockquote strong { color: var(--color-highlight); }
-
-/* ── List ── */
-
-ul, ol { margin: 0.3em 0; }
-li { margin: 0.2em 0; line-height: 1.5; }
-li::marker { color: var(--color-accent-dim); }
-
-/* ── Lead slides ── */
-
-section.lead {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-section.lead h1 {
-  font-size: 2.2em;
-  border-bottom: none;
-  padding-bottom: 0;
-  margin-bottom: 0.3em;
-  letter-spacing: 0.02em;
-}
-
-section.lead h2 {
-  font-size: 1.05em;
-  color: #7a7d94;
-  font-weight: 300;
-  margin-top: 0;
-}
-
-section.lead p {
-  color: #8a8da6;
-  font-size: 0.95em;
-}
-
-/* ── Dense slides ── */
-
-section.dense {
-  font-size: 22px;
-  padding: 35px 50px;
-}
-
-section.dense h1 {
-  font-size: 1.4em;
-  margin-bottom: 0.35em;
-}
-
-section.dense pre {
-  padding: 0.6em 0.9em !important;
-  margin: 0.35em 0;
-}
-
-section.dense pre code { font-size: 0.8em; }
-section.dense table { font-size: 0.88em; }
-section.dense blockquote { font-size: 0.9em; }
-
-/* ── Page number ── */
-
-section::after {
-  color: #4a4d64;
-  font-size: 0.6em;
-}
-" lang="en-US" class="invert" data-marpit-pagination="9" style="--class:invert;--paginate:true;--theme:default;--style::root {
-  --color-bg: #1b1d2a;
-  --color-fg: #d4d6e4;
-  --color-accent: #7cacf8;
-  --color-accent-dim: #4a6fa5;
-  --color-surface: #252840;
-  --color-border: #363850;
-  --color-highlight: #f0c674;
-}
-
-section {
-  background: var(--color-bg);
-  color: var(--color-fg);
-  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
-  font-size: 28px;
-  letter-spacing: 0.01em;
-  padding: 50px 60px;
-  text-align: left;
-}
-
-h1 {
-  color: var(--color-accent);
-  font-size: 1.5em;
-  font-weight: 600;
-  border-bottom: 2px solid var(--color-border);
-  padding-bottom: 0.25em;
-  margin-bottom: 0.6em;
-}
-
-h2 { color: var(--color-accent-dim); font-weight: 400; }
-
-strong { color: var(--color-highlight); font-weight: 600; }
-
-a { color: var(--color-accent); }
-
-/* ── Code ── */
-
-code {
-  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
-  font-size: 0.85em;
-  background: var(--color-surface) !important;
-  color: var(--color-fg) !important;
-  padding: 0.1em 0.35em;
-  border-radius: 4px;
-}
-
-pre {
-  background: var(--color-surface) !important;
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: 0.8em 1em !important;
-  margin: 0.5em 0;
-  line-height: 1.45;
-  text-align: left;
-}
-
-pre code {
-  background: transparent !important;
-  color: var(--color-fg) !important;
-  padding: 0;
-  font-size: 0.82em;
-  text-align: left;
-}
-
-/* ── Table ── */
-
-table {
-  font-size: 0.82em;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-table th {
-  background: var(--color-surface);
-  color: var(--color-accent);
-  font-weight: 600;
-  border-bottom: 2px solid var(--color-accent-dim);
-  padding: 0.5em 0.8em;
-  text-align: left;
-}
-
-table td {
-  border-bottom: 1px solid var(--color-border);
-  padding: 0.45em 0.8em;
-  text-align: left;
-}
-
-/* ── Blockquote ── */
-
-blockquote {
-  font-size: 0.88em;
-  border-left: 3px solid var(--color-accent-dim);
-  background: var(--color-surface);
-  padding: 0.5em 1em;
-  border-radius: 0 6px 6px 0;
-  color: #a8abbe;
-}
-
-blockquote strong { color: var(--color-highlight); }
-
-/* ── List ── */
-
-ul, ol { margin: 0.3em 0; }
-li { margin: 0.2em 0; line-height: 1.5; }
-li::marker { color: var(--color-accent-dim); }
-
-/* ── Lead slides ── */
-
-section.lead {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-section.lead h1 {
-  font-size: 2.2em;
-  border-bottom: none;
-  padding-bottom: 0;
-  margin-bottom: 0.3em;
-  letter-spacing: 0.02em;
-}
-
-section.lead h2 {
-  font-size: 1.05em;
-  color: #7a7d94;
-  font-weight: 300;
-  margin-top: 0;
-}
-
-section.lead p {
-  color: #8a8da6;
-  font-size: 0.95em;
-}
-
-/* ── Dense slides ── */
-
-section.dense {
-  font-size: 22px;
-  padding: 35px 50px;
-}
-
-section.dense h1 {
-  font-size: 1.4em;
-  margin-bottom: 0.35em;
-}
-
-section.dense pre {
-  padding: 0.6em 0.9em !important;
-  margin: 0.35em 0;
-}
-
-section.dense pre code { font-size: 0.8em; }
-section.dense table { font-size: 0.88em; }
-section.dense blockquote { font-size: 0.9em; }
-
-/* ── Page number ── */
-
-section::after {
-  color: #4a4d64;
-  font-size: 0.6em;
-}
-;" data-marpit-pagination-total="36">
-<h1 id="defunctionalization-%E3%81%AE%E6%89%8B%E9%A0%86">Defunctionalization の手順</h1>
+;" data-marpit-pagination-total="33">
+<h1 id="defunctionalization">Defunctionalization</h1>
 <p><strong>関数値</strong> → <strong>データ型 + apply 関数</strong></p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-comment">-- 1. 関数をデータで表現</span>
 <span class="hljs-class"><span class="hljs-keyword">data</span> <span class="hljs-type">IntFun</span> = <span class="hljs-type">AddN</span> <span class="hljs-type">Int</span> | <span class="hljs-type">MulN</span> <span class="hljs-type">Int</span> | <span class="hljs-type">Square</span></span>
@@ -3067,7 +2394,681 @@ section::after {
 <span class="hljs-title">applyIntFun</span> (<span class="hljs-type">MulN</span> n) x = x * n
 <span class="hljs-title">applyIntFun</span> <span class="hljs-type">Square</span>   x = x * x
 </code></pre>
-<p>関数の <strong>「何をするか」</strong> がデータとして見える</p>
+<p>関数がデータになった → パターンマッチで <strong>識別</strong> できる</p>
+<blockquote>
+<p>TypeScript では tagged union + switch がまさにこれ</p>
+</blockquote>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
+  --color-bg: #1b1d2a;
+  --color-fg: #d4d6e4;
+  --color-accent: #7cacf8;
+  --color-accent-dim: #4a6fa5;
+  --color-surface: #252840;
+  --color-border: #363850;
+  --color-highlight: #f0c674;
+}
+
+section {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.01em;
+  padding: 50px 60px;
+  text-align: left;
+}
+
+h1 {
+  color: var(--color-accent);
+  font-size: 1.5em;
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: 0.25em;
+  margin-bottom: 0.6em;
+}
+
+h2 { color: var(--color-accent-dim); font-weight: 400; }
+
+strong { color: var(--color-highlight); font-weight: 600; }
+
+a { color: var(--color-accent); }
+
+/* ── Code ── */
+
+code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+  font-size: 0.85em;
+  background: var(--color-surface) !important;
+  color: var(--color-fg) !important;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+
+pre {
+  background: var(--color-surface) !important;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.8em 1em !important;
+  margin: 0.5em 0;
+  line-height: 1.45;
+  text-align: left;
+}
+
+pre code {
+  background: transparent !important;
+  color: var(--color-fg) !important;
+  padding: 0;
+  font-size: 0.82em;
+  text-align: left;
+}
+
+/* ── Table ── */
+
+table {
+  font-size: 0.82em;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table th {
+  background: var(--color-surface);
+  color: var(--color-accent);
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-accent-dim);
+  padding: 0.5em 0.8em;
+  text-align: left;
+}
+
+table td {
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.45em 0.8em;
+  text-align: left;
+}
+
+/* ── Blockquote ── */
+
+blockquote {
+  font-size: 0.88em;
+  border-left: 3px solid var(--color-accent-dim);
+  background: var(--color-surface);
+  padding: 0.5em 1em;
+  border-radius: 0 6px 6px 0;
+  color: #a8abbe;
+}
+
+blockquote strong { color: var(--color-highlight); }
+
+/* ── List ── */
+
+ul, ol { margin: 0.3em 0; }
+li { margin: 0.2em 0; line-height: 1.5; }
+li::marker { color: var(--color-accent-dim); }
+
+/* ── Lead slides ── */
+
+section.lead {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+section.lead h1 {
+  font-size: 2.2em;
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0.3em;
+  letter-spacing: 0.02em;
+}
+
+section.lead h2 {
+  font-size: 1.05em;
+  color: #7a7d94;
+  font-weight: 300;
+  margin-top: 0;
+}
+
+section.lead p {
+  color: #8a8da6;
+  font-size: 0.95em;
+}
+
+/* ── Dense slides ── */
+
+section.dense {
+  font-size: 22px;
+  padding: 35px 50px;
+}
+
+section.dense h1 {
+  font-size: 1.4em;
+  margin-bottom: 0.35em;
+}
+
+section.dense pre {
+  padding: 0.6em 0.9em !important;
+  margin: 0.35em 0;
+}
+
+section.dense pre code { font-size: 0.8em; }
+section.dense table { font-size: 0.88em; }
+section.dense blockquote { font-size: 0.9em; }
+
+/* ── Page number ── */
+
+section::after {
+  color: #4a4d64;
+  font-size: 0.6em;
+}
+" lang="en-US" class="invert" data-marpit-pagination="8" style="--class:invert;--paginate:true;--theme:default;--style::root {
+  --color-bg: #1b1d2a;
+  --color-fg: #d4d6e4;
+  --color-accent: #7cacf8;
+  --color-accent-dim: #4a6fa5;
+  --color-surface: #252840;
+  --color-border: #363850;
+  --color-highlight: #f0c674;
+}
+
+section {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.01em;
+  padding: 50px 60px;
+  text-align: left;
+}
+
+h1 {
+  color: var(--color-accent);
+  font-size: 1.5em;
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: 0.25em;
+  margin-bottom: 0.6em;
+}
+
+h2 { color: var(--color-accent-dim); font-weight: 400; }
+
+strong { color: var(--color-highlight); font-weight: 600; }
+
+a { color: var(--color-accent); }
+
+/* ── Code ── */
+
+code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+  font-size: 0.85em;
+  background: var(--color-surface) !important;
+  color: var(--color-fg) !important;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+
+pre {
+  background: var(--color-surface) !important;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.8em 1em !important;
+  margin: 0.5em 0;
+  line-height: 1.45;
+  text-align: left;
+}
+
+pre code {
+  background: transparent !important;
+  color: var(--color-fg) !important;
+  padding: 0;
+  font-size: 0.82em;
+  text-align: left;
+}
+
+/* ── Table ── */
+
+table {
+  font-size: 0.82em;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table th {
+  background: var(--color-surface);
+  color: var(--color-accent);
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-accent-dim);
+  padding: 0.5em 0.8em;
+  text-align: left;
+}
+
+table td {
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.45em 0.8em;
+  text-align: left;
+}
+
+/* ── Blockquote ── */
+
+blockquote {
+  font-size: 0.88em;
+  border-left: 3px solid var(--color-accent-dim);
+  background: var(--color-surface);
+  padding: 0.5em 1em;
+  border-radius: 0 6px 6px 0;
+  color: #a8abbe;
+}
+
+blockquote strong { color: var(--color-highlight); }
+
+/* ── List ── */
+
+ul, ol { margin: 0.3em 0; }
+li { margin: 0.2em 0; line-height: 1.5; }
+li::marker { color: var(--color-accent-dim); }
+
+/* ── Lead slides ── */
+
+section.lead {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+section.lead h1 {
+  font-size: 2.2em;
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0.3em;
+  letter-spacing: 0.02em;
+}
+
+section.lead h2 {
+  font-size: 1.05em;
+  color: #7a7d94;
+  font-weight: 300;
+  margin-top: 0;
+}
+
+section.lead p {
+  color: #8a8da6;
+  font-size: 0.95em;
+}
+
+/* ── Dense slides ── */
+
+section.dense {
+  font-size: 22px;
+  padding: 35px 50px;
+}
+
+section.dense h1 {
+  font-size: 1.4em;
+  margin-bottom: 0.35em;
+}
+
+section.dense pre {
+  padding: 0.6em 0.9em !important;
+  margin: 0.35em 0;
+}
+
+section.dense pre code { font-size: 0.8em; }
+section.dense table { font-size: 0.88em; }
+section.dense blockquote { font-size: 0.9em; }
+
+/* ── Page number ── */
+
+section::after {
+  color: #4a4d64;
+  font-size: 0.6em;
+}
+;" data-marpit-pagination-total="33">
+<h1 id="%E7%B6%99%E7%B6%9A%E3%81%AE-defunctionalization">継続の Defunctionalization</h1>
+<p>継続チェーンをデータ化してみる:</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-class"><span class="hljs-keyword">data</span> <span class="hljs-type">ContChain</span> a</span>
+  = <span class="hljs-type">DoneChain</span>
+  | <span class="hljs-keyword">forall</span> b. <span class="hljs-type">StepChain</span> (a -&gt; b) (<span class="hljs-type">ContChain</span> b)
+</code></pre>
+<p>命令列は構造化できたが…</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code>StepChain  (a -&gt; b)         (ContChain b)
+            ^^^^^^^^         ^^^^^^^^^^^^
+            まだ関数のまま！  残りのチェーン
+</code></pre>
+<p><strong><code>(a -&gt; b)</code> をどうデータ化する？</strong></p>
+<p>→ 一般の <code>(a -&gt; b)</code> は Defunc できないが、<strong>DSL の命令</strong> はもっと構造が単純なはず</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-class="lead" data-paginate="true" data-theme="default" data-style=":root {
+  --color-bg: #1b1d2a;
+  --color-fg: #d4d6e4;
+  --color-accent: #7cacf8;
+  --color-accent-dim: #4a6fa5;
+  --color-surface: #252840;
+  --color-border: #363850;
+  --color-highlight: #f0c674;
+}
+
+section {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.01em;
+  padding: 50px 60px;
+  text-align: left;
+}
+
+h1 {
+  color: var(--color-accent);
+  font-size: 1.5em;
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: 0.25em;
+  margin-bottom: 0.6em;
+}
+
+h2 { color: var(--color-accent-dim); font-weight: 400; }
+
+strong { color: var(--color-highlight); font-weight: 600; }
+
+a { color: var(--color-accent); }
+
+/* ── Code ── */
+
+code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+  font-size: 0.85em;
+  background: var(--color-surface) !important;
+  color: var(--color-fg) !important;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+
+pre {
+  background: var(--color-surface) !important;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.8em 1em !important;
+  margin: 0.5em 0;
+  line-height: 1.45;
+  text-align: left;
+}
+
+pre code {
+  background: transparent !important;
+  color: var(--color-fg) !important;
+  padding: 0;
+  font-size: 0.82em;
+  text-align: left;
+}
+
+/* ── Table ── */
+
+table {
+  font-size: 0.82em;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table th {
+  background: var(--color-surface);
+  color: var(--color-accent);
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-accent-dim);
+  padding: 0.5em 0.8em;
+  text-align: left;
+}
+
+table td {
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.45em 0.8em;
+  text-align: left;
+}
+
+/* ── Blockquote ── */
+
+blockquote {
+  font-size: 0.88em;
+  border-left: 3px solid var(--color-accent-dim);
+  background: var(--color-surface);
+  padding: 0.5em 1em;
+  border-radius: 0 6px 6px 0;
+  color: #a8abbe;
+}
+
+blockquote strong { color: var(--color-highlight); }
+
+/* ── List ── */
+
+ul, ol { margin: 0.3em 0; }
+li { margin: 0.2em 0; line-height: 1.5; }
+li::marker { color: var(--color-accent-dim); }
+
+/* ── Lead slides ── */
+
+section.lead {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+section.lead h1 {
+  font-size: 2.2em;
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0.3em;
+  letter-spacing: 0.02em;
+}
+
+section.lead h2 {
+  font-size: 1.05em;
+  color: #7a7d94;
+  font-weight: 300;
+  margin-top: 0;
+}
+
+section.lead p {
+  color: #8a8da6;
+  font-size: 0.95em;
+}
+
+/* ── Dense slides ── */
+
+section.dense {
+  font-size: 22px;
+  padding: 35px 50px;
+}
+
+section.dense h1 {
+  font-size: 1.4em;
+  margin-bottom: 0.35em;
+}
+
+section.dense pre {
+  padding: 0.6em 0.9em !important;
+  margin: 0.35em 0;
+}
+
+section.dense pre code { font-size: 0.8em; }
+section.dense table { font-size: 0.88em; }
+section.dense blockquote { font-size: 0.9em; }
+
+/* ── Page number ── */
+
+section::after {
+  color: #4a4d64;
+  font-size: 0.6em;
+}
+" lang="en-US" class="lead" data-marpit-pagination="9" style="--class:lead;--paginate:true;--theme:default;--style::root {
+  --color-bg: #1b1d2a;
+  --color-fg: #d4d6e4;
+  --color-accent: #7cacf8;
+  --color-accent-dim: #4a6fa5;
+  --color-surface: #252840;
+  --color-border: #363850;
+  --color-highlight: #f0c674;
+}
+
+section {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.01em;
+  padding: 50px 60px;
+  text-align: left;
+}
+
+h1 {
+  color: var(--color-accent);
+  font-size: 1.5em;
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: 0.25em;
+  margin-bottom: 0.6em;
+}
+
+h2 { color: var(--color-accent-dim); font-weight: 400; }
+
+strong { color: var(--color-highlight); font-weight: 600; }
+
+a { color: var(--color-accent); }
+
+/* ── Code ── */
+
+code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+  font-size: 0.85em;
+  background: var(--color-surface) !important;
+  color: var(--color-fg) !important;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+
+pre {
+  background: var(--color-surface) !important;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.8em 1em !important;
+  margin: 0.5em 0;
+  line-height: 1.45;
+  text-align: left;
+}
+
+pre code {
+  background: transparent !important;
+  color: var(--color-fg) !important;
+  padding: 0;
+  font-size: 0.82em;
+  text-align: left;
+}
+
+/* ── Table ── */
+
+table {
+  font-size: 0.82em;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table th {
+  background: var(--color-surface);
+  color: var(--color-accent);
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-accent-dim);
+  padding: 0.5em 0.8em;
+  text-align: left;
+}
+
+table td {
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.45em 0.8em;
+  text-align: left;
+}
+
+/* ── Blockquote ── */
+
+blockquote {
+  font-size: 0.88em;
+  border-left: 3px solid var(--color-accent-dim);
+  background: var(--color-surface);
+  padding: 0.5em 1em;
+  border-radius: 0 6px 6px 0;
+  color: #a8abbe;
+}
+
+blockquote strong { color: var(--color-highlight); }
+
+/* ── List ── */
+
+ul, ol { margin: 0.3em 0; }
+li { margin: 0.2em 0; line-height: 1.5; }
+li::marker { color: var(--color-accent-dim); }
+
+/* ── Lead slides ── */
+
+section.lead {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+section.lead h1 {
+  font-size: 2.2em;
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0.3em;
+  letter-spacing: 0.02em;
+}
+
+section.lead h2 {
+  font-size: 1.05em;
+  color: #7a7d94;
+  font-weight: 300;
+  margin-top: 0;
+}
+
+section.lead p {
+  color: #8a8da6;
+  font-size: 0.95em;
+}
+
+/* ── Dense slides ── */
+
+section.dense {
+  font-size: 22px;
+  padding: 35px 50px;
+}
+
+section.dense h1 {
+  font-size: 1.4em;
+  margin-bottom: 0.35em;
+}
+
+section.dense pre {
+  padding: 0.6em 0.9em !important;
+  margin: 0.35em 0;
+}
+
+section.dense pre code { font-size: 0.8em; }
+section.dense table { font-size: 0.88em; }
+section.dense blockquote { font-size: 0.9em; }
+
+/* ── Page number ── */
+
+section::after {
+  color: #4a4d64;
+  font-size: 0.6em;
+}
+;" data-marpit-pagination-total="33">
+<h1 id="ch3--%E8%87%AA%E7%94%B1%E3%83%A2%E3%83%8A%E3%83%89%E3%81%A8%E3%82%B9%E3%83%86%E3%83%83%E3%83%97%E5%AE%9F%E8%A1%8C">Ch.3 — 自由モナドとステップ実行</h1>
+<p>命令を構造化してモナドにし、ステップ実行のパターンを認識する</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
@@ -3395,19 +3396,19 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
-<h1 id="%E7%B6%99%E7%B6%9A%E3%81%AE-defunctionalization">継続の Defunctionalization</h1>
-<p>継続チェーンをデータ化してみる:</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-class"><span class="hljs-keyword">data</span> <span class="hljs-type">ContChain</span> a</span>
-  = <span class="hljs-type">DoneChain</span>
-  | <span class="hljs-keyword">forall</span> b. <span class="hljs-type">StepChain</span> (a -&gt; b) (<span class="hljs-type">ContChain</span> b)
-</code></pre>
-<p>命令列は構造化できたが…</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code>StepChain  (a -&gt; b)         (ContChain b)
-            ^^^^^^^^         ^^^^^^^^^^^^
-            まだ関数のまま！  残りのチェーン
-</code></pre>
-<p><strong><code>(a -&gt; b)</code> をどうデータ化する？</strong></p>
+;" data-marpit-pagination-total="33">
+<h1 id="contchain-%E3%81%AE%E5%A3%81%E3%81%A8%E7%AA%81%E7%A0%B4%E5%8F%A3">ContChain の壁と突破口</h1>
+<p>一般の <code>(a -&gt; b)</code> は Defunc できない — 可能な関数が無限にある</p>
+<p>しかし <strong>DSL</strong> の文脈では仮定を置ける:</p>
+<blockquote>
+<p>「プログラムは <strong>離散的な命令の列</strong> である」<br />
+→ <code>(a -&gt; b)</code> = 命令を実行 → 結果を受け取る → 次へ進む</p>
+</blockquote>
+<p>ここで「結果を受け取って<strong>次を選ぶ</strong>」がポイント:</p>
+<ul>
+<li>単なるリストでは不十分 — 後の命令が前の <strong>結果に依存</strong> する</li>
+<li>この <strong>依存的逐次実行</strong> こそが <code>&gt;&gt;=</code>（bind）の仕事 → <strong>モナド</strong> が必要</li>
+</ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
@@ -3735,22 +3736,22 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
-<h1 id="contchain-%E3%81%AE%E5%A3%81%E3%81%A8%E7%AA%81%E7%A0%B4%E5%8F%A3">ContChain の壁と突破口</h1>
-<p>一般の <code>(a -&gt; b)</code> は Defunc できない — 可能な関数が無限にある</p>
-<p>しかし <strong>DSL</strong> の文脈では仮定を置ける:</p>
-<blockquote>
-<p>「プログラムは <strong>離散的な命令の列</strong> である」<br />
-→ <code>(a -&gt; b)</code> = 命令を実行 → 結果を受け取る → 次へ進む</p>
-</blockquote>
-<p>ここで「結果を受け取って<strong>次を選ぶ</strong>」がポイント:</p>
-<ul>
-<li>単なるリストでは不十分 — 後の命令が前の <strong>結果に依存</strong> する</li>
-<li>この <strong>依存的逐次実行</strong> を扱う仕組みが必要 → <strong>モナド</strong></li>
-</ul>
-<p>命令セットを構造化しつつ、モナドとして合成する → <strong>Free モナド</strong> へ</p>
+;" data-marpit-pagination-total="33">
+<h1 id="a-%E2%86%92-b-%E3%81%AE%E5%88%86%E8%A7%A3">(a → b) の分解</h1>
+<p>DSL のステップの構造:</p>
+<ol>
+<li><strong>命令を実行する</strong>（<code>ask &quot;名前は？&quot;</code>、<code>tell msg</code>）</li>
+<li><strong>命令の結果を受け取る</strong>（<code>String</code>、<code>()</code>）</li>
+<li><strong>結果を使って次のステップへ進む</strong></li>
+</ol>
+<p>これを型で表す:</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-class"><span class="hljs-keyword">data</span> <span class="hljs-type">TalkF</span> next</span>
+  = <span class="hljs-type">Ask</span> <span class="hljs-type">String</span> (<span class="hljs-type">String</span> -&gt; next)  <span class="hljs-comment">-- 命令 + 結果を受け取る継続</span>
+  | <span class="hljs-type">Tell</span> <span class="hljs-type">String</span> next             <span class="hljs-comment">-- 命令 + 次のステップ</span>
+</code></pre>
+<p><code>next</code> = 「このステップの後に何が続くか」</p>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-class="lead" data-paginate="true" data-theme="default" data-style=":root {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
   --color-fg: #d4d6e4;
   --color-accent: #7cacf8;
@@ -3913,7 +3914,7 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-" lang="en-US" class="lead" data-marpit-pagination="12" style="--class:lead;--paginate:true;--theme:default;--style::root {
+" lang="en-US" class="invert" data-marpit-pagination="12" style="--class:invert;--paginate:true;--theme:default;--style::root {
   --color-bg: #1b1d2a;
   --color-fg: #d4d6e4;
   --color-accent: #7cacf8;
@@ -4076,9 +4077,24 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
-<h1 id="ch4--free-%E3%83%A2%E3%83%8A%E3%83%89">Ch.4 — Free モナド</h1>
-<p>命令セットを Functor で構造化する</p>
+;" data-marpit-pagination-total="33">
+<h1 id="contchain-%E2%86%92-talkf-%E4%BD%95%E3%81%8C%E8%A6%8B%E3%81%88%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E3%81%AA%E3%81%A3%E3%81%9F%E3%81%8B">ContChain → TalkF: 何が見えるようになったか</h1>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code>ContChain:  StepChain  (a -&gt; b)              (ContChain b)
+                        ^^^^^^^^              ^^^^^^^^^^^^
+                        不透明な関数            残りのチェーン
+
+TalkF:      Ask &quot;名前？&quot; (String -&gt; next)
+            ^^^^^^^^^^   ^^^^^^^^^^^^^^^
+            命令データ    結果を受け取る継続
+            (識別可能)    (next が「残り」を表す)
+</code></pre>
+<ul>
+<li><strong>命令部分</strong> (<code>Ask &quot;名前？&quot;</code>) → データとして識別可能になった</li>
+<li><strong>継続部分</strong> (<code>String -&gt; next</code>) → 関数のまま残っている</li>
+</ul>
+<blockquote>
+<p><strong>命令の Defunctionalization + 継続の構造化</strong></p>
+</blockquote>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
@@ -4406,19 +4422,18 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
-<h1 id="%E3%81%AA%E3%81%9C%E3%83%A2%E3%83%8A%E3%83%89%E3%81%8C%E5%BF%85%E8%A6%81%E3%81%8B">なぜモナドが必要か</h1>
-<p>単なる命令リスト <code>[Instruction]</code> では不十分:</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-typescript"><span class="hljs-keyword">const</span> name = <span class="hljs-keyword">yield</span> * <span class="hljs-title function_">ask</span>(<span class="hljs-string">&quot;名前は？&quot;</span>);
-<span class="hljs-keyword">yield</span> * <span class="hljs-title function_">tell</span>(<span class="hljs-string">`こんにちは、<span class="hljs-subst">${name}</span>さん！`</span>);
-<span class="hljs-comment">//                       ^^^^ 前の結果に依存！</span>
+;" data-marpit-pagination-total="33">
+<h1 id="%E3%81%AA%E3%81%9C-next-%E3%82%92%E5%B7%AE%E3%81%97%E6%9B%BF%E3%81%88%E3%82%8B%E5%BF%85%E8%A6%81%E3%81%8C%E3%81%82%E3%82%8B%E3%81%8B--functor">なぜ next を差し替える必要があるか — Functor</h1>
+<p>命令をチェーンにするには、<code>next</code>（続き先）を差し替える操作が必要</p>
+<p>例: <code>ask</code> の後に <code>tell</code> を繋ぐ → <code>ask</code> の <code>next</code> を差し替える</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-title">fmap</span> f (<span class="hljs-type">Ask</span> prompt k) = <span class="hljs-type">Ask</span> prompt (f . k)
+<span class="hljs-comment">-- 命令はそのまま、継続の先に f を合成</span>
+
+<span class="hljs-title">fmap</span> f (<span class="hljs-type">Tell</span> msg next) = <span class="hljs-type">Tell</span> msg (f next)
+<span class="hljs-comment">-- 命令はそのまま、次を差し替え</span>
 </code></pre>
-<p>後の命令が前の <strong>結果に依存</strong> する → <strong>依存的逐次実行</strong></p>
-<p>これには命令間の <strong>継続</strong> が必要 → まさに <code>&gt;&gt;=</code> の仕事</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code>命令 → 結果 → (結果に基づいて次の命令を選ぶ) → 結果 → ...
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-              この関数が &gt;&gt;= の第二引数
-</code></pre>
+<p>この「命令の内容を変えずに <code>next</code> だけを差し替える」操作が <code>fmap</code></p>
+<p>→ <code>TalkF</code> は <strong>Functor</strong></p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="14" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
@@ -4746,19 +4761,20 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
-<h1 id="free-%E3%83%A2%E3%83%8A%E3%83%89%E3%81%AE%E5%AE%9A%E7%BE%A9">Free モナドの定義</h1>
+;" data-marpit-pagination-total="33">
+<h1 id="%E8%87%AA%E7%94%B1%E3%83%A2%E3%83%8A%E3%83%89%E3%81%AE%E5%AE%9A%E7%BE%A9">自由モナドの定義</h1>
+<p><code>TalkF</code> の <code>next</code> に「残りの計算」を再帰的に入れると:</p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-class"><span class="hljs-keyword">data</span> <span class="hljs-type">Free</span> f a</span>
   = <span class="hljs-type">Pure</span> a                <span class="hljs-comment">-- 計算完了、結果は a</span>
   | <span class="hljs-type">Free</span> (f (<span class="hljs-type">Free</span> f a))   <span class="hljs-comment">-- 命令を1つ実行し、残りが続く</span>
 </code></pre>
-<p>命令セットは <strong>Functor</strong> で表現:</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-class"><span class="hljs-keyword">data</span> <span class="hljs-type">TalkF</span> next</span>
-  = <span class="hljs-type">Ask</span> <span class="hljs-type">String</span> (<span class="hljs-type">String</span> -&gt; next)  <span class="hljs-comment">-- 質問 + 継続</span>
-  | <span class="hljs-type">Tell</span> <span class="hljs-type">String</span> next             <span class="hljs-comment">-- 出力 + 継続</span>
-  <span class="hljs-keyword">deriving</span> <span class="hljs-type">Functor</span>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-class"><span class="hljs-keyword">instance</span> <span class="hljs-type">Functor</span> f =&gt; <span class="hljs-type">Monad</span> (<span class="hljs-type">Free</span> <span class="hljs-title">f</span>) <span class="hljs-keyword">where</span></span>
+  <span class="hljs-type">Pure</span> a &gt;&gt;= f = f a
+  <span class="hljs-type">Free</span> fx &gt;&gt;= f = <span class="hljs-type">Free</span> (fmap (&gt;&gt;= f) fx)
+<span class="hljs-comment">--                       ^^^^</span>
+<span class="hljs-comment">--                       Functor 制約が必要！</span>
 </code></pre>
-<p><code>next</code> = 「この命令の後に何が続くか」</p>
+<p><code>&gt;&gt;=</code> は <code>fmap</code> で命令の中に潜り、末尾に新しい計算を接ぎ木する</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
@@ -5086,21 +5102,24 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
-<h1 id="contchain-%E2%86%92-free">ContChain → Free</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code>ContChain:   StepChain  (a -&gt; b)        (ContChain b)
-                         ^^^^^^^^        ^^^^^^^^^^^^
-                         不透明な関数      残りのチェーン
-
-Free:        Free       (f next)
-                         ^^^^^^
-                         構造化された命令 + 残りのチェーン
+;" data-marpit-pagination-total="33">
+<h1 id="dsl-%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E3%81%A8-free">DSL プログラムと Free</h1>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-title">talkProgram</span> :: <span class="hljs-type">Free</span> <span class="hljs-type">TalkF</span> <span class="hljs-type">String</span>
+<span class="hljs-title">talkProgram</span> = <span class="hljs-keyword">do</span>
+  name &lt;- ask <span class="hljs-string">&quot;名前を入力してください&quot;</span>
+  tell (<span class="hljs-string">&quot;こんにちは、&quot;</span> ++ name ++ <span class="hljs-string">&quot;さん！&quot;</span>)
+  pure name
 </code></pre>
-<p>ContChain で不透明だった <code>(a -&gt; b)</code> のうち、<br />
-<strong>命令</strong> (Ask, Tell) がデータとして見えるようになった</p>
-<blockquote>
-<p>Free = ContChain の命令部分を Defunctionalization したもの</p>
-</blockquote>
+<p>この <code>talkProgram</code> は <strong>データ構造</strong> — 実行はまだ起きていない</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-comment">-- IO で対話的に実行</span>
+<span class="hljs-title">runTalkIO</span> :: <span class="hljs-type">Free</span> <span class="hljs-type">TalkF</span> a -&gt; <span class="hljs-type">IO</span> a
+<span class="hljs-title">runTalkIO</span> (<span class="hljs-type">Pure</span> a) = pure a
+<span class="hljs-title">runTalkIO</span> (<span class="hljs-type">Free</span> (<span class="hljs-type">Ask</span> prompt next)) = <span class="hljs-keyword">do</span>
+  putStrLn prompt; input &lt;- getLine
+  runTalkIO (next input)
+<span class="hljs-title">runTalkIO</span> (<span class="hljs-type">Free</span> (<span class="hljs-type">Tell</span> msg next)) = <span class="hljs-keyword">do</span>
+  putStrLn msg; runTalkIO next
+</code></pre>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
@@ -5428,22 +5447,20 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
-<h1 id="free-%E3%81%AE-bind-%E3%81%A8-dsl-%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0">Free の bind と DSL プログラム</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-class"><span class="hljs-keyword">instance</span> <span class="hljs-type">Functor</span> f =&gt; <span class="hljs-type">Monad</span> (<span class="hljs-type">Free</span> <span class="hljs-title">f</span>) <span class="hljs-keyword">where</span></span>
-  <span class="hljs-type">Pure</span> a &gt;&gt;= f = f a
-  <span class="hljs-type">Free</span> fx &gt;&gt;= f = <span class="hljs-type">Free</span> (fmap (&gt;&gt;= f) fx)
-<span class="hljs-comment">--                       ^^^^</span>
-<span class="hljs-comment">--                       Functor 制約が必要！</span>
-</code></pre>
-<p><code>&gt;&gt;=</code> は <code>fmap</code> で命令の中に潜る → <code>f</code> が <strong>Functor</strong> でなければならない</p>
-<p><code>TalkF</code> の <code>(String -&gt; next)</code> は、この <code>fmap</code> を通すためだけに存在する</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-title">talkProgram</span> :: <span class="hljs-type">Free</span> <span class="hljs-type">TalkF</span> <span class="hljs-type">String</span>
-<span class="hljs-title">talkProgram</span> = <span class="hljs-keyword">do</span>
-  name &lt;- ask <span class="hljs-string">&quot;名前を入力してください&quot;</span>
-  tell (<span class="hljs-string">&quot;こんにちは、&quot;</span> ++ name ++ <span class="hljs-string">&quot;さん！&quot;</span>)
-  pure name
-</code></pre>
+;" data-marpit-pagination-total="33">
+<h1 id="%E3%82%B9%E3%83%86%E3%83%83%E3%83%97%E5%AE%9F%E8%A1%8C%E3%81%AE%E8%AA%8D%E8%AD%98">ステップ実行の認識</h1>
+<p><code>runTalkIO</code> は何をしている？</p>
+<ol>
+<li>プログラムの <strong>先頭を覗く</strong>（<code>Pure</code> か <code>Free</code> か）</li>
+<li>命令を <strong>処理する</strong>（<code>putStrLn</code>、<code>getLine</code>）</li>
+<li>継続に <strong>結果を渡す</strong>（<code>next input</code>）</li>
+<li>再帰的に <strong>次のステップへ</strong></li>
+</ol>
+<p>これは <strong>ステップ実行</strong> — プログラムを一命令ずつ処理するパターン</p>
+<blockquote>
+<p>このパターンが可能なのは、プログラムが Free で<strong>データとして具象化</strong>されているから<br />
+一般のモナド（<code>IO</code>、<code>Reader</code>）の <code>&gt;&gt;=</code> では中を覗けない</p>
+</blockquote>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
@@ -5771,22 +5788,19 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
+;" data-marpit-pagination-total="33">
 <h1 id="free-%E3%81%AE%E8%AA%B2%E9%A1%8C">Free の課題</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-type">Free</span> fx &gt;&gt;= f = <span class="hljs-type">Free</span> (fmap (&gt;&gt;= f) fx)
 </code></pre>
 <p><strong>2つの問題:</strong></p>
 <ol>
-<li>
-<p><strong>Functor 制約</strong>: <code>fmap</code> のために <code>f</code> が Functor でなければならない</p>
+<li><strong>Functor 制約</strong>: <code>fmap</code> のために <code>f</code> が Functor でなければならない
 <ul>
-<li><code>(String -&gt; next)</code> は <code>fmap</code> のためだけに存在</li>
+<li><code>Ask</code> の <code>(String -&gt; next)</code> は <code>fmap</code> のためだけに存在</li>
 <li>命令の本質には不要</li>
 </ul>
 </li>
-<li>
-<p><strong>性能</strong>: <code>&gt;&gt;=</code> のたびに構造全体を走査 → O(n²)</p>
-</li>
+<li><strong>性能</strong>: <code>&gt;&gt;=</code> のたびに構造全体を走査 → O(n²)</li>
 </ol>
 <p>→ 命令と継続を <strong>分離</strong> できないか？</p>
 </section>
@@ -6116,9 +6130,9 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
-<h1 id="ch5--free-%E3%81%8B%E3%82%89-freer-%E3%81%B8">Ch.5 — Free から Freer へ</h1>
-<p>Functor 制約を取り除く</p>
+;" data-marpit-pagination-total="33">
+<h1 id="ch4--freer-%E3%81%A8%E9%99%90%E5%AE%9A%E7%B6%99%E7%B6%9A">Ch.4 — Freer と限定継続</h1>
+<p>Functor 制約を取り除き、ステップ実行を整理すると限定継続が現れる</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="19" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
@@ -6446,16 +6460,18 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
+;" data-marpit-pagination-total="33">
 <h1 id="%E3%82%A2%E3%82%A4%E3%83%87%E3%82%A2-%E5%91%BD%E4%BB%A4%E3%81%A8%E7%B6%99%E7%B6%9A%E3%81%AE%E5%88%86%E9%9B%A2">アイデア: 命令と継続の分離</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-comment">-- Free: fmap で命令の中に潜る</span>
 <span class="hljs-type">Free</span> fx &gt;&gt;= f = <span class="hljs-type">Free</span> (fmap (&gt;&gt;= f) fx)
 
-<span class="hljs-comment">-- Freer: 継続を合成するだけ</span>
+<span class="hljs-comment">-- もし分離できたら: 継続を合成するだけ</span>
 <span class="hljs-type">Bind</span> fx k &gt;&gt;= f = <span class="hljs-type">Bind</span> fx ((&gt;&gt;= f) . k)
 </code></pre>
 <p>命令 <code>fx</code> には触らず、継続 <code>k</code> を合成するだけ</p>
 <p>→ <code>fmap</code> 不要 → <strong>Functor 制約が消える</strong></p>
+<p>しかし <code>Free (f (Free f a))</code> がどうしてこの形になるのか？<br />
+→ 存在量化された型変数 <code>x</code> はどこから来る？</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="20" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
@@ -6783,17 +6799,17 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
+;" data-marpit-pagination-total="33">
 <h1 id="coyoneda--%E6%AD%A3%E5%BC%8F%E3%81%AA%E5%B0%8E%E5%87%BA%E7%B5%8C%E8%B7%AF">Coyoneda — 正式な導出経路</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-class"><span class="hljs-keyword">data</span> <span class="hljs-type">Coyoneda</span> f a where</span>
   <span class="hljs-type">Coyoneda</span> :: (x -&gt; a) -&gt; f x -&gt; <span class="hljs-type">Coyoneda</span> f a
 </code></pre>
+<p><code>f x</code>（素材）と <code>x -&gt; a</code>（変換関数）のペア。<code>fmap</code> を <code>f</code> に適用せず <strong>蓄積</strong> する</p>
 <p><strong>核心的性質</strong>: <code>f</code> が Functor でなくても <code>Coyoneda f</code> は <strong>常に Functor</strong></p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-class"><span class="hljs-keyword">instance</span> <span class="hljs-type">Functor</span> (<span class="hljs-type">Coyoneda</span> <span class="hljs-title">f</span>) <span class="hljs-keyword">where</span></span>
   fmap g (<span class="hljs-type">Coyoneda</span> h fx) = <span class="hljs-type">Coyoneda</span> (g . h) fx
   <span class="hljs-comment">-- f の fmap を呼ばず、関数合成だけ</span>
 </code></pre>
-<p>米田の補題に由来するが、使うのは「常に Functor になる」構成的事実</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="21" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
@@ -7121,7 +7137,7 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
+;" data-marpit-pagination-total="33">
 <h1 id="%E5%B0%8E%E5%87%BA-free-coyoneda-f-%E2%86%92-freer-f">導出: Free (Coyoneda f) → Freer f</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code>Free (Coyoneda f (Free (Coyoneda f) a))
 = Free (∃x. (x → Free (Coyoneda f) a, f x))
@@ -7132,6 +7148,10 @@ section::after {
   <span class="hljs-type">Bind</span> :: f x -&gt; (x -&gt; <span class="hljs-type">Freer</span> f a) -&gt; <span class="hljs-type">Freer</span> f a
 </code></pre>
 <p><code>f</code> に <strong>Functor 制約なし！</strong></p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-class"><span class="hljs-keyword">instance</span> <span class="hljs-type">Monad</span> (<span class="hljs-type">Freer</span> <span class="hljs-title">f</span>) <span class="hljs-keyword">where</span></span>
+  <span class="hljs-type">Pure</span> a    &gt;&gt;= f = f a
+  <span class="hljs-type">Bind</span> fx k &gt;&gt;= f = <span class="hljs-type">Bind</span> fx ((&gt;&gt;= f) . k)
+</code></pre>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="22" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
@@ -7459,19 +7479,22 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
-<h1 id="freer-%E3%81%AE-monad-%E3%82%A4%E3%83%B3%E3%82%B9%E3%82%BF%E3%83%B3%E3%82%B9">Freer の Monad インスタンス</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-class"><span class="hljs-keyword">instance</span> <span class="hljs-type">Monad</span> (<span class="hljs-type">Freer</span> <span class="hljs-title">f</span>) <span class="hljs-keyword">where</span></span>
-  <span class="hljs-type">Pure</span> a    &gt;&gt;= f = f a
-  <span class="hljs-type">Bind</span> fx k &gt;&gt;= f = <span class="hljs-type">Bind</span> fx ((&gt;&gt;= f) . k)
-  <span class="hljs-comment">-- 継続の合成だけ、fmap 不要</span>
+;" data-marpit-pagination-total="33">
+<h1 id="%E5%91%BD%E4%BB%A4%E3%82%BB%E3%83%83%E3%83%88%E3%81%AE%E7%B0%A1%E7%B4%A0%E5%8C%96">命令セットの簡素化</h1>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-comment">-- Free 版: Functor のための (String -&gt; next) が必要</span>
+<span class="hljs-class"><span class="hljs-keyword">data</span> <span class="hljs-type">TalkF</span> next</span>
+  = <span class="hljs-type">Ask</span> <span class="hljs-type">String</span> (<span class="hljs-type">String</span> -&gt; next)
+  | <span class="hljs-type">Tell</span> <span class="hljs-type">String</span> next
+
+<span class="hljs-comment">-- Freer 版: 本質だけが残る</span>
+<span class="hljs-class"><span class="hljs-keyword">data</span> <span class="hljs-type">Talk</span> a where</span>
+  <span class="hljs-type">Ask</span>  :: <span class="hljs-type">String</span> -&gt; <span class="hljs-type">Talk</span> <span class="hljs-type">String</span>
+  <span class="hljs-type">Tell</span> :: <span class="hljs-type">String</span> -&gt; <span class="hljs-type">Talk</span> ()
 </code></pre>
-<p>命令セットもシンプルに:</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-class"><span class="hljs-keyword">data</span> <span class="hljs-type">Talk</span> a where</span>
-  <span class="hljs-type">Ask</span>  :: <span class="hljs-type">String</span> -&gt; <span class="hljs-type">Talk</span> <span class="hljs-type">String</span>  <span class="hljs-comment">-- 質問 → 文字列を返す</span>
-  <span class="hljs-type">Tell</span> :: <span class="hljs-type">String</span> -&gt; <span class="hljs-type">Talk</span> ()      <span class="hljs-comment">-- 出力 → () を返す</span>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-title">send</span> :: f a -&gt; <span class="hljs-type">Freer</span> f a
+<span class="hljs-title">send</span> fa = <span class="hljs-type">Bind</span> fa <span class="hljs-type">Pure</span>
+<span class="hljs-comment">-- 「命令を発行して結果をそのまま返す」最小のプログラム</span>
 </code></pre>
-<p><code>(String -&gt; next)</code> が消え、<strong>本質的な情報だけ</strong> が残る</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="23" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
@@ -7799,21 +7822,27 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
-<h1 id="send-%E3%83%98%E3%83%AB%E3%83%91%E3%83%BC">send ヘルパー</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-title">send</span> :: f a -&gt; <span class="hljs-type">Freer</span> f a
-<span class="hljs-title">send</span> fa = <span class="hljs-type">Bind</span> fa <span class="hljs-type">Pure</span>
-</code></pre>
-<p>命令を Freer に持ち上げる — 「命令を発行して結果をそのまま返す」</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-title">ask</span> :: <span class="hljs-type">String</span> -&gt; <span class="hljs-type">Freer</span> <span class="hljs-type">Talk</span> <span class="hljs-type">String</span>
-<span class="hljs-title">ask</span> prompt = send (<span class="hljs-type">Ask</span> prompt)
+;" data-marpit-pagination-total="33">
+<h1 id="%E3%82%B9%E3%83%86%E3%83%83%E3%83%97%E5%AE%9F%E8%A1%8C%E3%81%AE%E6%95%B4%E7%90%86">ステップ実行の整理</h1>
+<p>命令と継続が分離されたことで、ステップ実行がより明確に:</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-class"><span class="hljs-keyword">data</span> <span class="hljs-type">Step</span> f a where</span>
+  <span class="hljs-type">Done</span>  :: a -&gt; <span class="hljs-type">Step</span> f a
+  <span class="hljs-type">Await</span> :: f x -&gt; (x -&gt; <span class="hljs-type">Freer</span> f a) -&gt; <span class="hljs-type">Step</span> f a
 
-<span class="hljs-title">tell</span> :: <span class="hljs-type">String</span> -&gt; <span class="hljs-type">Freer</span> <span class="hljs-type">Talk</span> ()
-<span class="hljs-title">tell</span> msg = send (<span class="hljs-type">Tell</span> msg)
+<span class="hljs-title">viewFreer</span> :: <span class="hljs-type">Freer</span> f a -&gt; <span class="hljs-type">Step</span> f a
+<span class="hljs-title">viewFreer</span> (<span class="hljs-type">Pure</span> a)    = <span class="hljs-type">Done</span> a
+<span class="hljs-title">viewFreer</span> (<span class="hljs-type">Bind</span> fx k) = <span class="hljs-type">Await</span> fx k
 </code></pre>
-<p>Freer の構造は完成 → 次は <strong>どう実行するか</strong></p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-title">runStepIO</span> m = <span class="hljs-keyword">case</span> viewFreer m <span class="hljs-keyword">of</span>
+  <span class="hljs-type">Done</span> a             -&gt; pure a
+  <span class="hljs-type">Await</span> (<span class="hljs-type">Ask</span> prompt) k -&gt; <span class="hljs-keyword">do</span>
+    putStrLn prompt; input &lt;- getLine
+    runStepIO (k input)   <span class="hljs-comment">-- 継続に値を渡して再開</span>
+  <span class="hljs-type">Await</span> (<span class="hljs-type">Tell</span> msg) k -&gt; <span class="hljs-keyword">do</span>
+    putStrLn msg; runStepIO (k ())
+</code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="24" data-class="lead" data-paginate="true" data-theme="default" data-style=":root {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="24" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
   --color-fg: #d4d6e4;
   --color-accent: #7cacf8;
@@ -7976,7 +8005,7 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-" lang="en-US" class="lead" data-marpit-pagination="24" style="--class:lead;--paginate:true;--theme:default;--style::root {
+" lang="en-US" class="invert" data-marpit-pagination="24" style="--class:invert;--paginate:true;--theme:default;--style::root {
   --color-bg: #1b1d2a;
   --color-fg: #d4d6e4;
   --color-accent: #7cacf8;
@@ -8139,9 +8168,39 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
-<h1 id="ch6--%E5%AE%9F%E8%A1%8C%E5%9F%BA%E7%9B%A4">Ch.6 — 実行基盤</h1>
-<p>Step 実行・限定継続・Codensity</p>
+;" data-marpit-pagination-total="33">
+<h1 id="%E9%99%90%E5%AE%9A%E7%B6%99%E7%B6%9A%E3%81%A8%E3%81%97%E3%81%A6%E3%81%AE-freer">限定継続としての Freer</h1>
+<p>ステップ実行は <strong>限定継続</strong> の shift/reset 構造そのもの</p>
+<table>
+<thead>
+<tr>
+<th>限定継続</th>
+<th>Freer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>shift</code></td>
+<td><code>send</code> — 命令発行、残りを継続として捕捉</td>
+</tr>
+<tr>
+<td><code>reset</code></td>
+<td>インタプリタループ — 捕捉範囲を区切る</td>
+</tr>
+<tr>
+<td>捕捉された継続 <code>k</code></td>
+<td><code>Bind</code> の第2引数 <code>(x -&gt; Freer f a)</code></td>
+</tr>
+<tr>
+<td>継続に値を渡す</td>
+<td><code>k value</code></td>
+</tr>
+</tbody>
+</table>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-title">send</span> (<span class="hljs-type">Ask</span> <span class="hljs-string">&quot;名前は？&quot;</span>) &gt;&gt;= \name -&gt; send (<span class="hljs-type">Tell</span> (<span class="hljs-string">&quot;こんにちは、&quot;</span> ++ name))
+<span class="hljs-comment">-- = Bind (Ask &quot;名前は？&quot;) (\name -&gt; ...)</span>
+<span class="hljs-comment">--                          ^^^^^^^^^^^^^ 限定継続</span>
+</code></pre>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="25" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
@@ -8469,20 +8528,16 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
-<h1 id="step-%E5%9E%8B%E3%81%A8-viewfreer">Step 型と viewFreer</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-class"><span class="hljs-keyword">data</span> <span class="hljs-type">Step</span> f a where</span>
-  <span class="hljs-type">Done</span>  :: a -&gt; <span class="hljs-type">Step</span> f a
-  <span class="hljs-type">Await</span> :: f x -&gt; (x -&gt; <span class="hljs-type">Freer</span> f a) -&gt; <span class="hljs-type">Step</span> f a
-
-<span class="hljs-title">viewFreer</span> :: <span class="hljs-type">Freer</span> f a -&gt; <span class="hljs-type">Step</span> f a
-<span class="hljs-title">viewFreer</span> (<span class="hljs-type">Pure</span> a)    = <span class="hljs-type">Done</span> a
-<span class="hljs-title">viewFreer</span> (<span class="hljs-type">Bind</span> fx k) = <span class="hljs-type">Await</span> fx k
-</code></pre>
-<p>インタプリタに必要な情報だけを公開する抽象化層</p>
-<p>現在の実装では自明だが、<strong>内部表現を変えたときに非自明になる</strong></p>
+;" data-marpit-pagination-total="33">
+<h1 id="generator-%E3%81%B8%E3%81%AE%E6%A9%8B%E6%B8%A1%E3%81%97">Generator への橋渡し</h1>
+<ul>
+<li><strong>shift</strong> = 命令を発行し、残りの計算を継続として捕捉。制御はインタプリタへ</li>
+<li><strong><code>yield</code></strong> = 値を外に渡して中断。制御は呼び出し元へ。再開時に値を受け取る</li>
+</ul>
+<p>どちらも「値を外に渡して中断し、外側から値を供給されて再開する」</p>
+<p>→ <code>yield</code> = shift、<code>while</code> ループ = reset — <strong>同じプロトコル</strong></p>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="26" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="26" data-class="lead" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
   --color-fg: #d4d6e4;
   --color-accent: #7cacf8;
@@ -8645,7 +8700,7 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-" lang="en-US" class="invert" data-marpit-pagination="26" style="--class:invert;--paginate:true;--theme:default;--style::root {
+" lang="en-US" class="lead" data-marpit-pagination="26" style="--class:lead;--paginate:true;--theme:default;--style::root {
   --color-bg: #1b1d2a;
   --color-fg: #d4d6e4;
   --color-accent: #7cacf8;
@@ -8808,20 +8863,9 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
-<h1 id="step-%E3%83%99%E3%83%BC%E3%82%B9%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%97%E3%83%AA%E3%82%BF">Step ベースのインタプリタ</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-title">runStepIO</span> :: <span class="hljs-type">Freer</span> <span class="hljs-type">Talk</span> a -&gt; <span class="hljs-type">IO</span> a
-<span class="hljs-title">runStepIO</span> m = <span class="hljs-keyword">case</span> viewFreer m <span class="hljs-keyword">of</span>
-  <span class="hljs-type">Done</span> a             -&gt; pure a
-  <span class="hljs-type">Await</span> (<span class="hljs-type">Ask</span> prompt) k -&gt; <span class="hljs-keyword">do</span>
-    putStrLn prompt
-    input &lt;- getLine
-    runStepIO (k input)   <span class="hljs-comment">-- 値を継続に渡して再開</span>
-  <span class="hljs-type">Await</span> (<span class="hljs-type">Tell</span> msg) k -&gt; <span class="hljs-keyword">do</span>
-    putStrLn msg
-    runStepIO (k ())
-</code></pre>
-<p>ループ構造: 命令を覗く → 処理 → 結果を <code>k</code> に渡す → 再帰</p>
+;" data-marpit-pagination-total="33">
+<h1 id="ch5--generator-%E3%81%A8-dsl">Ch.5 — Generator と DSL</h1>
+<p>限定継続を TypeScript の Generator で実現する</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="27" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
@@ -9149,40 +9193,44 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
-<h1 id="%E9%99%90%E5%AE%9A%E7%B6%99%E7%B6%9A%E3%81%A8%E3%81%97%E3%81%A6%E3%81%AE-freer">限定継続としての Freer</h1>
-<p>Step 実行は <strong>限定継続</strong> の shift/reset 構造そのもの</p>
+;" data-marpit-pagination-total="33">
+<h1 id="generator-%E2%86%94-freer-%E3%81%AE%E5%AF%BE%E5%BF%9C">Generator <img class="emoji" draggable="false" alt="↔" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2194.svg" data-marp-twemoji=""/> Freer の対応</h1>
 <table>
 <thead>
 <tr>
-<th>限定継続</th>
-<th>Freer</th>
+<th>Freer (Haskell)</th>
+<th>Generator (TypeScript)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>shift</code></td>
-<td><code>send</code> — 命令発行、残りを継続として捕捉</td>
+<td><code>Bind fx k</code></td>
+<td><code>yield instruction</code></td>
 </tr>
 <tr>
-<td><code>reset</code></td>
-<td>インタプリタループ — 捕捉範囲を区切る</td>
+<td><code>fx</code> — 命令</td>
+<td><code>instruction</code> — yield された値</td>
 </tr>
 <tr>
-<td>捕捉された継続 <code>k</code></td>
-<td><code>Bind</code> の第2引数 <code>(x -&gt; Freer f a)</code></td>
+<td><code>k</code> — 限定継続</td>
+<td>yield 後の関数本体の残り</td>
 </tr>
 <tr>
-<td>継続に値を渡す</td>
-<td><code>k value</code></td>
+<td>パターンマッチで処理</td>
+<td><code>gen.next(value)</code> で値を渡す</td>
+</tr>
+<tr>
+<td><code>send</code> = shift</td>
+<td><code>yield</code> = shift</td>
+</tr>
+<tr>
+<td>インタプリタ = reset</td>
+<td><code>while</code> ループ = reset</td>
 </tr>
 </tbody>
 </table>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-title">send</span> (<span class="hljs-type">Ask</span> <span class="hljs-string">&quot;名前は？&quot;</span>) &gt;&gt;= \name -&gt; send (<span class="hljs-type">Tell</span> (<span class="hljs-string">&quot;こんにちは、&quot;</span> ++ name))
-<span class="hljs-comment">-- = Bind (Ask &quot;名前は？&quot;) (\name -&gt; send (Tell (...)))</span>
-<span class="hljs-comment">--                          ^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-<span class="hljs-comment">--                          限定継続</span>
-</code></pre>
+<p><strong>重要な違い</strong>: Freer の <code>k</code> は何度でも呼べる (multi-shot)<br />
+Generator は一度しか再開できない (one-shot)</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="28" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
@@ -9510,24 +9558,24 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
-<h1 id="codensity--on%C2%B2-%E3%81%AE%E8%A7%A3%E6%B1%BA">Codensity — O(n²) の解決</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-type">Bind</span> fx k &gt;&gt;= f = <span class="hljs-type">Bind</span> fx ((&gt;&gt;= f) . k)
-<span class="hljs-comment">-- 左結合チェーンで継続がネスト → 実行時 O(n²)</span>
+;" data-marpit-pagination-total="33">
+<h1 id="%E5%91%BD%E4%BB%A4%E5%AE%9A%E7%BE%A9%E3%81%A8-dsl-%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0">命令定義と DSL プログラム</h1>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-typescript"><span class="hljs-keyword">type</span> <span class="hljs-title class_">Ask</span> = { <span class="hljs-keyword">readonly</span> <span class="hljs-attr">tag</span>: <span class="hljs-string">&quot;ask&quot;</span>; <span class="hljs-keyword">readonly</span> <span class="hljs-attr">prompt</span>: <span class="hljs-built_in">string</span> };
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">Tell</span> = { <span class="hljs-keyword">readonly</span> <span class="hljs-attr">tag</span>: <span class="hljs-string">&quot;tell&quot;</span>; <span class="hljs-keyword">readonly</span> <span class="hljs-attr">message</span>: <span class="hljs-built_in">string</span> };
+
+<span class="hljs-keyword">function</span>* <span class="hljs-title function_">ask</span>(<span class="hljs-attr">prompt</span>: <span class="hljs-built_in">string</span>): <span class="hljs-title class_">Generator</span>&lt;<span class="hljs-title class_">Ask</span>, <span class="hljs-built_in">string</span>, <span class="hljs-built_in">string</span>&gt; {
+  <span class="hljs-keyword">return</span> (<span class="hljs-keyword">yield</span> { <span class="hljs-attr">tag</span>: <span class="hljs-string">&quot;ask&quot;</span>, prompt }) <span class="hljs-keyword">as</span> <span class="hljs-built_in">string</span>;
+}
 </code></pre>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-class"><span class="hljs-keyword">newtype</span> <span class="hljs-type">Codensity</span> m a = <span class="hljs-type">Codensity</span></span>
-  { runCodensity :: <span class="hljs-keyword">forall</span> r. (a -&gt; m r) -&gt; m r }
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-typescript"><span class="hljs-keyword">const</span> <span class="hljs-attr">greetProgram</span>: <span class="hljs-title class_">Program</span>&lt;<span class="hljs-built_in">string</span>&gt; = <span class="hljs-keyword">function</span>* () {
+  <span class="hljs-keyword">const</span> name = <span class="hljs-keyword">yield</span>* <span class="hljs-title function_">ask</span>(<span class="hljs-string">&quot;名前を入力してください&quot;</span>);
+  <span class="hljs-keyword">yield</span>* <span class="hljs-title function_">tell</span>(<span class="hljs-string">`こんにちは、<span class="hljs-subst">${name}</span>さん！`</span>);
+  <span class="hljs-keyword">return</span> name;
+};
 </code></pre>
-<ul>
-<li><code>&gt;&gt;=</code> が常に <strong>O(1)</strong> — 差分リストと同じアイデア</li>
-<li><code>forall r.</code> のパラメトリシティが結合順序の入れ替えを保証</li>
-</ul>
-<blockquote>
-<p>do 記法は <strong>右結合</strong> にデシュガーされるため O(n²) は発生しない<br />
-→ DSL 実装では Codensity は <strong>省略</strong></p>
-</blockquote>
+<p><code>Program&lt;A&gt; = () =&gt; Generator&lt;...&gt;</code> — サンク化で不変性を担保</p>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="29" data-class="lead" data-paginate="true" data-theme="default" data-style=":root {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="29" data-class="dense" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
   --color-fg: #d4d6e4;
   --color-accent: #7cacf8;
@@ -9690,7 +9738,7 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-" lang="en-US" class="lead" data-marpit-pagination="29" style="--class:lead;--paginate:true;--theme:default;--style::root {
+" lang="en-US" class="dense" data-marpit-pagination="29" style="--class:dense;--paginate:true;--theme:default;--style::root {
   --color-bg: #1b1d2a;
   --color-fg: #d4d6e4;
   --color-accent: #7cacf8;
@@ -9853,9 +9901,32 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
-<h1 id="ch7--typescript-dsl">Ch.7 — TypeScript DSL</h1>
-<p>Generator = 言語レベルの限定継続</p>
+;" data-marpit-pagination-total="33">
+<h1 id="%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%97%E3%83%AA%E3%82%BF">インタプリタ</h1>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-typescript"><span class="hljs-keyword">function</span> runPure&lt;A&gt;(
+  <span class="hljs-attr">program</span>: <span class="hljs-title class_">Program</span>&lt;A&gt;,
+  <span class="hljs-attr">inputs</span>: <span class="hljs-built_in">string</span>[],
+): { <span class="hljs-attr">result</span>: A; <span class="hljs-attr">outputs</span>: <span class="hljs-built_in">string</span>[] } {
+  <span class="hljs-keyword">const</span> gen = <span class="hljs-title function_">program</span>(); <span class="hljs-comment">// サンクから Generator を生成</span>
+  <span class="hljs-keyword">const</span> <span class="hljs-attr">outputs</span>: <span class="hljs-built_in">string</span>[] = [];
+  <span class="hljs-keyword">let</span> inputIndex = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">let</span> step = gen.<span class="hljs-title function_">next</span>();
+
+  <span class="hljs-keyword">while</span> (!step.<span class="hljs-property">done</span>) {
+    <span class="hljs-comment">// reset（ループ境界）</span>
+    <span class="hljs-keyword">switch</span> (step.<span class="hljs-property">value</span>.<span class="hljs-property">tag</span>) {
+      <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;ask&quot;</span>:
+        step = gen.<span class="hljs-title function_">next</span>(inputs[inputIndex++]); <span class="hljs-comment">// k(value)</span>
+        <span class="hljs-keyword">break</span>;
+      <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;tell&quot;</span>:
+        outputs.<span class="hljs-title function_">push</span>(step.<span class="hljs-property">value</span>.<span class="hljs-property">message</span>);
+        step = gen.<span class="hljs-title function_">next</span>(<span class="hljs-literal">undefined</span>);
+        <span class="hljs-keyword">break</span>;
+    }
+  }
+  <span class="hljs-keyword">return</span> { <span class="hljs-attr">result</span>: step.<span class="hljs-property">value</span>, outputs };
+}
+</code></pre>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="30" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
@@ -10183,42 +10254,25 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
-<h1 id="generator-%E2%86%94-freer-%E3%81%AE%E5%AF%BE%E5%BF%9C">Generator <img class="emoji" draggable="false" alt="↔" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2194.svg" data-marp-twemoji=""/> Freer の対応</h1>
-<table>
-<thead>
-<tr>
-<th>Freer (Haskell)</th>
-<th>Generator (TypeScript)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Bind fx k</code></td>
-<td><code>yield instruction</code></td>
-</tr>
-<tr>
-<td><code>fx</code> — 命令</td>
-<td><code>instruction</code> — yield された値</td>
-</tr>
-<tr>
-<td><code>k</code> — 限定継続</td>
-<td>yield 後の関数本体の残り</td>
-</tr>
-<tr>
-<td>パターンマッチで処理</td>
-<td><code>gen.next(value)</code> で値を渡す</td>
-</tr>
-</tbody>
-</table>
-<p><strong>重要な違い</strong>: one-shot vs multi-shot</p>
+;" data-marpit-pagination-total="33">
+<h1 id="%E8%A3%9C%E9%81%BA-codensity">補遺: Codensity</h1>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-type">Bind</span> fx k &gt;&gt;= f = <span class="hljs-type">Bind</span> fx ((&gt;&gt;= f) . k)
+<span class="hljs-comment">-- 左結合チェーンで継続がネスト → 実行時 O(n²)</span>
+</code></pre>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-class"><span class="hljs-keyword">newtype</span> <span class="hljs-type">Codensity</span> m a = <span class="hljs-type">Codensity</span></span>
+  { runCodensity :: <span class="hljs-keyword">forall</span> r. (a -&gt; m r) -&gt; m r }
+</code></pre>
 <ul>
-<li>素の Freer: <code>k</code> は通常の関数 → 何度でも呼べる (multi-shot)</li>
-<li>Codensity で最適化: 継続の再結合が起きる → <strong>one-shot 前提</strong></li>
-<li>Generator: 内部状態あり → 一度しか再開できない (one-shot)</li>
+<li><code>&gt;&gt;=</code> が常に <strong>O(1)</strong> — 差分リストと同じアイデア</li>
+<li><code>forall r.</code> のパラメトリシティが結合順序の入れ替えを保証</li>
 </ul>
+<blockquote>
+<p>do 記法は <strong>右結合</strong> にデシュガーされるため O(n²) は発生しない<br />
+→ DSL 実装では Codensity は <strong>省略</strong><br />
+→ one-shot な Generator ではそもそも Codensity は <strong>適用不可</strong></p>
+</blockquote>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="31" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="31" data-class="lead" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
   --color-fg: #d4d6e4;
   --color-accent: #7cacf8;
@@ -10381,7 +10435,7 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-" lang="en-US" class="invert" data-marpit-pagination="31" style="--class:invert;--paginate:true;--theme:default;--style::root {
+" lang="en-US" class="lead" data-marpit-pagination="31" style="--class:lead;--paginate:true;--theme:default;--style::root {
   --color-bg: #1b1d2a;
   --color-fg: #d4d6e4;
   --color-accent: #7cacf8;
@@ -10544,1049 +10598,10 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
-<h1 id="%E5%91%BD%E4%BB%A4%E5%AE%9A%E7%BE%A9">命令定義</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-typescript"><span class="hljs-keyword">type</span> <span class="hljs-title class_">Ask</span> = { <span class="hljs-keyword">readonly</span> <span class="hljs-attr">tag</span>: <span class="hljs-string">&quot;ask&quot;</span>; <span class="hljs-keyword">readonly</span> <span class="hljs-attr">prompt</span>: <span class="hljs-built_in">string</span> };
-<span class="hljs-keyword">type</span> <span class="hljs-title class_">Tell</span> = { <span class="hljs-keyword">readonly</span> <span class="hljs-attr">tag</span>: <span class="hljs-string">&quot;tell&quot;</span>; <span class="hljs-keyword">readonly</span> <span class="hljs-attr">message</span>: <span class="hljs-built_in">string</span> };
-
-<span class="hljs-keyword">type</span> <span class="hljs-title class_">TalkInstruction</span> = <span class="hljs-title class_">Ask</span> | <span class="hljs-title class_">Tell</span>;
-</code></pre>
-<p>Defunc された命令セット（Haskell の GADT に対応）</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-typescript"><span class="hljs-keyword">function</span>* <span class="hljs-title function_">ask</span>(<span class="hljs-attr">prompt</span>: <span class="hljs-built_in">string</span>): <span class="hljs-title class_">Generator</span>&lt;<span class="hljs-title class_">Ask</span>, <span class="hljs-built_in">string</span>, <span class="hljs-built_in">string</span>&gt; {
-  <span class="hljs-keyword">return</span> (<span class="hljs-keyword">yield</span> { <span class="hljs-attr">tag</span>: <span class="hljs-string">&quot;ask&quot;</span>, prompt }) <span class="hljs-keyword">as</span> <span class="hljs-built_in">string</span>;
-}
-
-<span class="hljs-keyword">function</span>* <span class="hljs-title function_">tell</span>(<span class="hljs-attr">message</span>: <span class="hljs-built_in">string</span>): <span class="hljs-title class_">Generator</span>&lt;<span class="hljs-title class_">Tell</span>, <span class="hljs-built_in">void</span>, <span class="hljs-built_in">void</span>&gt; {
-  <span class="hljs-keyword">return</span> (<span class="hljs-keyword">yield</span> { <span class="hljs-attr">tag</span>: <span class="hljs-string">&quot;tell&quot;</span>, message }) <span class="hljs-keyword">as</span> <span class="hljs-built_in">void</span>;
-}
-</code></pre>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="32" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
-  --color-bg: #1b1d2a;
-  --color-fg: #d4d6e4;
-  --color-accent: #7cacf8;
-  --color-accent-dim: #4a6fa5;
-  --color-surface: #252840;
-  --color-border: #363850;
-  --color-highlight: #f0c674;
-}
-
-section {
-  background: var(--color-bg);
-  color: var(--color-fg);
-  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
-  font-size: 28px;
-  letter-spacing: 0.01em;
-  padding: 50px 60px;
-  text-align: left;
-}
-
-h1 {
-  color: var(--color-accent);
-  font-size: 1.5em;
-  font-weight: 600;
-  border-bottom: 2px solid var(--color-border);
-  padding-bottom: 0.25em;
-  margin-bottom: 0.6em;
-}
-
-h2 { color: var(--color-accent-dim); font-weight: 400; }
-
-strong { color: var(--color-highlight); font-weight: 600; }
-
-a { color: var(--color-accent); }
-
-/* ── Code ── */
-
-code {
-  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
-  font-size: 0.85em;
-  background: var(--color-surface) !important;
-  color: var(--color-fg) !important;
-  padding: 0.1em 0.35em;
-  border-radius: 4px;
-}
-
-pre {
-  background: var(--color-surface) !important;
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: 0.8em 1em !important;
-  margin: 0.5em 0;
-  line-height: 1.45;
-  text-align: left;
-}
-
-pre code {
-  background: transparent !important;
-  color: var(--color-fg) !important;
-  padding: 0;
-  font-size: 0.82em;
-  text-align: left;
-}
-
-/* ── Table ── */
-
-table {
-  font-size: 0.82em;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-table th {
-  background: var(--color-surface);
-  color: var(--color-accent);
-  font-weight: 600;
-  border-bottom: 2px solid var(--color-accent-dim);
-  padding: 0.5em 0.8em;
-  text-align: left;
-}
-
-table td {
-  border-bottom: 1px solid var(--color-border);
-  padding: 0.45em 0.8em;
-  text-align: left;
-}
-
-/* ── Blockquote ── */
-
-blockquote {
-  font-size: 0.88em;
-  border-left: 3px solid var(--color-accent-dim);
-  background: var(--color-surface);
-  padding: 0.5em 1em;
-  border-radius: 0 6px 6px 0;
-  color: #a8abbe;
-}
-
-blockquote strong { color: var(--color-highlight); }
-
-/* ── List ── */
-
-ul, ol { margin: 0.3em 0; }
-li { margin: 0.2em 0; line-height: 1.5; }
-li::marker { color: var(--color-accent-dim); }
-
-/* ── Lead slides ── */
-
-section.lead {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-section.lead h1 {
-  font-size: 2.2em;
-  border-bottom: none;
-  padding-bottom: 0;
-  margin-bottom: 0.3em;
-  letter-spacing: 0.02em;
-}
-
-section.lead h2 {
-  font-size: 1.05em;
-  color: #7a7d94;
-  font-weight: 300;
-  margin-top: 0;
-}
-
-section.lead p {
-  color: #8a8da6;
-  font-size: 0.95em;
-}
-
-/* ── Dense slides ── */
-
-section.dense {
-  font-size: 22px;
-  padding: 35px 50px;
-}
-
-section.dense h1 {
-  font-size: 1.4em;
-  margin-bottom: 0.35em;
-}
-
-section.dense pre {
-  padding: 0.6em 0.9em !important;
-  margin: 0.35em 0;
-}
-
-section.dense pre code { font-size: 0.8em; }
-section.dense table { font-size: 0.88em; }
-section.dense blockquote { font-size: 0.9em; }
-
-/* ── Page number ── */
-
-section::after {
-  color: #4a4d64;
-  font-size: 0.6em;
-}
-" lang="en-US" class="invert" data-marpit-pagination="32" style="--class:invert;--paginate:true;--theme:default;--style::root {
-  --color-bg: #1b1d2a;
-  --color-fg: #d4d6e4;
-  --color-accent: #7cacf8;
-  --color-accent-dim: #4a6fa5;
-  --color-surface: #252840;
-  --color-border: #363850;
-  --color-highlight: #f0c674;
-}
-
-section {
-  background: var(--color-bg);
-  color: var(--color-fg);
-  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
-  font-size: 28px;
-  letter-spacing: 0.01em;
-  padding: 50px 60px;
-  text-align: left;
-}
-
-h1 {
-  color: var(--color-accent);
-  font-size: 1.5em;
-  font-weight: 600;
-  border-bottom: 2px solid var(--color-border);
-  padding-bottom: 0.25em;
-  margin-bottom: 0.6em;
-}
-
-h2 { color: var(--color-accent-dim); font-weight: 400; }
-
-strong { color: var(--color-highlight); font-weight: 600; }
-
-a { color: var(--color-accent); }
-
-/* ── Code ── */
-
-code {
-  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
-  font-size: 0.85em;
-  background: var(--color-surface) !important;
-  color: var(--color-fg) !important;
-  padding: 0.1em 0.35em;
-  border-radius: 4px;
-}
-
-pre {
-  background: var(--color-surface) !important;
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: 0.8em 1em !important;
-  margin: 0.5em 0;
-  line-height: 1.45;
-  text-align: left;
-}
-
-pre code {
-  background: transparent !important;
-  color: var(--color-fg) !important;
-  padding: 0;
-  font-size: 0.82em;
-  text-align: left;
-}
-
-/* ── Table ── */
-
-table {
-  font-size: 0.82em;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-table th {
-  background: var(--color-surface);
-  color: var(--color-accent);
-  font-weight: 600;
-  border-bottom: 2px solid var(--color-accent-dim);
-  padding: 0.5em 0.8em;
-  text-align: left;
-}
-
-table td {
-  border-bottom: 1px solid var(--color-border);
-  padding: 0.45em 0.8em;
-  text-align: left;
-}
-
-/* ── Blockquote ── */
-
-blockquote {
-  font-size: 0.88em;
-  border-left: 3px solid var(--color-accent-dim);
-  background: var(--color-surface);
-  padding: 0.5em 1em;
-  border-radius: 0 6px 6px 0;
-  color: #a8abbe;
-}
-
-blockquote strong { color: var(--color-highlight); }
-
-/* ── List ── */
-
-ul, ol { margin: 0.3em 0; }
-li { margin: 0.2em 0; line-height: 1.5; }
-li::marker { color: var(--color-accent-dim); }
-
-/* ── Lead slides ── */
-
-section.lead {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-section.lead h1 {
-  font-size: 2.2em;
-  border-bottom: none;
-  padding-bottom: 0;
-  margin-bottom: 0.3em;
-  letter-spacing: 0.02em;
-}
-
-section.lead h2 {
-  font-size: 1.05em;
-  color: #7a7d94;
-  font-weight: 300;
-  margin-top: 0;
-}
-
-section.lead p {
-  color: #8a8da6;
-  font-size: 0.95em;
-}
-
-/* ── Dense slides ── */
-
-section.dense {
-  font-size: 22px;
-  padding: 35px 50px;
-}
-
-section.dense h1 {
-  font-size: 1.4em;
-  margin-bottom: 0.35em;
-}
-
-section.dense pre {
-  padding: 0.6em 0.9em !important;
-  margin: 0.35em 0;
-}
-
-section.dense pre code { font-size: 0.8em; }
-section.dense table { font-size: 0.88em; }
-section.dense blockquote { font-size: 0.9em; }
-
-/* ── Page number ── */
-
-section::after {
-  color: #4a4d64;
-  font-size: 0.6em;
-}
-;" data-marpit-pagination-total="36">
-<h1 id="dsl-%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0">DSL プログラム</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-typescript"><span class="hljs-keyword">const</span> greetProgram = <span class="hljs-title class_">Do</span>(<span class="hljs-keyword">function</span>* () {
-  <span class="hljs-keyword">const</span> name = <span class="hljs-keyword">yield</span>* <span class="hljs-title function_">ask</span>(<span class="hljs-string">&quot;名前を入力してください&quot;</span>);
-  <span class="hljs-keyword">yield</span>* <span class="hljs-title function_">tell</span>(<span class="hljs-string">`こんにちは、<span class="hljs-subst">${name}</span>さん！`</span>);
-  <span class="hljs-keyword">const</span> age = <span class="hljs-keyword">yield</span>* <span class="hljs-title function_">ask</span>(<span class="hljs-string">&quot;年齢を入力してください&quot;</span>);
-  <span class="hljs-keyword">yield</span>* <span class="hljs-title function_">tell</span>(<span class="hljs-string">`<span class="hljs-subst">${age}</span>歳ですね。`</span>);
-  <span class="hljs-keyword">return</span> name;
-});
-</code></pre>
-<p>Haskell の do 記法とほぼ同じ見た目</p>
-<p><strong>サンク化が重要</strong>: <code>Program&lt;A&gt; = () =&gt; Generator&lt;...&gt;</code></p>
-<ul>
-<li>Generator は one-shot → 使い切り</li>
-<li>サンクで毎回新しい Generator を生成 → 同じプログラムを複数インタプリタで実行可能</li>
-</ul>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="33" data-class="dense" data-paginate="true" data-theme="default" data-style=":root {
-  --color-bg: #1b1d2a;
-  --color-fg: #d4d6e4;
-  --color-accent: #7cacf8;
-  --color-accent-dim: #4a6fa5;
-  --color-surface: #252840;
-  --color-border: #363850;
-  --color-highlight: #f0c674;
-}
-
-section {
-  background: var(--color-bg);
-  color: var(--color-fg);
-  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
-  font-size: 28px;
-  letter-spacing: 0.01em;
-  padding: 50px 60px;
-  text-align: left;
-}
-
-h1 {
-  color: var(--color-accent);
-  font-size: 1.5em;
-  font-weight: 600;
-  border-bottom: 2px solid var(--color-border);
-  padding-bottom: 0.25em;
-  margin-bottom: 0.6em;
-}
-
-h2 { color: var(--color-accent-dim); font-weight: 400; }
-
-strong { color: var(--color-highlight); font-weight: 600; }
-
-a { color: var(--color-accent); }
-
-/* ── Code ── */
-
-code {
-  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
-  font-size: 0.85em;
-  background: var(--color-surface) !important;
-  color: var(--color-fg) !important;
-  padding: 0.1em 0.35em;
-  border-radius: 4px;
-}
-
-pre {
-  background: var(--color-surface) !important;
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: 0.8em 1em !important;
-  margin: 0.5em 0;
-  line-height: 1.45;
-  text-align: left;
-}
-
-pre code {
-  background: transparent !important;
-  color: var(--color-fg) !important;
-  padding: 0;
-  font-size: 0.82em;
-  text-align: left;
-}
-
-/* ── Table ── */
-
-table {
-  font-size: 0.82em;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-table th {
-  background: var(--color-surface);
-  color: var(--color-accent);
-  font-weight: 600;
-  border-bottom: 2px solid var(--color-accent-dim);
-  padding: 0.5em 0.8em;
-  text-align: left;
-}
-
-table td {
-  border-bottom: 1px solid var(--color-border);
-  padding: 0.45em 0.8em;
-  text-align: left;
-}
-
-/* ── Blockquote ── */
-
-blockquote {
-  font-size: 0.88em;
-  border-left: 3px solid var(--color-accent-dim);
-  background: var(--color-surface);
-  padding: 0.5em 1em;
-  border-radius: 0 6px 6px 0;
-  color: #a8abbe;
-}
-
-blockquote strong { color: var(--color-highlight); }
-
-/* ── List ── */
-
-ul, ol { margin: 0.3em 0; }
-li { margin: 0.2em 0; line-height: 1.5; }
-li::marker { color: var(--color-accent-dim); }
-
-/* ── Lead slides ── */
-
-section.lead {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-section.lead h1 {
-  font-size: 2.2em;
-  border-bottom: none;
-  padding-bottom: 0;
-  margin-bottom: 0.3em;
-  letter-spacing: 0.02em;
-}
-
-section.lead h2 {
-  font-size: 1.05em;
-  color: #7a7d94;
-  font-weight: 300;
-  margin-top: 0;
-}
-
-section.lead p {
-  color: #8a8da6;
-  font-size: 0.95em;
-}
-
-/* ── Dense slides ── */
-
-section.dense {
-  font-size: 22px;
-  padding: 35px 50px;
-}
-
-section.dense h1 {
-  font-size: 1.4em;
-  margin-bottom: 0.35em;
-}
-
-section.dense pre {
-  padding: 0.6em 0.9em !important;
-  margin: 0.35em 0;
-}
-
-section.dense pre code { font-size: 0.8em; }
-section.dense table { font-size: 0.88em; }
-section.dense blockquote { font-size: 0.9em; }
-
-/* ── Page number ── */
-
-section::after {
-  color: #4a4d64;
-  font-size: 0.6em;
-}
-" lang="en-US" class="dense" data-marpit-pagination="33" style="--class:dense;--paginate:true;--theme:default;--style::root {
-  --color-bg: #1b1d2a;
-  --color-fg: #d4d6e4;
-  --color-accent: #7cacf8;
-  --color-accent-dim: #4a6fa5;
-  --color-surface: #252840;
-  --color-border: #363850;
-  --color-highlight: #f0c674;
-}
-
-section {
-  background: var(--color-bg);
-  color: var(--color-fg);
-  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
-  font-size: 28px;
-  letter-spacing: 0.01em;
-  padding: 50px 60px;
-  text-align: left;
-}
-
-h1 {
-  color: var(--color-accent);
-  font-size: 1.5em;
-  font-weight: 600;
-  border-bottom: 2px solid var(--color-border);
-  padding-bottom: 0.25em;
-  margin-bottom: 0.6em;
-}
-
-h2 { color: var(--color-accent-dim); font-weight: 400; }
-
-strong { color: var(--color-highlight); font-weight: 600; }
-
-a { color: var(--color-accent); }
-
-/* ── Code ── */
-
-code {
-  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
-  font-size: 0.85em;
-  background: var(--color-surface) !important;
-  color: var(--color-fg) !important;
-  padding: 0.1em 0.35em;
-  border-radius: 4px;
-}
-
-pre {
-  background: var(--color-surface) !important;
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: 0.8em 1em !important;
-  margin: 0.5em 0;
-  line-height: 1.45;
-  text-align: left;
-}
-
-pre code {
-  background: transparent !important;
-  color: var(--color-fg) !important;
-  padding: 0;
-  font-size: 0.82em;
-  text-align: left;
-}
-
-/* ── Table ── */
-
-table {
-  font-size: 0.82em;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-table th {
-  background: var(--color-surface);
-  color: var(--color-accent);
-  font-weight: 600;
-  border-bottom: 2px solid var(--color-accent-dim);
-  padding: 0.5em 0.8em;
-  text-align: left;
-}
-
-table td {
-  border-bottom: 1px solid var(--color-border);
-  padding: 0.45em 0.8em;
-  text-align: left;
-}
-
-/* ── Blockquote ── */
-
-blockquote {
-  font-size: 0.88em;
-  border-left: 3px solid var(--color-accent-dim);
-  background: var(--color-surface);
-  padding: 0.5em 1em;
-  border-radius: 0 6px 6px 0;
-  color: #a8abbe;
-}
-
-blockquote strong { color: var(--color-highlight); }
-
-/* ── List ── */
-
-ul, ol { margin: 0.3em 0; }
-li { margin: 0.2em 0; line-height: 1.5; }
-li::marker { color: var(--color-accent-dim); }
-
-/* ── Lead slides ── */
-
-section.lead {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-section.lead h1 {
-  font-size: 2.2em;
-  border-bottom: none;
-  padding-bottom: 0;
-  margin-bottom: 0.3em;
-  letter-spacing: 0.02em;
-}
-
-section.lead h2 {
-  font-size: 1.05em;
-  color: #7a7d94;
-  font-weight: 300;
-  margin-top: 0;
-}
-
-section.lead p {
-  color: #8a8da6;
-  font-size: 0.95em;
-}
-
-/* ── Dense slides ── */
-
-section.dense {
-  font-size: 22px;
-  padding: 35px 50px;
-}
-
-section.dense h1 {
-  font-size: 1.4em;
-  margin-bottom: 0.35em;
-}
-
-section.dense pre {
-  padding: 0.6em 0.9em !important;
-  margin: 0.35em 0;
-}
-
-section.dense pre code { font-size: 0.8em; }
-section.dense table { font-size: 0.88em; }
-section.dense blockquote { font-size: 0.9em; }
-
-/* ── Page number ── */
-
-section::after {
-  color: #4a4d64;
-  font-size: 0.6em;
-}
-;" data-marpit-pagination-total="36">
-<h1 id="%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%97%E3%83%AA%E3%82%BF">インタプリタ</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-typescript"><span class="hljs-keyword">function</span> runPure&lt;A&gt;(
-  <span class="hljs-attr">program</span>: <span class="hljs-title class_">Program</span>&lt;A&gt;,
-  <span class="hljs-attr">inputs</span>: <span class="hljs-built_in">string</span>[],
-): { <span class="hljs-attr">result</span>: A; <span class="hljs-attr">outputs</span>: <span class="hljs-built_in">string</span>[] } {
-  <span class="hljs-keyword">const</span> gen = <span class="hljs-title function_">program</span>(); <span class="hljs-comment">// サンクから Generator を生成</span>
-  <span class="hljs-keyword">const</span> <span class="hljs-attr">outputs</span>: <span class="hljs-built_in">string</span>[] = [];
-  <span class="hljs-keyword">let</span> inputIndex = <span class="hljs-number">0</span>;
-  <span class="hljs-keyword">let</span> step = gen.<span class="hljs-title function_">next</span>();
-
-  <span class="hljs-keyword">while</span> (!step.<span class="hljs-property">done</span>) {
-    <span class="hljs-comment">// reset（ループ境界）</span>
-    <span class="hljs-keyword">switch</span> (step.<span class="hljs-property">value</span>.<span class="hljs-property">tag</span>) {
-      <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;ask&quot;</span>:
-        step = gen.<span class="hljs-title function_">next</span>(inputs[inputIndex++]); <span class="hljs-comment">// k(value)</span>
-        <span class="hljs-keyword">break</span>;
-      <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;tell&quot;</span>:
-        outputs.<span class="hljs-title function_">push</span>(step.<span class="hljs-property">value</span>.<span class="hljs-property">message</span>);
-        step = gen.<span class="hljs-title function_">next</span>(<span class="hljs-literal">undefined</span>);
-        <span class="hljs-keyword">break</span>;
-    }
-  }
-  <span class="hljs-keyword">return</span> { <span class="hljs-attr">result</span>: step.<span class="hljs-property">value</span>, outputs };
-}
-</code></pre>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="34" data-class="lead" data-paginate="true" data-theme="default" data-style=":root {
-  --color-bg: #1b1d2a;
-  --color-fg: #d4d6e4;
-  --color-accent: #7cacf8;
-  --color-accent-dim: #4a6fa5;
-  --color-surface: #252840;
-  --color-border: #363850;
-  --color-highlight: #f0c674;
-}
-
-section {
-  background: var(--color-bg);
-  color: var(--color-fg);
-  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
-  font-size: 28px;
-  letter-spacing: 0.01em;
-  padding: 50px 60px;
-  text-align: left;
-}
-
-h1 {
-  color: var(--color-accent);
-  font-size: 1.5em;
-  font-weight: 600;
-  border-bottom: 2px solid var(--color-border);
-  padding-bottom: 0.25em;
-  margin-bottom: 0.6em;
-}
-
-h2 { color: var(--color-accent-dim); font-weight: 400; }
-
-strong { color: var(--color-highlight); font-weight: 600; }
-
-a { color: var(--color-accent); }
-
-/* ── Code ── */
-
-code {
-  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
-  font-size: 0.85em;
-  background: var(--color-surface) !important;
-  color: var(--color-fg) !important;
-  padding: 0.1em 0.35em;
-  border-radius: 4px;
-}
-
-pre {
-  background: var(--color-surface) !important;
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: 0.8em 1em !important;
-  margin: 0.5em 0;
-  line-height: 1.45;
-  text-align: left;
-}
-
-pre code {
-  background: transparent !important;
-  color: var(--color-fg) !important;
-  padding: 0;
-  font-size: 0.82em;
-  text-align: left;
-}
-
-/* ── Table ── */
-
-table {
-  font-size: 0.82em;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-table th {
-  background: var(--color-surface);
-  color: var(--color-accent);
-  font-weight: 600;
-  border-bottom: 2px solid var(--color-accent-dim);
-  padding: 0.5em 0.8em;
-  text-align: left;
-}
-
-table td {
-  border-bottom: 1px solid var(--color-border);
-  padding: 0.45em 0.8em;
-  text-align: left;
-}
-
-/* ── Blockquote ── */
-
-blockquote {
-  font-size: 0.88em;
-  border-left: 3px solid var(--color-accent-dim);
-  background: var(--color-surface);
-  padding: 0.5em 1em;
-  border-radius: 0 6px 6px 0;
-  color: #a8abbe;
-}
-
-blockquote strong { color: var(--color-highlight); }
-
-/* ── List ── */
-
-ul, ol { margin: 0.3em 0; }
-li { margin: 0.2em 0; line-height: 1.5; }
-li::marker { color: var(--color-accent-dim); }
-
-/* ── Lead slides ── */
-
-section.lead {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-section.lead h1 {
-  font-size: 2.2em;
-  border-bottom: none;
-  padding-bottom: 0;
-  margin-bottom: 0.3em;
-  letter-spacing: 0.02em;
-}
-
-section.lead h2 {
-  font-size: 1.05em;
-  color: #7a7d94;
-  font-weight: 300;
-  margin-top: 0;
-}
-
-section.lead p {
-  color: #8a8da6;
-  font-size: 0.95em;
-}
-
-/* ── Dense slides ── */
-
-section.dense {
-  font-size: 22px;
-  padding: 35px 50px;
-}
-
-section.dense h1 {
-  font-size: 1.4em;
-  margin-bottom: 0.35em;
-}
-
-section.dense pre {
-  padding: 0.6em 0.9em !important;
-  margin: 0.35em 0;
-}
-
-section.dense pre code { font-size: 0.8em; }
-section.dense table { font-size: 0.88em; }
-section.dense blockquote { font-size: 0.9em; }
-
-/* ── Page number ── */
-
-section::after {
-  color: #4a4d64;
-  font-size: 0.6em;
-}
-" lang="en-US" class="lead" data-marpit-pagination="34" style="--class:lead;--paginate:true;--theme:default;--style::root {
-  --color-bg: #1b1d2a;
-  --color-fg: #d4d6e4;
-  --color-accent: #7cacf8;
-  --color-accent-dim: #4a6fa5;
-  --color-surface: #252840;
-  --color-border: #363850;
-  --color-highlight: #f0c674;
-}
-
-section {
-  background: var(--color-bg);
-  color: var(--color-fg);
-  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
-  font-size: 28px;
-  letter-spacing: 0.01em;
-  padding: 50px 60px;
-  text-align: left;
-}
-
-h1 {
-  color: var(--color-accent);
-  font-size: 1.5em;
-  font-weight: 600;
-  border-bottom: 2px solid var(--color-border);
-  padding-bottom: 0.25em;
-  margin-bottom: 0.6em;
-}
-
-h2 { color: var(--color-accent-dim); font-weight: 400; }
-
-strong { color: var(--color-highlight); font-weight: 600; }
-
-a { color: var(--color-accent); }
-
-/* ── Code ── */
-
-code {
-  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
-  font-size: 0.85em;
-  background: var(--color-surface) !important;
-  color: var(--color-fg) !important;
-  padding: 0.1em 0.35em;
-  border-radius: 4px;
-}
-
-pre {
-  background: var(--color-surface) !important;
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: 0.8em 1em !important;
-  margin: 0.5em 0;
-  line-height: 1.45;
-  text-align: left;
-}
-
-pre code {
-  background: transparent !important;
-  color: var(--color-fg) !important;
-  padding: 0;
-  font-size: 0.82em;
-  text-align: left;
-}
-
-/* ── Table ── */
-
-table {
-  font-size: 0.82em;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-table th {
-  background: var(--color-surface);
-  color: var(--color-accent);
-  font-weight: 600;
-  border-bottom: 2px solid var(--color-accent-dim);
-  padding: 0.5em 0.8em;
-  text-align: left;
-}
-
-table td {
-  border-bottom: 1px solid var(--color-border);
-  padding: 0.45em 0.8em;
-  text-align: left;
-}
-
-/* ── Blockquote ── */
-
-blockquote {
-  font-size: 0.88em;
-  border-left: 3px solid var(--color-accent-dim);
-  background: var(--color-surface);
-  padding: 0.5em 1em;
-  border-radius: 0 6px 6px 0;
-  color: #a8abbe;
-}
-
-blockquote strong { color: var(--color-highlight); }
-
-/* ── List ── */
-
-ul, ol { margin: 0.3em 0; }
-li { margin: 0.2em 0; line-height: 1.5; }
-li::marker { color: var(--color-accent-dim); }
-
-/* ── Lead slides ── */
-
-section.lead {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-section.lead h1 {
-  font-size: 2.2em;
-  border-bottom: none;
-  padding-bottom: 0;
-  margin-bottom: 0.3em;
-  letter-spacing: 0.02em;
-}
-
-section.lead h2 {
-  font-size: 1.05em;
-  color: #7a7d94;
-  font-weight: 300;
-  margin-top: 0;
-}
-
-section.lead p {
-  color: #8a8da6;
-  font-size: 0.95em;
-}
-
-/* ── Dense slides ── */
-
-section.dense {
-  font-size: 22px;
-  padding: 35px 50px;
-}
-
-section.dense h1 {
-  font-size: 1.4em;
-  margin-bottom: 0.35em;
-}
-
-section.dense pre {
-  padding: 0.6em 0.9em !important;
-  margin: 0.35em 0;
-}
-
-section.dense pre code { font-size: 0.8em; }
-section.dense table { font-size: 0.88em; }
-section.dense blockquote { font-size: 0.9em; }
-
-/* ── Page number ── */
-
-section::after {
-  color: #4a4d64;
-  font-size: 0.6em;
-}
-;" data-marpit-pagination-total="36">
+;" data-marpit-pagination-total="33">
 <h1 id="%E3%81%BE%E3%81%A8%E3%82%81">まとめ</h1>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="35" data-class="dense" data-paginate="true" data-theme="default" data-style=":root {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="32" data-class="dense" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
   --color-fg: #d4d6e4;
   --color-accent: #7cacf8;
@@ -11749,7 +10764,7 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-" lang="en-US" class="dense" data-marpit-pagination="35" style="--class:dense;--paginate:true;--theme:default;--style::root {
+" lang="en-US" class="dense" data-marpit-pagination="32" style="--class:dense;--paginate:true;--theme:default;--style::root {
   --color-bg: #1b1d2a;
   --color-fg: #d4d6e4;
   --color-accent: #7cacf8;
@@ -11912,29 +10927,26 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
-<h1 id="%E5%B0%8E%E5%87%BA%E3%81%AE%E5%85%A8%E4%BD%93%E5%83%8F">導出の全体像</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code>継続 (CPS)
-  │  「計算の残り」を値にする
-  │  課題: 関数は中身が見えない
-  ▼
-Defunctionalization
-  │  関数→データに変換
-  │  課題: 継続の (a→b) がまだ関数
-  ▼
-Free モナド
-  │  命令セットを Functor で構造化
-  │  課題: Functor 制約が不要に重い
-  ▼
-Freer モナド (Coyoneda)
-  │  命令と継続を分離、Functor 不要
-  │  実行基盤: Step + 限定継続
-  ▼
-TypeScript DSL
-    Generator = 限定継続の言語サポート
+;" data-marpit-pagination-total="33">
+<h1 id="%E5%B0%8E%E5%87%BA%E3%81%AE%E5%85%A8%E4%BD%93%E5%83%8F--4%E3%81%A4%E3%81%AE%E8%BB%B8">導出の全体像 — 4つの軸</h1>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code>軸1: 具象化
+  CPS — 「計算の残り」を関数にする
+  Defunctionalization — 関数をデータにする
+  Free モナド — 命令セットを Functor で構造化
+      ↓
+軸2: ステップ実行
+  インタプリタは「先頭を覗き、命令を処理し、継続に値を渡す」
+  これが可能なのはプログラムがデータだから
+      ↓
+軸3: 限定継続
+  Freer で命令と継続を分離 → send = shift, インタプリタ = reset
+      ↓
+軸4: Generator
+  yield = shift, while ループ = reset
+  TypeScript で DSL が書ける
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="36" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="33" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
   --color-fg: #d4d6e4;
   --color-accent: #7cacf8;
@@ -12097,7 +11109,7 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-" lang="en-US" class="invert" data-marpit-pagination="36" style="--class:invert;--paginate:true;--theme:default;--style::root {
+" lang="en-US" class="invert" data-marpit-pagination="33" style="--class:invert;--paginate:true;--theme:default;--style::root {
   --color-bg: #1b1d2a;
   --color-fg: #d4d6e4;
   --color-accent: #7cacf8;
@@ -12260,7 +11272,7 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
+;" data-marpit-pagination-total="33">
 <h1 id="haskell-%E2%86%94-typescript-%E5%AF%BE%E5%BF%9C%E8%A1%A8">Haskell <img class="emoji" draggable="false" alt="↔" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2194.svg" data-marp-twemoji=""/> TypeScript 対応表</h1>
 <table>
 <thead>
