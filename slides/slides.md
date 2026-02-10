@@ -301,12 +301,7 @@ StepChain  (a -> b)         (ContChain b)
 
 # `(a -> b)` をどうデータ化する？
 
-一般の `(a -> b)` は Defunc できない — 可能な関数が無限にある
-
-しかし **DSL** の文脈では仮定を置ける:
-
-> 「プログラムは **離散的な命令の列**（ないし木構造）である」
-> → `(a -> b)` = 命令を実行 → 結果を受け取る → 次へ進む
+→ 一般の `(a -> b)` は Defunc できないが、**DSL の命令** はもっと構造が単純なはず
 
 ---
 
@@ -545,15 +540,13 @@ Free (Coyoneda f (Free (Coyoneda f) a))
 data Freer f a where
   Pure :: a -> Freer f a
   Bind :: f x -> (x -> Freer f a) -> Freer f a
-```
 
-`f` に **Functor 制約なし！**
-
-```haskell
 instance Monad (Freer f) where
   Pure a    >>= f = f a
   Bind fx k >>= f = Bind fx ((>>= f) . k)
 ```
+
+`f` に **Functor 制約なし！**
 
 ---
 
@@ -635,9 +628,6 @@ TypeScript の `IteratorResult` がまさにこの `Step`:
 
 ```typescript
 const step = gen.next();    // viewFreer に対応
-// step.done === true   → Done（計算完了）
-// step.done === false  → Await（命令待ち、step.value が命令）
-// gen.next(value)      → k value（継続に値を供給して再開）
 ```
 
 | Step (Haskell)   | IteratorResult (TypeScript) |
@@ -712,9 +702,7 @@ type Tell = { readonly tag: "tell"; readonly message: string };
 function* ask(prompt: string): Generator<Ask, string, string> {
   return (yield { tag: "ask", prompt }) as string;
 }
-```
 
-```typescript
 const greetProgram: Program<string> = function* () {
   const name = yield* ask("名前を入力してください");
   yield* tell(`こんにちは、${name}さん！`);

@@ -334,7 +334,7 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
+;" data-marpit-pagination-total="37">
 <h1 id="generator-%E3%81%A7-dsl">Generator で DSL</h1>
 <h2 id="%E8%87%AA%E7%94%B1%E3%81%AB%E6%89%8B%E3%81%AB%E5%85%A5%E3%82%8B%E3%83%A2%E3%83%8A%E3%83%89">自由に手に入るモナド</h2>
 </section>
@@ -664,7 +664,7 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
+;" data-marpit-pagination-total="37">
 <h1 id="%E5%95%8F%E9%A1%8C-%E5%AE%9A%E7%BE%A9%E3%81%A8%E5%AE%9F%E8%A1%8C%E3%81%AE%E5%AF%86%E7%B5%90%E5%90%88">問題: 定義と実行の密結合</h1>
 <p>ビジネスロジックに <code>console.log</code> を書けば、そのコードはコンソールでしか動かない</p>
 <ul>
@@ -999,7 +999,7 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
+;" data-marpit-pagination-total="37">
 <h1 id="%E4%BB%8A%E6%97%A5%E3%81%AE%E3%82%B4%E3%83%BC%E3%83%AB">今日のゴール</h1>
 <p>最終的にこう書ける DSL を <strong>導出</strong> する:</p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-typescript"><span class="hljs-keyword">const</span> <span class="hljs-attr">program</span>: <span class="hljs-title class_">Program</span>&lt;<span class="hljs-built_in">string</span>&gt; = <span class="hljs-keyword">function</span>* () {
@@ -1342,7 +1342,7 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
+;" data-marpit-pagination-total="37">
 <h1 id="ch2--%E8%A8%88%E7%AE%97%E3%81%AE%E5%85%B7%E8%B1%A1%E5%8C%96">Ch.2 — 計算の具象化</h1>
 <p>実行を差し替えるには、インタプリタが命令を識別できる必要がある<br />
 → 制御フローを <strong>データとして見える形</strong> にする</p>
@@ -1673,7 +1673,7 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
+;" data-marpit-pagination-total="37">
 <h1 id="cps-%E5%85%B7%E8%B1%A1%E5%8C%96%E3%81%AE%E7%AC%AC%E4%B8%80%E6%AE%B5%E9%9A%8E">CPS: 具象化の第一段階</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-comment">-- Direct Style: 値を返す</span>
 <span class="hljs-title">add</span> :: <span class="hljs-type">Int</span> -&gt; <span class="hljs-type">Int</span> -&gt; <span class="hljs-type">Int</span>
@@ -2016,7 +2016,7 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
+;" data-marpit-pagination-total="37">
 <h1 id="defunctionalization">Defunctionalization</h1>
 <p><strong>関数値</strong> → <strong>データ型 + apply 関数</strong></p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-comment">-- 1. 関数をデータで表現</span>
@@ -2356,7 +2356,7 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
+;" data-marpit-pagination-total="37">
 <h1 id="typescript-%E3%81%A7%E8%A6%8B%E3%82%8B-defunctionalization">TypeScript で見る Defunctionalization</h1>
 <p>tagged union + switch がまさに Defunctionalization:</p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-typescript"><span class="hljs-keyword">type</span> <span class="hljs-title class_">IntFun</span> = { <span class="hljs-attr">tag</span>: <span class="hljs-string">&quot;addN&quot;</span>; <span class="hljs-attr">n</span>: <span class="hljs-built_in">number</span> } | { <span class="hljs-attr">tag</span>: <span class="hljs-string">&quot;mulN&quot;</span>; <span class="hljs-attr">n</span>: <span class="hljs-built_in">number</span> } | { <span class="hljs-attr">tag</span>: <span class="hljs-string">&quot;square&quot;</span> };
@@ -2700,7 +2700,7 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
+;" data-marpit-pagination-total="37">
 <h1 id="%E7%B6%99%E7%B6%9A%E3%81%AE-defunctionalization">継続の Defunctionalization</h1>
 <p>継続チェーンをデータ化してみる:</p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-class"><span class="hljs-keyword">data</span> <span class="hljs-type">ContChain</span> a</span>
@@ -2715,10 +2715,338 @@ section::after {
             ^^^^^^^^         ^^^^^^^^^^^^
             まだ関数のまま！  残りのチェーン
 </code></pre>
-<p><strong><code>(a -&gt; b)</code> をどうデータ化する？</strong></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
+  --color-bg: #1b1d2a;
+  --color-fg: #d4d6e4;
+  --color-accent: #7cacf8;
+  --color-accent-dim: #4a6fa5;
+  --color-surface: #252840;
+  --color-border: #363850;
+  --color-highlight: #f0c674;
+}
+
+section {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.01em;
+  padding: 50px 60px;
+  text-align: left;
+}
+
+h1 {
+  color: var(--color-accent);
+  font-size: 1.5em;
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: 0.25em;
+  margin-bottom: 0.6em;
+}
+
+h2 { color: var(--color-accent-dim); font-weight: 400; }
+
+strong { color: var(--color-highlight); font-weight: 600; }
+
+a { color: var(--color-accent); }
+
+/* ── Code ── */
+
+code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+  font-size: 0.85em;
+  background: var(--color-surface) !important;
+  color: var(--color-fg) !important;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+
+pre {
+  background: var(--color-surface) !important;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.8em 1em !important;
+  margin: 0.5em 0;
+  line-height: 1.45;
+  text-align: left;
+}
+
+pre code {
+  background: transparent !important;
+  color: var(--color-fg) !important;
+  padding: 0;
+  font-size: 0.82em;
+  text-align: left;
+}
+
+/* ── Table ── */
+
+table {
+  font-size: 0.82em;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table th {
+  background: var(--color-surface);
+  color: var(--color-accent);
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-accent-dim);
+  padding: 0.5em 0.8em;
+  text-align: left;
+}
+
+table td {
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.45em 0.8em;
+  text-align: left;
+}
+
+/* ── Blockquote ── */
+
+blockquote {
+  font-size: 0.88em;
+  border-left: 3px solid var(--color-accent-dim);
+  background: var(--color-surface);
+  padding: 0.5em 1em;
+  border-radius: 0 6px 6px 0;
+  color: #a8abbe;
+}
+
+blockquote strong { color: var(--color-highlight); }
+
+/* ── List ── */
+
+ul, ol { margin: 0.3em 0; }
+li { margin: 0.2em 0; line-height: 1.5; }
+li::marker { color: var(--color-accent-dim); }
+
+/* ── Lead slides ── */
+
+section.lead {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+section.lead h1 {
+  font-size: 2.2em;
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0.3em;
+  letter-spacing: 0.02em;
+}
+
+section.lead h2 {
+  font-size: 1.05em;
+  color: #7a7d94;
+  font-weight: 300;
+  margin-top: 0;
+}
+
+section.lead p {
+  color: #8a8da6;
+  font-size: 0.95em;
+}
+
+/* ── Dense slides ── */
+
+section.dense {
+  font-size: 22px;
+  padding: 35px 50px;
+}
+
+section.dense h1 {
+  font-size: 1.4em;
+  margin-bottom: 0.35em;
+}
+
+section.dense pre {
+  padding: 0.6em 0.9em !important;
+  margin: 0.35em 0;
+}
+
+section.dense pre code { font-size: 0.8em; }
+section.dense table { font-size: 0.88em; }
+section.dense blockquote { font-size: 0.9em; }
+
+/* ── Page number ── */
+
+section::after {
+  color: #4a4d64;
+  font-size: 0.6em;
+}
+" lang="en-US" class="invert" data-marpit-pagination="9" style="--class:invert;--paginate:true;--theme:default;--style::root {
+  --color-bg: #1b1d2a;
+  --color-fg: #d4d6e4;
+  --color-accent: #7cacf8;
+  --color-accent-dim: #4a6fa5;
+  --color-surface: #252840;
+  --color-border: #363850;
+  --color-highlight: #f0c674;
+}
+
+section {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.01em;
+  padding: 50px 60px;
+  text-align: left;
+}
+
+h1 {
+  color: var(--color-accent);
+  font-size: 1.5em;
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: 0.25em;
+  margin-bottom: 0.6em;
+}
+
+h2 { color: var(--color-accent-dim); font-weight: 400; }
+
+strong { color: var(--color-highlight); font-weight: 600; }
+
+a { color: var(--color-accent); }
+
+/* ── Code ── */
+
+code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+  font-size: 0.85em;
+  background: var(--color-surface) !important;
+  color: var(--color-fg) !important;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+
+pre {
+  background: var(--color-surface) !important;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.8em 1em !important;
+  margin: 0.5em 0;
+  line-height: 1.45;
+  text-align: left;
+}
+
+pre code {
+  background: transparent !important;
+  color: var(--color-fg) !important;
+  padding: 0;
+  font-size: 0.82em;
+  text-align: left;
+}
+
+/* ── Table ── */
+
+table {
+  font-size: 0.82em;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table th {
+  background: var(--color-surface);
+  color: var(--color-accent);
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-accent-dim);
+  padding: 0.5em 0.8em;
+  text-align: left;
+}
+
+table td {
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.45em 0.8em;
+  text-align: left;
+}
+
+/* ── Blockquote ── */
+
+blockquote {
+  font-size: 0.88em;
+  border-left: 3px solid var(--color-accent-dim);
+  background: var(--color-surface);
+  padding: 0.5em 1em;
+  border-radius: 0 6px 6px 0;
+  color: #a8abbe;
+}
+
+blockquote strong { color: var(--color-highlight); }
+
+/* ── List ── */
+
+ul, ol { margin: 0.3em 0; }
+li { margin: 0.2em 0; line-height: 1.5; }
+li::marker { color: var(--color-accent-dim); }
+
+/* ── Lead slides ── */
+
+section.lead {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+section.lead h1 {
+  font-size: 2.2em;
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0.3em;
+  letter-spacing: 0.02em;
+}
+
+section.lead h2 {
+  font-size: 1.05em;
+  color: #7a7d94;
+  font-weight: 300;
+  margin-top: 0;
+}
+
+section.lead p {
+  color: #8a8da6;
+  font-size: 0.95em;
+}
+
+/* ── Dense slides ── */
+
+section.dense {
+  font-size: 22px;
+  padding: 35px 50px;
+}
+
+section.dense h1 {
+  font-size: 1.4em;
+  margin-bottom: 0.35em;
+}
+
+section.dense pre {
+  padding: 0.6em 0.9em !important;
+  margin: 0.35em 0;
+}
+
+section.dense pre code { font-size: 0.8em; }
+section.dense table { font-size: 0.88em; }
+section.dense blockquote { font-size: 0.9em; }
+
+/* ── Page number ── */
+
+section::after {
+  color: #4a4d64;
+  font-size: 0.6em;
+}
+;" data-marpit-pagination-total="37">
+<h1 id="a---b-%E3%82%92%E3%81%A9%E3%81%86%E3%83%87%E3%83%BC%E3%82%BF%E5%8C%96%E3%81%99%E3%82%8B"><code>(a -&gt; b)</code> をどうデータ化する？</h1>
 <p>→ 一般の <code>(a -&gt; b)</code> は Defunc できないが、<strong>DSL の命令</strong> はもっと構造が単純なはず</p>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-class="lead" data-paginate="true" data-theme="default" data-style=":root {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-class="lead" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
   --color-fg: #d4d6e4;
   --color-accent: #7cacf8;
@@ -2881,7 +3209,7 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-" lang="en-US" class="lead" data-marpit-pagination="9" style="--class:lead;--paginate:true;--theme:default;--style::root {
+" lang="en-US" class="lead" data-marpit-pagination="10" style="--class:lead;--paginate:true;--theme:default;--style::root {
   --color-bg: #1b1d2a;
   --color-fg: #d4d6e4;
   --color-accent: #7cacf8;
@@ -3044,349 +3372,9 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
+;" data-marpit-pagination-total="37">
 <h1 id="ch3--%E8%87%AA%E7%94%B1%E3%83%A2%E3%83%8A%E3%83%89%E3%81%A8%E3%82%B9%E3%83%86%E3%83%83%E3%83%97%E5%AE%9F%E8%A1%8C">Ch.3 — 自由モナドとステップ実行</h1>
 <p>命令を構造化してモナドにし、ステップ実行のパターンを認識する</p>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
-  --color-bg: #1b1d2a;
-  --color-fg: #d4d6e4;
-  --color-accent: #7cacf8;
-  --color-accent-dim: #4a6fa5;
-  --color-surface: #252840;
-  --color-border: #363850;
-  --color-highlight: #f0c674;
-}
-
-section {
-  background: var(--color-bg);
-  color: var(--color-fg);
-  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
-  font-size: 28px;
-  letter-spacing: 0.01em;
-  padding: 50px 60px;
-  text-align: left;
-}
-
-h1 {
-  color: var(--color-accent);
-  font-size: 1.5em;
-  font-weight: 600;
-  border-bottom: 2px solid var(--color-border);
-  padding-bottom: 0.25em;
-  margin-bottom: 0.6em;
-}
-
-h2 { color: var(--color-accent-dim); font-weight: 400; }
-
-strong { color: var(--color-highlight); font-weight: 600; }
-
-a { color: var(--color-accent); }
-
-/* ── Code ── */
-
-code {
-  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
-  font-size: 0.85em;
-  background: var(--color-surface) !important;
-  color: var(--color-fg) !important;
-  padding: 0.1em 0.35em;
-  border-radius: 4px;
-}
-
-pre {
-  background: var(--color-surface) !important;
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: 0.8em 1em !important;
-  margin: 0.5em 0;
-  line-height: 1.45;
-  text-align: left;
-}
-
-pre code {
-  background: transparent !important;
-  color: var(--color-fg) !important;
-  padding: 0;
-  font-size: 0.82em;
-  text-align: left;
-}
-
-/* ── Table ── */
-
-table {
-  font-size: 0.82em;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-table th {
-  background: var(--color-surface);
-  color: var(--color-accent);
-  font-weight: 600;
-  border-bottom: 2px solid var(--color-accent-dim);
-  padding: 0.5em 0.8em;
-  text-align: left;
-}
-
-table td {
-  border-bottom: 1px solid var(--color-border);
-  padding: 0.45em 0.8em;
-  text-align: left;
-}
-
-/* ── Blockquote ── */
-
-blockquote {
-  font-size: 0.88em;
-  border-left: 3px solid var(--color-accent-dim);
-  background: var(--color-surface);
-  padding: 0.5em 1em;
-  border-radius: 0 6px 6px 0;
-  color: #a8abbe;
-}
-
-blockquote strong { color: var(--color-highlight); }
-
-/* ── List ── */
-
-ul, ol { margin: 0.3em 0; }
-li { margin: 0.2em 0; line-height: 1.5; }
-li::marker { color: var(--color-accent-dim); }
-
-/* ── Lead slides ── */
-
-section.lead {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-section.lead h1 {
-  font-size: 2.2em;
-  border-bottom: none;
-  padding-bottom: 0;
-  margin-bottom: 0.3em;
-  letter-spacing: 0.02em;
-}
-
-section.lead h2 {
-  font-size: 1.05em;
-  color: #7a7d94;
-  font-weight: 300;
-  margin-top: 0;
-}
-
-section.lead p {
-  color: #8a8da6;
-  font-size: 0.95em;
-}
-
-/* ── Dense slides ── */
-
-section.dense {
-  font-size: 22px;
-  padding: 35px 50px;
-}
-
-section.dense h1 {
-  font-size: 1.4em;
-  margin-bottom: 0.35em;
-}
-
-section.dense pre {
-  padding: 0.6em 0.9em !important;
-  margin: 0.35em 0;
-}
-
-section.dense pre code { font-size: 0.8em; }
-section.dense table { font-size: 0.88em; }
-section.dense blockquote { font-size: 0.9em; }
-
-/* ── Page number ── */
-
-section::after {
-  color: #4a4d64;
-  font-size: 0.6em;
-}
-" lang="en-US" class="invert" data-marpit-pagination="10" style="--class:invert;--paginate:true;--theme:default;--style::root {
-  --color-bg: #1b1d2a;
-  --color-fg: #d4d6e4;
-  --color-accent: #7cacf8;
-  --color-accent-dim: #4a6fa5;
-  --color-surface: #252840;
-  --color-border: #363850;
-  --color-highlight: #f0c674;
-}
-
-section {
-  background: var(--color-bg);
-  color: var(--color-fg);
-  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
-  font-size: 28px;
-  letter-spacing: 0.01em;
-  padding: 50px 60px;
-  text-align: left;
-}
-
-h1 {
-  color: var(--color-accent);
-  font-size: 1.5em;
-  font-weight: 600;
-  border-bottom: 2px solid var(--color-border);
-  padding-bottom: 0.25em;
-  margin-bottom: 0.6em;
-}
-
-h2 { color: var(--color-accent-dim); font-weight: 400; }
-
-strong { color: var(--color-highlight); font-weight: 600; }
-
-a { color: var(--color-accent); }
-
-/* ── Code ── */
-
-code {
-  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
-  font-size: 0.85em;
-  background: var(--color-surface) !important;
-  color: var(--color-fg) !important;
-  padding: 0.1em 0.35em;
-  border-radius: 4px;
-}
-
-pre {
-  background: var(--color-surface) !important;
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: 0.8em 1em !important;
-  margin: 0.5em 0;
-  line-height: 1.45;
-  text-align: left;
-}
-
-pre code {
-  background: transparent !important;
-  color: var(--color-fg) !important;
-  padding: 0;
-  font-size: 0.82em;
-  text-align: left;
-}
-
-/* ── Table ── */
-
-table {
-  font-size: 0.82em;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-table th {
-  background: var(--color-surface);
-  color: var(--color-accent);
-  font-weight: 600;
-  border-bottom: 2px solid var(--color-accent-dim);
-  padding: 0.5em 0.8em;
-  text-align: left;
-}
-
-table td {
-  border-bottom: 1px solid var(--color-border);
-  padding: 0.45em 0.8em;
-  text-align: left;
-}
-
-/* ── Blockquote ── */
-
-blockquote {
-  font-size: 0.88em;
-  border-left: 3px solid var(--color-accent-dim);
-  background: var(--color-surface);
-  padding: 0.5em 1em;
-  border-radius: 0 6px 6px 0;
-  color: #a8abbe;
-}
-
-blockquote strong { color: var(--color-highlight); }
-
-/* ── List ── */
-
-ul, ol { margin: 0.3em 0; }
-li { margin: 0.2em 0; line-height: 1.5; }
-li::marker { color: var(--color-accent-dim); }
-
-/* ── Lead slides ── */
-
-section.lead {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-section.lead h1 {
-  font-size: 2.2em;
-  border-bottom: none;
-  padding-bottom: 0;
-  margin-bottom: 0.3em;
-  letter-spacing: 0.02em;
-}
-
-section.lead h2 {
-  font-size: 1.05em;
-  color: #7a7d94;
-  font-weight: 300;
-  margin-top: 0;
-}
-
-section.lead p {
-  color: #8a8da6;
-  font-size: 0.95em;
-}
-
-/* ── Dense slides ── */
-
-section.dense {
-  font-size: 22px;
-  padding: 35px 50px;
-}
-
-section.dense h1 {
-  font-size: 1.4em;
-  margin-bottom: 0.35em;
-}
-
-section.dense pre {
-  padding: 0.6em 0.9em !important;
-  margin: 0.35em 0;
-}
-
-section.dense pre code { font-size: 0.8em; }
-section.dense table { font-size: 0.88em; }
-section.dense blockquote { font-size: 0.9em; }
-
-/* ── Page number ── */
-
-section::after {
-  color: #4a4d64;
-  font-size: 0.6em;
-}
-;" data-marpit-pagination-total="36">
-<h1 id="contchain-%E3%81%AE%E5%A3%81%E3%81%A8%E7%AA%81%E7%A0%B4%E5%8F%A3">ContChain の壁と突破口</h1>
-<p>一般の <code>(a -&gt; b)</code> は Defunc できない — 可能な関数が無限にある</p>
-<p>しかし <strong>DSL</strong> の文脈では仮定を置ける:</p>
-<blockquote>
-<p>「プログラムは <strong>離散的な命令の列</strong>（ないし木構造）である」<br />
-→ <code>(a -&gt; b)</code> = 命令を実行 → 結果を受け取る → 次へ進む</p>
-</blockquote>
-<p>ここで「結果を受け取って<strong>次を選ぶ</strong>」がポイント:</p>
-<ul>
-<li>単なるリストでは不十分 — 後の命令が前の <strong>結果に依存</strong> する</li>
-<li>この <strong>依存的逐次実行</strong> こそが <code>&gt;&gt;=</code>（bind）の仕事 → <strong>モナド</strong> が必要</li>
-</ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
@@ -3714,20 +3702,19 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
-<h1 id="a-%E2%86%92-b-%E3%81%AE%E5%88%86%E8%A7%A3">(a → b) の分解</h1>
-<p>DSL のステップの構造:</p>
-<ol>
-<li><strong>命令を実行する</strong>（<code>ask &quot;名前は？&quot;</code>、<code>tell msg</code>）</li>
-<li><strong>命令の結果を受け取る</strong>（<code>String</code>、<code>()</code>）</li>
-<li><strong>結果を使って次のステップへ進む</strong></li>
-</ol>
-<p>これを型で表す:</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-class"><span class="hljs-keyword">data</span> <span class="hljs-type">TalkF</span> next</span>
-  = <span class="hljs-type">Ask</span> <span class="hljs-type">String</span> (<span class="hljs-type">String</span> -&gt; next)  <span class="hljs-comment">-- 命令 + 結果を受け取る継続</span>
-  | <span class="hljs-type">Tell</span> <span class="hljs-type">String</span> next             <span class="hljs-comment">-- 命令 + 次のステップ</span>
-</code></pre>
-<p><code>next</code> = 「このステップの後に何が続くか」</p>
+;" data-marpit-pagination-total="37">
+<h1 id="contchain-%E3%81%AE%E5%A3%81%E3%81%A8%E7%AA%81%E7%A0%B4%E5%8F%A3">ContChain の壁と突破口</h1>
+<p>一般の <code>(a -&gt; b)</code> は Defunc できない — 可能な関数が無限にある</p>
+<p>しかし <strong>DSL</strong> の文脈では仮定を置ける:</p>
+<blockquote>
+<p>「プログラムは <strong>離散的な命令の列</strong>（ないし木構造）である」<br />
+→ <code>(a -&gt; b)</code> = 命令を実行 → 結果を受け取る → 次へ進む</p>
+</blockquote>
+<p>ここで「結果を受け取って<strong>次を選ぶ</strong>」がポイント:</p>
+<ul>
+<li>単なるリストでは不十分 — 後の命令が前の <strong>結果に依存</strong> する</li>
+<li>この <strong>依存的逐次実行</strong> こそが <code>&gt;&gt;=</code>（bind）の仕事 → <strong>モナド</strong> が必要</li>
+</ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
@@ -4055,24 +4042,20 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
-<h1 id="contchain-%E2%86%92-talkf-%E4%BD%95%E3%81%8C%E8%A6%8B%E3%81%88%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E3%81%AA%E3%81%A3%E3%81%9F%E3%81%8B">ContChain → TalkF: 何が見えるようになったか</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code>ContChain:  StepChain  (a -&gt; b)              (ContChain b)
-                        ^^^^^^^^              ^^^^^^^^^^^^
-                        不透明な関数            残りのチェーン
-
-TalkF:      Ask &quot;名前？&quot; (String -&gt; next)
-            ^^^^^^^^^^   ^^^^^^^^^^^^^^^
-            命令データ    結果を受け取る継続
-            (識別可能)    (next が「残り」を表す)
+;" data-marpit-pagination-total="37">
+<h1 id="a-%E2%86%92-b-%E3%81%AE%E5%88%86%E8%A7%A3">(a → b) の分解</h1>
+<p>DSL のステップの構造:</p>
+<ol>
+<li><strong>命令を実行する</strong>（<code>ask &quot;名前は？&quot;</code>、<code>tell msg</code>）</li>
+<li><strong>命令の結果を受け取る</strong>（<code>String</code>、<code>()</code>）</li>
+<li><strong>結果を使って次のステップへ進む</strong></li>
+</ol>
+<p>これを型で表す:</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-class"><span class="hljs-keyword">data</span> <span class="hljs-type">TalkF</span> next</span>
+  = <span class="hljs-type">Ask</span> <span class="hljs-type">String</span> (<span class="hljs-type">String</span> -&gt; next)  <span class="hljs-comment">-- 命令 + 結果を受け取る継続</span>
+  | <span class="hljs-type">Tell</span> <span class="hljs-type">String</span> next             <span class="hljs-comment">-- 命令 + 次のステップ</span>
 </code></pre>
-<ul>
-<li><strong>命令部分</strong> (<code>Ask &quot;名前？&quot;</code>) → データとして識別可能になった</li>
-<li><strong>継続部分</strong> (<code>String -&gt; next</code>) → 関数のまま残っている</li>
-</ul>
-<blockquote>
-<p><strong>命令の Defunctionalization + 継続の構造化</strong></p>
-</blockquote>
+<p><code>next</code> = 「このステップの後に何が続くか」</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
@@ -4400,18 +4383,24 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
-<h1 id="%E3%81%AA%E3%81%9C-next-%E3%82%92%E5%B7%AE%E3%81%97%E6%9B%BF%E3%81%88%E3%82%8B%E5%BF%85%E8%A6%81%E3%81%8C%E3%81%82%E3%82%8B%E3%81%8B--functor">なぜ next を差し替える必要があるか — Functor</h1>
-<p>命令をチェーンにするには、<code>next</code>（続き先）を差し替える操作が必要</p>
-<p>例: <code>ask</code> の後に <code>tell</code> を繋ぐ → <code>ask</code> の <code>next</code> を差し替える</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-title">fmap</span> f (<span class="hljs-type">Ask</span> prompt k) = <span class="hljs-type">Ask</span> prompt (f . k)
-<span class="hljs-comment">-- 命令はそのまま、継続の先に f を合成</span>
+;" data-marpit-pagination-total="37">
+<h1 id="contchain-%E2%86%92-talkf-%E4%BD%95%E3%81%8C%E8%A6%8B%E3%81%88%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E3%81%AA%E3%81%A3%E3%81%9F%E3%81%8B">ContChain → TalkF: 何が見えるようになったか</h1>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code>ContChain:  StepChain  (a -&gt; b)              (ContChain b)
+                        ^^^^^^^^              ^^^^^^^^^^^^
+                        不透明な関数            残りのチェーン
 
-<span class="hljs-title">fmap</span> f (<span class="hljs-type">Tell</span> msg next) = <span class="hljs-type">Tell</span> msg (f next)
-<span class="hljs-comment">-- 命令はそのまま、次を差し替え</span>
+TalkF:      Ask &quot;名前？&quot; (String -&gt; next)
+            ^^^^^^^^^^   ^^^^^^^^^^^^^^^
+            命令データ    結果を受け取る継続
+            (識別可能)    (next が「残り」を表す)
 </code></pre>
-<p>この「命令の内容を変えずに <code>next</code> だけを差し替える」操作が <code>fmap</code></p>
-<p>→ <code>TalkF</code> は <strong>Functor</strong></p>
+<ul>
+<li><strong>命令部分</strong> (<code>Ask &quot;名前？&quot;</code>) → データとして識別可能になった</li>
+<li><strong>継続部分</strong> (<code>String -&gt; next</code>) → 関数のまま残っている</li>
+</ul>
+<blockquote>
+<p><strong>命令の Defunctionalization + 継続の構造化</strong></p>
+</blockquote>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="14" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
@@ -4739,20 +4728,18 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
-<h1 id="%E8%87%AA%E7%94%B1%E3%83%A2%E3%83%8A%E3%83%89%E3%81%AE%E5%AE%9A%E7%BE%A9">自由モナドの定義</h1>
-<p><code>TalkF</code> の <code>next</code> に「残りの計算」を再帰的に入れると:</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-class"><span class="hljs-keyword">data</span> <span class="hljs-type">Free</span> f a</span>
-  = <span class="hljs-type">Pure</span> a                <span class="hljs-comment">-- 計算完了、結果は a</span>
-  | <span class="hljs-type">Free</span> (f (<span class="hljs-type">Free</span> f a))   <span class="hljs-comment">-- 命令を1つ実行し、残りが続く</span>
+;" data-marpit-pagination-total="37">
+<h1 id="%E3%81%AA%E3%81%9C-next-%E3%82%92%E5%B7%AE%E3%81%97%E6%9B%BF%E3%81%88%E3%82%8B%E5%BF%85%E8%A6%81%E3%81%8C%E3%81%82%E3%82%8B%E3%81%8B--functor">なぜ next を差し替える必要があるか — Functor</h1>
+<p>命令をチェーンにするには、<code>next</code>（続き先）を差し替える操作が必要</p>
+<p>例: <code>ask</code> の後に <code>tell</code> を繋ぐ → <code>ask</code> の <code>next</code> を差し替える</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-title">fmap</span> f (<span class="hljs-type">Ask</span> prompt k) = <span class="hljs-type">Ask</span> prompt (f . k)
+<span class="hljs-comment">-- 命令はそのまま、継続の先に f を合成</span>
+
+<span class="hljs-title">fmap</span> f (<span class="hljs-type">Tell</span> msg next) = <span class="hljs-type">Tell</span> msg (f next)
+<span class="hljs-comment">-- 命令はそのまま、次を差し替え</span>
 </code></pre>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-class"><span class="hljs-keyword">instance</span> <span class="hljs-type">Functor</span> f =&gt; <span class="hljs-type">Monad</span> (<span class="hljs-type">Free</span> <span class="hljs-title">f</span>) <span class="hljs-keyword">where</span></span>
-  <span class="hljs-type">Pure</span> a &gt;&gt;= f = f a
-  <span class="hljs-type">Free</span> fx &gt;&gt;= f = <span class="hljs-type">Free</span> (fmap (&gt;&gt;= f) fx)
-<span class="hljs-comment">--                       ^^^^</span>
-<span class="hljs-comment">--                       Functor 制約が必要！</span>
-</code></pre>
-<p><code>&gt;&gt;=</code> は <code>fmap</code> で命令の中に潜り、末尾に新しい計算を接ぎ木する</p>
+<p>この「命令の内容を変えずに <code>next</code> だけを差し替える」操作が <code>fmap</code></p>
+<p>→ <code>TalkF</code> は <strong>Functor</strong></p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
@@ -5080,19 +5067,20 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
-<h1 id="dsl-%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E3%81%A8-free">DSL プログラムと Free</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-title">talkProgram</span> :: <span class="hljs-type">Free</span> <span class="hljs-type">TalkF</span> <span class="hljs-type">String</span>
-<span class="hljs-title">talkProgram</span> = <span class="hljs-keyword">do</span>
-  name &lt;- ask <span class="hljs-string">&quot;名前を入力してください&quot;</span>
-  tell (<span class="hljs-string">&quot;こんにちは、&quot;</span> ++ name ++ <span class="hljs-string">&quot;さん！&quot;</span>)
-  pure name
+;" data-marpit-pagination-total="37">
+<h1 id="%E8%87%AA%E7%94%B1%E3%83%A2%E3%83%8A%E3%83%89%E3%81%AE%E5%AE%9A%E7%BE%A9">自由モナドの定義</h1>
+<p><code>TalkF</code> の <code>next</code> に「残りの計算」を再帰的に入れると:</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-class"><span class="hljs-keyword">data</span> <span class="hljs-type">Free</span> f a</span>
+  = <span class="hljs-type">Pure</span> a                <span class="hljs-comment">-- 計算完了、結果は a</span>
+  | <span class="hljs-type">Free</span> (f (<span class="hljs-type">Free</span> f a))   <span class="hljs-comment">-- 命令を1つ実行し、残りが続く</span>
 </code></pre>
-<p>この <code>talkProgram</code> は <strong>データ構造</strong> — 実行はまだ起きていない</p>
-<ul>
-<li><code>do</code> 記法は <code>&gt;&gt;=</code> に脱糖される → Free のツリーが組み上がるだけ</li>
-<li>IO は一切発生していない — <strong>プログラムの記述と実行が分離</strong> されている</li>
-</ul>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-class"><span class="hljs-keyword">instance</span> <span class="hljs-type">Functor</span> f =&gt; <span class="hljs-type">Monad</span> (<span class="hljs-type">Free</span> <span class="hljs-title">f</span>) <span class="hljs-keyword">where</span></span>
+  <span class="hljs-type">Pure</span> a &gt;&gt;= f = f a
+  <span class="hljs-type">Free</span> fx &gt;&gt;= f = <span class="hljs-type">Free</span> (fmap (&gt;&gt;= f) fx)
+<span class="hljs-comment">--                       ^^^^</span>
+<span class="hljs-comment">--                       Functor 制約が必要！</span>
+</code></pre>
+<p><code>&gt;&gt;=</code> は <code>fmap</code> で命令の中に潜り、末尾に新しい計算を接ぎ木する</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
@@ -5420,18 +5408,19 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
-<h1 id="free-%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%97%E3%83%AA%E3%82%BF">Free のインタプリタ</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-title">runTalkIO</span> :: <span class="hljs-type">Free</span> <span class="hljs-type">TalkF</span> a -&gt; <span class="hljs-type">IO</span> a
-<span class="hljs-title">runTalkIO</span> (<span class="hljs-type">Pure</span> a) = pure a
-<span class="hljs-title">runTalkIO</span> (<span class="hljs-type">Free</span> (<span class="hljs-type">Ask</span> prompt next)) = <span class="hljs-keyword">do</span>
-  putStrLn prompt; input &lt;- getLine
-  runTalkIO (next input)
-<span class="hljs-title">runTalkIO</span> (<span class="hljs-type">Free</span> (<span class="hljs-type">Tell</span> msg next)) = <span class="hljs-keyword">do</span>
-  putStrLn msg; runTalkIO next
+;" data-marpit-pagination-total="37">
+<h1 id="dsl-%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E3%81%A8-free">DSL プログラムと Free</h1>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-title">talkProgram</span> :: <span class="hljs-type">Free</span> <span class="hljs-type">TalkF</span> <span class="hljs-type">String</span>
+<span class="hljs-title">talkProgram</span> = <span class="hljs-keyword">do</span>
+  name &lt;- ask <span class="hljs-string">&quot;名前を入力してください&quot;</span>
+  tell (<span class="hljs-string">&quot;こんにちは、&quot;</span> ++ name ++ <span class="hljs-string">&quot;さん！&quot;</span>)
+  pure name
 </code></pre>
-<p>同じプログラムに対して <strong>異なるインタプリタ</strong> を差し替えられる<br />
-→ テスト用の純粋実行、ログ出力など</p>
+<p>この <code>talkProgram</code> は <strong>データ構造</strong> — 実行はまだ起きていない</p>
+<ul>
+<li><code>do</code> 記法は <code>&gt;&gt;=</code> に脱糖される → Free のツリーが組み上がるだけ</li>
+<li>IO は一切発生していない — <strong>プログラムの記述と実行が分離</strong> されている</li>
+</ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
@@ -5759,20 +5748,18 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
-<h1 id="%E3%82%B9%E3%83%86%E3%83%83%E3%83%97%E5%AE%9F%E8%A1%8C%E3%81%AE%E8%AA%8D%E8%AD%98">ステップ実行の認識</h1>
-<p><code>runTalkIO</code> は何をしている？</p>
-<ol>
-<li>プログラムの <strong>先頭を覗く</strong>（<code>Pure</code> か <code>Free</code> か）</li>
-<li>命令を <strong>処理する</strong>（<code>putStrLn</code>、<code>getLine</code>）</li>
-<li>継続に <strong>結果を渡す</strong>（<code>next input</code>）</li>
-<li>再帰的に <strong>次のステップへ</strong></li>
-</ol>
-<p>これは <strong>ステップ実行</strong> — プログラムを一命令ずつ処理するパターン</p>
-<blockquote>
-<p>このパターンが可能なのは、プログラムが Free で<strong>データとして具象化</strong>されているから<br />
-一般のモナド（<code>IO</code>、<code>Reader</code>）の <code>&gt;&gt;=</code> では中を覗けない</p>
-</blockquote>
+;" data-marpit-pagination-total="37">
+<h1 id="free-%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%97%E3%83%AA%E3%82%BF">Free のインタプリタ</h1>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-title">runTalkIO</span> :: <span class="hljs-type">Free</span> <span class="hljs-type">TalkF</span> a -&gt; <span class="hljs-type">IO</span> a
+<span class="hljs-title">runTalkIO</span> (<span class="hljs-type">Pure</span> a) = pure a
+<span class="hljs-title">runTalkIO</span> (<span class="hljs-type">Free</span> (<span class="hljs-type">Ask</span> prompt next)) = <span class="hljs-keyword">do</span>
+  putStrLn prompt; input &lt;- getLine
+  runTalkIO (next input)
+<span class="hljs-title">runTalkIO</span> (<span class="hljs-type">Free</span> (<span class="hljs-type">Tell</span> msg next)) = <span class="hljs-keyword">do</span>
+  putStrLn msg; runTalkIO next
+</code></pre>
+<p>同じプログラムに対して <strong>異なるインタプリタ</strong> を差し替えられる<br />
+→ テスト用の純粋実行、ログ出力など</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="18" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
@@ -6100,7 +6087,348 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
+;" data-marpit-pagination-total="37">
+<h1 id="%E3%82%B9%E3%83%86%E3%83%83%E3%83%97%E5%AE%9F%E8%A1%8C%E3%81%AE%E8%AA%8D%E8%AD%98">ステップ実行の認識</h1>
+<p><code>runTalkIO</code> は何をしている？</p>
+<ol>
+<li>プログラムの <strong>先頭を覗く</strong>（<code>Pure</code> か <code>Free</code> か）</li>
+<li>命令を <strong>処理する</strong>（<code>putStrLn</code>、<code>getLine</code>）</li>
+<li>継続に <strong>結果を渡す</strong>（<code>next input</code>）</li>
+<li>再帰的に <strong>次のステップへ</strong></li>
+</ol>
+<p>これは <strong>ステップ実行</strong> — プログラムを一命令ずつ処理するパターン</p>
+<blockquote>
+<p>このパターンが可能なのは、プログラムが Free で<strong>データとして具象化</strong>されているから<br />
+一般のモナド（<code>IO</code>、<code>Reader</code>）の <code>&gt;&gt;=</code> では中を覗けない</p>
+</blockquote>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="19" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
+  --color-bg: #1b1d2a;
+  --color-fg: #d4d6e4;
+  --color-accent: #7cacf8;
+  --color-accent-dim: #4a6fa5;
+  --color-surface: #252840;
+  --color-border: #363850;
+  --color-highlight: #f0c674;
+}
+
+section {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.01em;
+  padding: 50px 60px;
+  text-align: left;
+}
+
+h1 {
+  color: var(--color-accent);
+  font-size: 1.5em;
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: 0.25em;
+  margin-bottom: 0.6em;
+}
+
+h2 { color: var(--color-accent-dim); font-weight: 400; }
+
+strong { color: var(--color-highlight); font-weight: 600; }
+
+a { color: var(--color-accent); }
+
+/* ── Code ── */
+
+code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+  font-size: 0.85em;
+  background: var(--color-surface) !important;
+  color: var(--color-fg) !important;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+
+pre {
+  background: var(--color-surface) !important;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.8em 1em !important;
+  margin: 0.5em 0;
+  line-height: 1.45;
+  text-align: left;
+}
+
+pre code {
+  background: transparent !important;
+  color: var(--color-fg) !important;
+  padding: 0;
+  font-size: 0.82em;
+  text-align: left;
+}
+
+/* ── Table ── */
+
+table {
+  font-size: 0.82em;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table th {
+  background: var(--color-surface);
+  color: var(--color-accent);
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-accent-dim);
+  padding: 0.5em 0.8em;
+  text-align: left;
+}
+
+table td {
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.45em 0.8em;
+  text-align: left;
+}
+
+/* ── Blockquote ── */
+
+blockquote {
+  font-size: 0.88em;
+  border-left: 3px solid var(--color-accent-dim);
+  background: var(--color-surface);
+  padding: 0.5em 1em;
+  border-radius: 0 6px 6px 0;
+  color: #a8abbe;
+}
+
+blockquote strong { color: var(--color-highlight); }
+
+/* ── List ── */
+
+ul, ol { margin: 0.3em 0; }
+li { margin: 0.2em 0; line-height: 1.5; }
+li::marker { color: var(--color-accent-dim); }
+
+/* ── Lead slides ── */
+
+section.lead {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+section.lead h1 {
+  font-size: 2.2em;
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0.3em;
+  letter-spacing: 0.02em;
+}
+
+section.lead h2 {
+  font-size: 1.05em;
+  color: #7a7d94;
+  font-weight: 300;
+  margin-top: 0;
+}
+
+section.lead p {
+  color: #8a8da6;
+  font-size: 0.95em;
+}
+
+/* ── Dense slides ── */
+
+section.dense {
+  font-size: 22px;
+  padding: 35px 50px;
+}
+
+section.dense h1 {
+  font-size: 1.4em;
+  margin-bottom: 0.35em;
+}
+
+section.dense pre {
+  padding: 0.6em 0.9em !important;
+  margin: 0.35em 0;
+}
+
+section.dense pre code { font-size: 0.8em; }
+section.dense table { font-size: 0.88em; }
+section.dense blockquote { font-size: 0.9em; }
+
+/* ── Page number ── */
+
+section::after {
+  color: #4a4d64;
+  font-size: 0.6em;
+}
+" lang="en-US" class="invert" data-marpit-pagination="19" style="--class:invert;--paginate:true;--theme:default;--style::root {
+  --color-bg: #1b1d2a;
+  --color-fg: #d4d6e4;
+  --color-accent: #7cacf8;
+  --color-accent-dim: #4a6fa5;
+  --color-surface: #252840;
+  --color-border: #363850;
+  --color-highlight: #f0c674;
+}
+
+section {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.01em;
+  padding: 50px 60px;
+  text-align: left;
+}
+
+h1 {
+  color: var(--color-accent);
+  font-size: 1.5em;
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: 0.25em;
+  margin-bottom: 0.6em;
+}
+
+h2 { color: var(--color-accent-dim); font-weight: 400; }
+
+strong { color: var(--color-highlight); font-weight: 600; }
+
+a { color: var(--color-accent); }
+
+/* ── Code ── */
+
+code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+  font-size: 0.85em;
+  background: var(--color-surface) !important;
+  color: var(--color-fg) !important;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+
+pre {
+  background: var(--color-surface) !important;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.8em 1em !important;
+  margin: 0.5em 0;
+  line-height: 1.45;
+  text-align: left;
+}
+
+pre code {
+  background: transparent !important;
+  color: var(--color-fg) !important;
+  padding: 0;
+  font-size: 0.82em;
+  text-align: left;
+}
+
+/* ── Table ── */
+
+table {
+  font-size: 0.82em;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table th {
+  background: var(--color-surface);
+  color: var(--color-accent);
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-accent-dim);
+  padding: 0.5em 0.8em;
+  text-align: left;
+}
+
+table td {
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.45em 0.8em;
+  text-align: left;
+}
+
+/* ── Blockquote ── */
+
+blockquote {
+  font-size: 0.88em;
+  border-left: 3px solid var(--color-accent-dim);
+  background: var(--color-surface);
+  padding: 0.5em 1em;
+  border-radius: 0 6px 6px 0;
+  color: #a8abbe;
+}
+
+blockquote strong { color: var(--color-highlight); }
+
+/* ── List ── */
+
+ul, ol { margin: 0.3em 0; }
+li { margin: 0.2em 0; line-height: 1.5; }
+li::marker { color: var(--color-accent-dim); }
+
+/* ── Lead slides ── */
+
+section.lead {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+section.lead h1 {
+  font-size: 2.2em;
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0.3em;
+  letter-spacing: 0.02em;
+}
+
+section.lead h2 {
+  font-size: 1.05em;
+  color: #7a7d94;
+  font-weight: 300;
+  margin-top: 0;
+}
+
+section.lead p {
+  color: #8a8da6;
+  font-size: 0.95em;
+}
+
+/* ── Dense slides ── */
+
+section.dense {
+  font-size: 22px;
+  padding: 35px 50px;
+}
+
+section.dense h1 {
+  font-size: 1.4em;
+  margin-bottom: 0.35em;
+}
+
+section.dense pre {
+  padding: 0.6em 0.9em !important;
+  margin: 0.35em 0;
+}
+
+section.dense pre code { font-size: 0.8em; }
+section.dense table { font-size: 0.88em; }
+section.dense blockquote { font-size: 0.9em; }
+
+/* ── Page number ── */
+
+section::after {
+  color: #4a4d64;
+  font-size: 0.6em;
+}
+;" data-marpit-pagination-total="37">
 <h1 id="free-%E3%81%AE%E8%AA%B2%E9%A1%8C">Free の課題</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-type">Free</span> fx &gt;&gt;= f = <span class="hljs-type">Free</span> (fmap (&gt;&gt;= f) fx)
 </code></pre>
@@ -6117,7 +6445,7 @@ section::after {
 <p>どちらも <code>fmap</code> で<strong>命令の内部に潜る</strong>構造に起因している</p>
 <p>→ 内部に潜らずに済む構造はないか？</p>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="19" data-class="lead" data-paginate="true" data-theme="default" data-style=":root {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="20" data-class="lead" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
   --color-fg: #d4d6e4;
   --color-accent: #7cacf8;
@@ -6280,7 +6608,7 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-" lang="en-US" class="lead" data-marpit-pagination="19" style="--class:lead;--paginate:true;--theme:default;--style::root {
+" lang="en-US" class="lead" data-marpit-pagination="20" style="--class:lead;--paginate:true;--theme:default;--style::root {
   --color-bg: #1b1d2a;
   --color-fg: #d4d6e4;
   --color-accent: #7cacf8;
@@ -6443,349 +6771,10 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
+;" data-marpit-pagination-total="37">
 <h1 id="ch4--freer-%E3%81%A8%E9%99%90%E5%AE%9A%E7%B6%99%E7%B6%9A">Ch.4 — Freer と限定継続</h1>
 <p>Functor 制約を取り除き、ステップ実行を整理すると限定継続が現れる<br />
 → Generator の <code>yield</code>/<code>next</code> と<strong>同じ構造</strong>であることが見える</p>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="20" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
-  --color-bg: #1b1d2a;
-  --color-fg: #d4d6e4;
-  --color-accent: #7cacf8;
-  --color-accent-dim: #4a6fa5;
-  --color-surface: #252840;
-  --color-border: #363850;
-  --color-highlight: #f0c674;
-}
-
-section {
-  background: var(--color-bg);
-  color: var(--color-fg);
-  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
-  font-size: 28px;
-  letter-spacing: 0.01em;
-  padding: 50px 60px;
-  text-align: left;
-}
-
-h1 {
-  color: var(--color-accent);
-  font-size: 1.5em;
-  font-weight: 600;
-  border-bottom: 2px solid var(--color-border);
-  padding-bottom: 0.25em;
-  margin-bottom: 0.6em;
-}
-
-h2 { color: var(--color-accent-dim); font-weight: 400; }
-
-strong { color: var(--color-highlight); font-weight: 600; }
-
-a { color: var(--color-accent); }
-
-/* ── Code ── */
-
-code {
-  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
-  font-size: 0.85em;
-  background: var(--color-surface) !important;
-  color: var(--color-fg) !important;
-  padding: 0.1em 0.35em;
-  border-radius: 4px;
-}
-
-pre {
-  background: var(--color-surface) !important;
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: 0.8em 1em !important;
-  margin: 0.5em 0;
-  line-height: 1.45;
-  text-align: left;
-}
-
-pre code {
-  background: transparent !important;
-  color: var(--color-fg) !important;
-  padding: 0;
-  font-size: 0.82em;
-  text-align: left;
-}
-
-/* ── Table ── */
-
-table {
-  font-size: 0.82em;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-table th {
-  background: var(--color-surface);
-  color: var(--color-accent);
-  font-weight: 600;
-  border-bottom: 2px solid var(--color-accent-dim);
-  padding: 0.5em 0.8em;
-  text-align: left;
-}
-
-table td {
-  border-bottom: 1px solid var(--color-border);
-  padding: 0.45em 0.8em;
-  text-align: left;
-}
-
-/* ── Blockquote ── */
-
-blockquote {
-  font-size: 0.88em;
-  border-left: 3px solid var(--color-accent-dim);
-  background: var(--color-surface);
-  padding: 0.5em 1em;
-  border-radius: 0 6px 6px 0;
-  color: #a8abbe;
-}
-
-blockquote strong { color: var(--color-highlight); }
-
-/* ── List ── */
-
-ul, ol { margin: 0.3em 0; }
-li { margin: 0.2em 0; line-height: 1.5; }
-li::marker { color: var(--color-accent-dim); }
-
-/* ── Lead slides ── */
-
-section.lead {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-section.lead h1 {
-  font-size: 2.2em;
-  border-bottom: none;
-  padding-bottom: 0;
-  margin-bottom: 0.3em;
-  letter-spacing: 0.02em;
-}
-
-section.lead h2 {
-  font-size: 1.05em;
-  color: #7a7d94;
-  font-weight: 300;
-  margin-top: 0;
-}
-
-section.lead p {
-  color: #8a8da6;
-  font-size: 0.95em;
-}
-
-/* ── Dense slides ── */
-
-section.dense {
-  font-size: 22px;
-  padding: 35px 50px;
-}
-
-section.dense h1 {
-  font-size: 1.4em;
-  margin-bottom: 0.35em;
-}
-
-section.dense pre {
-  padding: 0.6em 0.9em !important;
-  margin: 0.35em 0;
-}
-
-section.dense pre code { font-size: 0.8em; }
-section.dense table { font-size: 0.88em; }
-section.dense blockquote { font-size: 0.9em; }
-
-/* ── Page number ── */
-
-section::after {
-  color: #4a4d64;
-  font-size: 0.6em;
-}
-" lang="en-US" class="invert" data-marpit-pagination="20" style="--class:invert;--paginate:true;--theme:default;--style::root {
-  --color-bg: #1b1d2a;
-  --color-fg: #d4d6e4;
-  --color-accent: #7cacf8;
-  --color-accent-dim: #4a6fa5;
-  --color-surface: #252840;
-  --color-border: #363850;
-  --color-highlight: #f0c674;
-}
-
-section {
-  background: var(--color-bg);
-  color: var(--color-fg);
-  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
-  font-size: 28px;
-  letter-spacing: 0.01em;
-  padding: 50px 60px;
-  text-align: left;
-}
-
-h1 {
-  color: var(--color-accent);
-  font-size: 1.5em;
-  font-weight: 600;
-  border-bottom: 2px solid var(--color-border);
-  padding-bottom: 0.25em;
-  margin-bottom: 0.6em;
-}
-
-h2 { color: var(--color-accent-dim); font-weight: 400; }
-
-strong { color: var(--color-highlight); font-weight: 600; }
-
-a { color: var(--color-accent); }
-
-/* ── Code ── */
-
-code {
-  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
-  font-size: 0.85em;
-  background: var(--color-surface) !important;
-  color: var(--color-fg) !important;
-  padding: 0.1em 0.35em;
-  border-radius: 4px;
-}
-
-pre {
-  background: var(--color-surface) !important;
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: 0.8em 1em !important;
-  margin: 0.5em 0;
-  line-height: 1.45;
-  text-align: left;
-}
-
-pre code {
-  background: transparent !important;
-  color: var(--color-fg) !important;
-  padding: 0;
-  font-size: 0.82em;
-  text-align: left;
-}
-
-/* ── Table ── */
-
-table {
-  font-size: 0.82em;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-table th {
-  background: var(--color-surface);
-  color: var(--color-accent);
-  font-weight: 600;
-  border-bottom: 2px solid var(--color-accent-dim);
-  padding: 0.5em 0.8em;
-  text-align: left;
-}
-
-table td {
-  border-bottom: 1px solid var(--color-border);
-  padding: 0.45em 0.8em;
-  text-align: left;
-}
-
-/* ── Blockquote ── */
-
-blockquote {
-  font-size: 0.88em;
-  border-left: 3px solid var(--color-accent-dim);
-  background: var(--color-surface);
-  padding: 0.5em 1em;
-  border-radius: 0 6px 6px 0;
-  color: #a8abbe;
-}
-
-blockquote strong { color: var(--color-highlight); }
-
-/* ── List ── */
-
-ul, ol { margin: 0.3em 0; }
-li { margin: 0.2em 0; line-height: 1.5; }
-li::marker { color: var(--color-accent-dim); }
-
-/* ── Lead slides ── */
-
-section.lead {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-section.lead h1 {
-  font-size: 2.2em;
-  border-bottom: none;
-  padding-bottom: 0;
-  margin-bottom: 0.3em;
-  letter-spacing: 0.02em;
-}
-
-section.lead h2 {
-  font-size: 1.05em;
-  color: #7a7d94;
-  font-weight: 300;
-  margin-top: 0;
-}
-
-section.lead p {
-  color: #8a8da6;
-  font-size: 0.95em;
-}
-
-/* ── Dense slides ── */
-
-section.dense {
-  font-size: 22px;
-  padding: 35px 50px;
-}
-
-section.dense h1 {
-  font-size: 1.4em;
-  margin-bottom: 0.35em;
-}
-
-section.dense pre {
-  padding: 0.6em 0.9em !important;
-  margin: 0.35em 0;
-}
-
-section.dense pre code { font-size: 0.8em; }
-section.dense table { font-size: 0.88em; }
-section.dense blockquote { font-size: 0.9em; }
-
-/* ── Page number ── */
-
-section::after {
-  color: #4a4d64;
-  font-size: 0.6em;
-}
-;" data-marpit-pagination-total="36">
-<h1 id="%E3%82%A2%E3%82%A4%E3%83%87%E3%82%A2-%E5%91%BD%E4%BB%A4%E3%81%A8%E7%B6%99%E7%B6%9A%E3%81%AE%E5%88%86%E9%9B%A2">アイデア: 命令と継続の分離</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-comment">-- Free: fmap で命令の中に潜る</span>
-<span class="hljs-type">Free</span> fx &gt;&gt;= f = <span class="hljs-type">Free</span> (fmap (&gt;&gt;= f) fx)
-
-<span class="hljs-comment">-- もし分離できたら: 継続を合成するだけ</span>
-<span class="hljs-type">Bind</span> fx k &gt;&gt;= f = <span class="hljs-type">Bind</span> fx ((&gt;&gt;= f) . k)
-</code></pre>
-<p>命令 <code>fx</code> には触らず、継続 <code>k</code> を合成するだけ</p>
-<p>→ <code>fmap</code> 不要 → <strong>Functor 制約が消える</strong></p>
-<p>しかし <code>Free (f (Free f a))</code> がどうしてこの形になるのか？<br />
-→ 存在量化された型変数 <code>x</code> はどこから来る？</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="21" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
@@ -7113,17 +7102,18 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
-<h1 id="coyoneda--%E6%AD%A3%E5%BC%8F%E3%81%AA%E5%B0%8E%E5%87%BA%E7%B5%8C%E8%B7%AF">Coyoneda — 正式な導出経路</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-class"><span class="hljs-keyword">data</span> <span class="hljs-type">Coyoneda</span> f a where</span>
-  <span class="hljs-type">Coyoneda</span> :: (x -&gt; a) -&gt; f x -&gt; <span class="hljs-type">Coyoneda</span> f a
+;" data-marpit-pagination-total="37">
+<h1 id="%E3%82%A2%E3%82%A4%E3%83%87%E3%82%A2-%E5%91%BD%E4%BB%A4%E3%81%A8%E7%B6%99%E7%B6%9A%E3%81%AE%E5%88%86%E9%9B%A2">アイデア: 命令と継続の分離</h1>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-comment">-- Free: fmap で命令の中に潜る</span>
+<span class="hljs-type">Free</span> fx &gt;&gt;= f = <span class="hljs-type">Free</span> (fmap (&gt;&gt;= f) fx)
+
+<span class="hljs-comment">-- もし分離できたら: 継続を合成するだけ</span>
+<span class="hljs-type">Bind</span> fx k &gt;&gt;= f = <span class="hljs-type">Bind</span> fx ((&gt;&gt;= f) . k)
 </code></pre>
-<p><code>f x</code>（素材）と <code>x -&gt; a</code>（変換関数）のペア。<code>fmap</code> を <code>f</code> に適用せず <strong>蓄積</strong> する</p>
-<p><strong>核心的性質</strong>: <code>f</code> が Functor でなくても <code>Coyoneda f</code> は <strong>常に Functor</strong></p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-class"><span class="hljs-keyword">instance</span> <span class="hljs-type">Functor</span> (<span class="hljs-type">Coyoneda</span> <span class="hljs-title">f</span>) <span class="hljs-keyword">where</span></span>
-  fmap g (<span class="hljs-type">Coyoneda</span> h fx) = <span class="hljs-type">Coyoneda</span> (g . h) fx
-  <span class="hljs-comment">-- f の fmap を呼ばず、関数合成だけ</span>
-</code></pre>
+<p>命令 <code>fx</code> には触らず、継続 <code>k</code> を合成するだけ</p>
+<p>→ <code>fmap</code> 不要 → <strong>Functor 制約が消える</strong></p>
+<p>しかし <code>Free (f (Free f a))</code> がどうしてこの形になるのか？<br />
+→ 存在量化された型変数 <code>x</code> はどこから来る？</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="22" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
@@ -7451,20 +7441,16 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
-<h1 id="%E5%B0%8E%E5%87%BA-free-coyoneda-f-%E2%86%92-freer-f">導出: Free (Coyoneda f) → Freer f</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code>Free (Coyoneda f (Free (Coyoneda f) a))
-= Free (∃x. (x → Free (Coyoneda f) a, f x))
+;" data-marpit-pagination-total="37">
+<h1 id="coyoneda--%E6%AD%A3%E5%BC%8F%E3%81%AA%E5%B0%8E%E5%87%BA%E7%B5%8C%E8%B7%AF">Coyoneda — 正式な導出経路</h1>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-class"><span class="hljs-keyword">data</span> <span class="hljs-type">Coyoneda</span> f a where</span>
+  <span class="hljs-type">Coyoneda</span> :: (x -&gt; a) -&gt; f x -&gt; <span class="hljs-type">Coyoneda</span> f a
 </code></pre>
-<p>存在量化された <code>x</code> + ペア <code>(f x, x → ...)</code> → まさに分離</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-class"><span class="hljs-keyword">data</span> <span class="hljs-type">Freer</span> f a where</span>
-  <span class="hljs-type">Pure</span> :: a -&gt; <span class="hljs-type">Freer</span> f a
-  <span class="hljs-type">Bind</span> :: f x -&gt; (x -&gt; <span class="hljs-type">Freer</span> f a) -&gt; <span class="hljs-type">Freer</span> f a
-</code></pre>
-<p><code>f</code> に <strong>Functor 制約なし！</strong></p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-class"><span class="hljs-keyword">instance</span> <span class="hljs-type">Monad</span> (<span class="hljs-type">Freer</span> <span class="hljs-title">f</span>) <span class="hljs-keyword">where</span></span>
-  <span class="hljs-type">Pure</span> a    &gt;&gt;= f = f a
-  <span class="hljs-type">Bind</span> fx k &gt;&gt;= f = <span class="hljs-type">Bind</span> fx ((&gt;&gt;= f) . k)
+<p><code>f x</code>（素材）と <code>x -&gt; a</code>（変換関数）のペア。<code>fmap</code> を <code>f</code> に適用せず <strong>蓄積</strong> する</p>
+<p><strong>核心的性質</strong>: <code>f</code> が Functor でなくても <code>Coyoneda f</code> は <strong>常に Functor</strong></p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-class"><span class="hljs-keyword">instance</span> <span class="hljs-type">Functor</span> (<span class="hljs-type">Coyoneda</span> <span class="hljs-title">f</span>) <span class="hljs-keyword">where</span></span>
+  fmap g (<span class="hljs-type">Coyoneda</span> h fx) = <span class="hljs-type">Coyoneda</span> (g . h) fx
+  <span class="hljs-comment">-- f の fmap を呼ばず、関数合成だけ</span>
 </code></pre>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="23" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
@@ -7793,22 +7779,21 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
-<h1 id="%E5%91%BD%E4%BB%A4%E3%82%BB%E3%83%83%E3%83%88%E3%81%AE%E7%B0%A1%E7%B4%A0%E5%8C%96">命令セットの簡素化</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-comment">-- Free 版: Functor のための (String -&gt; next) が必要</span>
-<span class="hljs-class"><span class="hljs-keyword">data</span> <span class="hljs-type">TalkF</span> next</span>
-  = <span class="hljs-type">Ask</span> <span class="hljs-type">String</span> (<span class="hljs-type">String</span> -&gt; next)
-  | <span class="hljs-type">Tell</span> <span class="hljs-type">String</span> next
-
-<span class="hljs-comment">-- Freer 版: 本質だけが残る</span>
-<span class="hljs-class"><span class="hljs-keyword">data</span> <span class="hljs-type">Talk</span> a where</span>
-  <span class="hljs-type">Ask</span>  :: <span class="hljs-type">String</span> -&gt; <span class="hljs-type">Talk</span> <span class="hljs-type">String</span>
-  <span class="hljs-type">Tell</span> :: <span class="hljs-type">String</span> -&gt; <span class="hljs-type">Talk</span> ()
+;" data-marpit-pagination-total="37">
+<h1 id="%E5%B0%8E%E5%87%BA-free-coyoneda-f-%E2%86%92-freer-f">導出: Free (Coyoneda f) → Freer f</h1>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code>Free (Coyoneda f (Free (Coyoneda f) a))
+= Free (∃x. (x → Free (Coyoneda f) a, f x))
 </code></pre>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-title">send</span> :: f a -&gt; <span class="hljs-type">Freer</span> f a
-<span class="hljs-title">send</span> fa = <span class="hljs-type">Bind</span> fa <span class="hljs-type">Pure</span>
-<span class="hljs-comment">-- 「命令を発行して結果をそのまま返す」最小のプログラム</span>
+<p>存在量化された <code>x</code> + ペア <code>(f x, x → ...)</code> → まさに分離</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-class"><span class="hljs-keyword">data</span> <span class="hljs-type">Freer</span> f a where</span>
+  <span class="hljs-type">Pure</span> :: a -&gt; <span class="hljs-type">Freer</span> f a
+  <span class="hljs-type">Bind</span> :: f x -&gt; (x -&gt; <span class="hljs-type">Freer</span> f a) -&gt; <span class="hljs-type">Freer</span> f a
+<span class="hljs-class">
+<span class="hljs-keyword">instance</span> <span class="hljs-type">Monad</span> (<span class="hljs-type">Freer</span> <span class="hljs-title">f</span>) <span class="hljs-keyword">where</span></span>
+  <span class="hljs-type">Pure</span> a    &gt;&gt;= f = f a
+  <span class="hljs-type">Bind</span> fx k &gt;&gt;= f = <span class="hljs-type">Bind</span> fx ((&gt;&gt;= f) . k)
 </code></pre>
+<p><code>f</code> に <strong>Functor 制約なし！</strong></p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="24" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
@@ -8136,18 +8121,22 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
-<h1 id="freer-%E3%81%AE%E5%91%BD%E4%BB%A4--typescript-%E3%81%AE-tagged-union">Freer の命令 = TypeScript の tagged union</h1>
-<p>Freer の GADT は TypeScript の tagged union にそのまま対応する:</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-typescript"><span class="hljs-keyword">type</span> <span class="hljs-title class_">Ask</span>  = { <span class="hljs-keyword">readonly</span> <span class="hljs-attr">tag</span>: <span class="hljs-string">&quot;ask&quot;</span>;  <span class="hljs-keyword">readonly</span> <span class="hljs-attr">prompt</span>: <span class="hljs-built_in">string</span> };  <span class="hljs-comment">// → string</span>
-<span class="hljs-keyword">type</span> <span class="hljs-title class_">Tell</span> = { <span class="hljs-keyword">readonly</span> <span class="hljs-attr">tag</span>: <span class="hljs-string">&quot;tell&quot;</span>; <span class="hljs-keyword">readonly</span> <span class="hljs-attr">message</span>: <span class="hljs-built_in">string</span> }; <span class="hljs-comment">// → void</span>
-<span class="hljs-keyword">type</span> <span class="hljs-title class_">TalkInstruction</span> = <span class="hljs-title class_">Ask</span> | <span class="hljs-title class_">Tell</span>;
+;" data-marpit-pagination-total="37">
+<h1 id="%E5%91%BD%E4%BB%A4%E3%82%BB%E3%83%83%E3%83%88%E3%81%AE%E7%B0%A1%E7%B4%A0%E5%8C%96">命令セットの簡素化</h1>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-comment">-- Free 版: Functor のための (String -&gt; next) が必要</span>
+<span class="hljs-class"><span class="hljs-keyword">data</span> <span class="hljs-type">TalkF</span> next</span>
+  = <span class="hljs-type">Ask</span> <span class="hljs-type">String</span> (<span class="hljs-type">String</span> -&gt; next)
+  | <span class="hljs-type">Tell</span> <span class="hljs-type">String</span> next
+
+<span class="hljs-comment">-- Freer 版: 本質だけが残る</span>
+<span class="hljs-class"><span class="hljs-keyword">data</span> <span class="hljs-type">Talk</span> a where</span>
+  <span class="hljs-type">Ask</span>  :: <span class="hljs-type">String</span> -&gt; <span class="hljs-type">Talk</span> <span class="hljs-type">String</span>
+  <span class="hljs-type">Tell</span> :: <span class="hljs-type">String</span> -&gt; <span class="hljs-type">Talk</span> ()
 </code></pre>
-<ul>
-<li>Free 版で必要だった <code>(String -&gt; next)</code> のような継続フィールドは<strong>不要</strong></li>
-<li>命令の本質（種類 + 引数）だけが残っている</li>
-<li>ch05 の Generator DSL は、この tagged union をそのまま使う</li>
-</ul>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-title">send</span> :: f a -&gt; <span class="hljs-type">Freer</span> f a
+<span class="hljs-title">send</span> fa = <span class="hljs-type">Bind</span> fa <span class="hljs-type">Pure</span>
+<span class="hljs-comment">-- 「命令を発行して結果をそのまま返す」最小のプログラム</span>
+</code></pre>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="25" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
@@ -8475,18 +8464,18 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
-<h1 id="step--%E3%82%B9%E3%83%86%E3%83%83%E3%83%97%E5%AE%9F%E8%A1%8C%E3%81%AE%E5%9E%8B">Step — ステップ実行の型</h1>
-<p>命令と継続が分離されたことで、ステップ実行を型として表現できる:</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-class"><span class="hljs-keyword">data</span> <span class="hljs-type">Step</span> f a where</span>
-  <span class="hljs-type">Done</span>  :: a -&gt; <span class="hljs-type">Step</span> f a                        <span class="hljs-comment">-- 計算完了</span>
-  <span class="hljs-type">Await</span> :: f x -&gt; (x -&gt; <span class="hljs-type">Freer</span> f a) -&gt; <span class="hljs-type">Step</span> f a  <span class="hljs-comment">-- 命令 + 継続</span>
-
-<span class="hljs-title">viewFreer</span> :: <span class="hljs-type">Freer</span> f a -&gt; <span class="hljs-type">Step</span> f a
-<span class="hljs-title">viewFreer</span> (<span class="hljs-type">Pure</span> a)    = <span class="hljs-type">Done</span> a
-<span class="hljs-title">viewFreer</span> (<span class="hljs-type">Bind</span> fx k) = <span class="hljs-type">Await</span> fx k
+;" data-marpit-pagination-total="37">
+<h1 id="freer-%E3%81%AE%E5%91%BD%E4%BB%A4--typescript-%E3%81%AE-tagged-union">Freer の命令 = TypeScript の tagged union</h1>
+<p>Freer の GADT は TypeScript の tagged union にそのまま対応する:</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-typescript"><span class="hljs-keyword">type</span> <span class="hljs-title class_">Ask</span>  = { <span class="hljs-keyword">readonly</span> <span class="hljs-attr">tag</span>: <span class="hljs-string">&quot;ask&quot;</span>;  <span class="hljs-keyword">readonly</span> <span class="hljs-attr">prompt</span>: <span class="hljs-built_in">string</span> };  <span class="hljs-comment">// → string</span>
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">Tell</span> = { <span class="hljs-keyword">readonly</span> <span class="hljs-attr">tag</span>: <span class="hljs-string">&quot;tell&quot;</span>; <span class="hljs-keyword">readonly</span> <span class="hljs-attr">message</span>: <span class="hljs-built_in">string</span> }; <span class="hljs-comment">// → void</span>
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">TalkInstruction</span> = <span class="hljs-title class_">Ask</span> | <span class="hljs-title class_">Tell</span>;
 </code></pre>
-<p>インタプリタは <code>Freer</code> の内部構造に依存せず、<strong>Done か Await か</strong> だけを見る</p>
+<ul>
+<li>Free 版で必要だった <code>(String -&gt; next)</code> のような継続フィールドは<strong>不要</strong></li>
+<li>命令の本質（種類 + 引数）だけが残っている</li>
+<li>ch05 の Generator DSL は、この tagged union をそのまま使う</li>
+</ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="26" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
@@ -8814,17 +8803,18 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
-<h1 id="step-%E3%81%AB%E3%82%88%E3%82%8B%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%97%E3%83%AA%E3%82%BF">Step によるインタプリタ</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-title">runStepIO</span> m = <span class="hljs-keyword">case</span> viewFreer m <span class="hljs-keyword">of</span>
-  <span class="hljs-type">Done</span> a             -&gt; pure a
-  <span class="hljs-type">Await</span> (<span class="hljs-type">Ask</span> prompt) k -&gt; <span class="hljs-keyword">do</span>
-    putStrLn prompt; input &lt;- getLine
-    runStepIO (k input)   <span class="hljs-comment">-- 継続に値を渡して再開</span>
-  <span class="hljs-type">Await</span> (<span class="hljs-type">Tell</span> msg) k -&gt; <span class="hljs-keyword">do</span>
-    putStrLn msg; runStepIO (k ())
+;" data-marpit-pagination-total="37">
+<h1 id="step--%E3%82%B9%E3%83%86%E3%83%83%E3%83%97%E5%AE%9F%E8%A1%8C%E3%81%AE%E5%9E%8B">Step — ステップ実行の型</h1>
+<p>命令と継続が分離されたことで、ステップ実行を型として表現できる:</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-class"><span class="hljs-keyword">data</span> <span class="hljs-type">Step</span> f a where</span>
+  <span class="hljs-type">Done</span>  :: a -&gt; <span class="hljs-type">Step</span> f a                        <span class="hljs-comment">-- 計算完了</span>
+  <span class="hljs-type">Await</span> :: f x -&gt; (x -&gt; <span class="hljs-type">Freer</span> f a) -&gt; <span class="hljs-type">Step</span> f a  <span class="hljs-comment">-- 命令 + 継続</span>
+
+<span class="hljs-title">viewFreer</span> :: <span class="hljs-type">Freer</span> f a -&gt; <span class="hljs-type">Step</span> f a
+<span class="hljs-title">viewFreer</span> (<span class="hljs-type">Pure</span> a)    = <span class="hljs-type">Done</span> a
+<span class="hljs-title">viewFreer</span> (<span class="hljs-type">Bind</span> fx k) = <span class="hljs-type">Await</span> fx k
 </code></pre>
-<p>Free 版と同じ構造——<strong>先頭を覗き、命令を処理し、継続に値を渡す</strong></p>
+<p>インタプリタは <code>Freer</code> の内部構造に依存せず、<strong>Done か Await か</strong> だけを見る</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="27" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
@@ -9152,40 +9142,17 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
-<h1 id="step--typescript-%E3%81%AE-iteratorresult">Step = TypeScript の IteratorResult</h1>
-<p>TypeScript の <code>IteratorResult</code> がまさにこの <code>Step</code>:</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-typescript"><span class="hljs-keyword">const</span> step = gen.<span class="hljs-title function_">next</span>();    <span class="hljs-comment">// viewFreer に対応</span>
-<span class="hljs-comment">// step.done === true   → Done（計算完了）</span>
-<span class="hljs-comment">// step.done === false  → Await（命令待ち、step.value が命令）</span>
-<span class="hljs-comment">// gen.next(value)      → k value（継続に値を供給して再開）</span>
+;" data-marpit-pagination-total="37">
+<h1 id="step-%E3%81%AB%E3%82%88%E3%82%8B%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%97%E3%83%AA%E3%82%BF">Step によるインタプリタ</h1>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-title">runStepIO</span> m = <span class="hljs-keyword">case</span> viewFreer m <span class="hljs-keyword">of</span>
+  <span class="hljs-type">Done</span> a             -&gt; pure a
+  <span class="hljs-type">Await</span> (<span class="hljs-type">Ask</span> prompt) k -&gt; <span class="hljs-keyword">do</span>
+    putStrLn prompt; input &lt;- getLine
+    runStepIO (k input)   <span class="hljs-comment">-- 継続に値を渡して再開</span>
+  <span class="hljs-type">Await</span> (<span class="hljs-type">Tell</span> msg) k -&gt; <span class="hljs-keyword">do</span>
+    putStrLn msg; runStepIO (k ())
 </code></pre>
-<table>
-<thead>
-<tr>
-<th>Step (Haskell)</th>
-<th>IteratorResult (TypeScript)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Done a</code></td>
-<td><code>{ done: true, value: a }</code></td>
-</tr>
-<tr>
-<td><code>Await fx k</code></td>
-<td><code>{ done: false, value: fx }</code></td>
-</tr>
-<tr>
-<td><code>viewFreer m</code></td>
-<td><code>gen.next()</code></td>
-</tr>
-<tr>
-<td><code>k value</code></td>
-<td><code>gen.next(value)</code></td>
-</tr>
-</tbody>
-</table>
+<p>Free 版と同じ構造——<strong>先頭を覗き、命令を処理し、継続に値を渡す</strong></p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="28" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
@@ -9513,39 +9480,37 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
-<h1 id="%E9%99%90%E5%AE%9A%E7%B6%99%E7%B6%9A%E3%81%A8%E3%81%97%E3%81%A6%E3%81%AE-freer">限定継続としての Freer</h1>
-<p>ステップ実行は <strong>限定継続</strong> の shift/reset に概念的に対応する</p>
+;" data-marpit-pagination-total="37">
+<h1 id="step--typescript-%E3%81%AE-iteratorresult">Step = TypeScript の IteratorResult</h1>
+<p>TypeScript の <code>IteratorResult</code> がまさにこの <code>Step</code>:</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-typescript"><span class="hljs-keyword">const</span> step = gen.<span class="hljs-title function_">next</span>();    <span class="hljs-comment">// viewFreer に対応</span>
+</code></pre>
 <table>
 <thead>
 <tr>
-<th>限定継続</th>
-<th>Freer</th>
+<th>Step (Haskell)</th>
+<th>IteratorResult (TypeScript)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>shift</code></td>
-<td><code>send</code> — 命令発行、残りを継続として捕捉</td>
+<td><code>Done a</code></td>
+<td><code>{ done: true, value: a }</code></td>
 </tr>
 <tr>
-<td><code>reset</code></td>
-<td>インタプリタループ — 捕捉範囲を区切る</td>
+<td><code>Await fx k</code></td>
+<td><code>{ done: false, value: fx }</code></td>
 </tr>
 <tr>
-<td>捕捉された継続 <code>k</code></td>
-<td><code>Bind</code> の第2引数 <code>(x -&gt; Freer f a)</code></td>
+<td><code>viewFreer m</code></td>
+<td><code>gen.next()</code></td>
 </tr>
 <tr>
-<td>継続に値を渡す</td>
 <td><code>k value</code></td>
+<td><code>gen.next(value)</code></td>
 </tr>
 </tbody>
 </table>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-title">send</span> (<span class="hljs-type">Ask</span> <span class="hljs-string">&quot;名前は？&quot;</span>) &gt;&gt;= \name -&gt; send (<span class="hljs-type">Tell</span> (<span class="hljs-string">&quot;こんにちは、&quot;</span> ++ name))
-<span class="hljs-comment">-- = Bind (Ask &quot;名前は？&quot;) (\name -&gt; ...)</span>
-<span class="hljs-comment">--                          ^^^^^^^^^^^^^ 限定継続</span>
-</code></pre>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="29" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
@@ -9873,7 +9838,367 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
+;" data-marpit-pagination-total="37">
+<h1 id="%E9%99%90%E5%AE%9A%E7%B6%99%E7%B6%9A%E3%81%A8%E3%81%97%E3%81%A6%E3%81%AE-freer">限定継続としての Freer</h1>
+<p>ステップ実行は <strong>限定継続</strong> の shift/reset に概念的に対応する</p>
+<table>
+<thead>
+<tr>
+<th>限定継続</th>
+<th>Freer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>shift</code></td>
+<td><code>send</code> — 命令発行、残りを継続として捕捉</td>
+</tr>
+<tr>
+<td><code>reset</code></td>
+<td>インタプリタループ — 捕捉範囲を区切る</td>
+</tr>
+<tr>
+<td>捕捉された継続 <code>k</code></td>
+<td><code>Bind</code> の第2引数 <code>(x -&gt; Freer f a)</code></td>
+</tr>
+<tr>
+<td>継続に値を渡す</td>
+<td><code>k value</code></td>
+</tr>
+</tbody>
+</table>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-title">send</span> (<span class="hljs-type">Ask</span> <span class="hljs-string">&quot;名前は？&quot;</span>) &gt;&gt;= \name -&gt; send (<span class="hljs-type">Tell</span> (<span class="hljs-string">&quot;こんにちは、&quot;</span> ++ name))
+<span class="hljs-comment">-- = Bind (Ask &quot;名前は？&quot;) (\name -&gt; ...)</span>
+<span class="hljs-comment">--                          ^^^^^^^^^^^^^ 限定継続</span>
+</code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="30" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
+  --color-bg: #1b1d2a;
+  --color-fg: #d4d6e4;
+  --color-accent: #7cacf8;
+  --color-accent-dim: #4a6fa5;
+  --color-surface: #252840;
+  --color-border: #363850;
+  --color-highlight: #f0c674;
+}
+
+section {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.01em;
+  padding: 50px 60px;
+  text-align: left;
+}
+
+h1 {
+  color: var(--color-accent);
+  font-size: 1.5em;
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: 0.25em;
+  margin-bottom: 0.6em;
+}
+
+h2 { color: var(--color-accent-dim); font-weight: 400; }
+
+strong { color: var(--color-highlight); font-weight: 600; }
+
+a { color: var(--color-accent); }
+
+/* ── Code ── */
+
+code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+  font-size: 0.85em;
+  background: var(--color-surface) !important;
+  color: var(--color-fg) !important;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+
+pre {
+  background: var(--color-surface) !important;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.8em 1em !important;
+  margin: 0.5em 0;
+  line-height: 1.45;
+  text-align: left;
+}
+
+pre code {
+  background: transparent !important;
+  color: var(--color-fg) !important;
+  padding: 0;
+  font-size: 0.82em;
+  text-align: left;
+}
+
+/* ── Table ── */
+
+table {
+  font-size: 0.82em;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table th {
+  background: var(--color-surface);
+  color: var(--color-accent);
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-accent-dim);
+  padding: 0.5em 0.8em;
+  text-align: left;
+}
+
+table td {
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.45em 0.8em;
+  text-align: left;
+}
+
+/* ── Blockquote ── */
+
+blockquote {
+  font-size: 0.88em;
+  border-left: 3px solid var(--color-accent-dim);
+  background: var(--color-surface);
+  padding: 0.5em 1em;
+  border-radius: 0 6px 6px 0;
+  color: #a8abbe;
+}
+
+blockquote strong { color: var(--color-highlight); }
+
+/* ── List ── */
+
+ul, ol { margin: 0.3em 0; }
+li { margin: 0.2em 0; line-height: 1.5; }
+li::marker { color: var(--color-accent-dim); }
+
+/* ── Lead slides ── */
+
+section.lead {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+section.lead h1 {
+  font-size: 2.2em;
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0.3em;
+  letter-spacing: 0.02em;
+}
+
+section.lead h2 {
+  font-size: 1.05em;
+  color: #7a7d94;
+  font-weight: 300;
+  margin-top: 0;
+}
+
+section.lead p {
+  color: #8a8da6;
+  font-size: 0.95em;
+}
+
+/* ── Dense slides ── */
+
+section.dense {
+  font-size: 22px;
+  padding: 35px 50px;
+}
+
+section.dense h1 {
+  font-size: 1.4em;
+  margin-bottom: 0.35em;
+}
+
+section.dense pre {
+  padding: 0.6em 0.9em !important;
+  margin: 0.35em 0;
+}
+
+section.dense pre code { font-size: 0.8em; }
+section.dense table { font-size: 0.88em; }
+section.dense blockquote { font-size: 0.9em; }
+
+/* ── Page number ── */
+
+section::after {
+  color: #4a4d64;
+  font-size: 0.6em;
+}
+" lang="en-US" class="invert" data-marpit-pagination="30" style="--class:invert;--paginate:true;--theme:default;--style::root {
+  --color-bg: #1b1d2a;
+  --color-fg: #d4d6e4;
+  --color-accent: #7cacf8;
+  --color-accent-dim: #4a6fa5;
+  --color-surface: #252840;
+  --color-border: #363850;
+  --color-highlight: #f0c674;
+}
+
+section {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.01em;
+  padding: 50px 60px;
+  text-align: left;
+}
+
+h1 {
+  color: var(--color-accent);
+  font-size: 1.5em;
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: 0.25em;
+  margin-bottom: 0.6em;
+}
+
+h2 { color: var(--color-accent-dim); font-weight: 400; }
+
+strong { color: var(--color-highlight); font-weight: 600; }
+
+a { color: var(--color-accent); }
+
+/* ── Code ── */
+
+code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+  font-size: 0.85em;
+  background: var(--color-surface) !important;
+  color: var(--color-fg) !important;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+
+pre {
+  background: var(--color-surface) !important;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.8em 1em !important;
+  margin: 0.5em 0;
+  line-height: 1.45;
+  text-align: left;
+}
+
+pre code {
+  background: transparent !important;
+  color: var(--color-fg) !important;
+  padding: 0;
+  font-size: 0.82em;
+  text-align: left;
+}
+
+/* ── Table ── */
+
+table {
+  font-size: 0.82em;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table th {
+  background: var(--color-surface);
+  color: var(--color-accent);
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-accent-dim);
+  padding: 0.5em 0.8em;
+  text-align: left;
+}
+
+table td {
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.45em 0.8em;
+  text-align: left;
+}
+
+/* ── Blockquote ── */
+
+blockquote {
+  font-size: 0.88em;
+  border-left: 3px solid var(--color-accent-dim);
+  background: var(--color-surface);
+  padding: 0.5em 1em;
+  border-radius: 0 6px 6px 0;
+  color: #a8abbe;
+}
+
+blockquote strong { color: var(--color-highlight); }
+
+/* ── List ── */
+
+ul, ol { margin: 0.3em 0; }
+li { margin: 0.2em 0; line-height: 1.5; }
+li::marker { color: var(--color-accent-dim); }
+
+/* ── Lead slides ── */
+
+section.lead {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+section.lead h1 {
+  font-size: 2.2em;
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0.3em;
+  letter-spacing: 0.02em;
+}
+
+section.lead h2 {
+  font-size: 1.05em;
+  color: #7a7d94;
+  font-weight: 300;
+  margin-top: 0;
+}
+
+section.lead p {
+  color: #8a8da6;
+  font-size: 0.95em;
+}
+
+/* ── Dense slides ── */
+
+section.dense {
+  font-size: 22px;
+  padding: 35px 50px;
+}
+
+section.dense h1 {
+  font-size: 1.4em;
+  margin-bottom: 0.35em;
+}
+
+section.dense pre {
+  padding: 0.6em 0.9em !important;
+  margin: 0.35em 0;
+}
+
+section.dense pre code { font-size: 0.8em; }
+section.dense table { font-size: 0.88em; }
+section.dense blockquote { font-size: 0.9em; }
+
+/* ── Page number ── */
+
+section::after {
+  color: #4a4d64;
+  font-size: 0.6em;
+}
+;" data-marpit-pagination-total="37">
 <h1 id="generator-%E3%81%B8%E3%81%AE%E6%A9%8B%E6%B8%A1%E3%81%97">Generator への橋渡し</h1>
 <ul>
 <li><strong>shift</strong> = 命令を発行し、残りの計算を継続として捕捉。制御はインタプリタへ</li>
@@ -9882,7 +10207,7 @@ section::after {
 <p>どちらも「値を外に渡して中断し、外側から値を供給されて再開する」</p>
 <p>→ <code>yield</code> = shift、<code>while</code> ループ = reset — <strong>同じプロトコル</strong></p>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="30" data-class="lead" data-paginate="true" data-theme="default" data-style=":root {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="31" data-class="lead" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
   --color-fg: #d4d6e4;
   --color-accent: #7cacf8;
@@ -10045,7 +10370,7 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-" lang="en-US" class="lead" data-marpit-pagination="30" style="--class:lead;--paginate:true;--theme:default;--style::root {
+" lang="en-US" class="lead" data-marpit-pagination="31" style="--class:lead;--paginate:true;--theme:default;--style::root {
   --color-bg: #1b1d2a;
   --color-fg: #d4d6e4;
   --color-accent: #7cacf8;
@@ -10208,374 +10533,9 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
+;" data-marpit-pagination-total="37">
 <h1 id="ch5--generator-%E3%81%A8-dsl">Ch.5 — Generator と DSL</h1>
 <p>限定継続を TypeScript の Generator で実現する</p>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="31" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
-  --color-bg: #1b1d2a;
-  --color-fg: #d4d6e4;
-  --color-accent: #7cacf8;
-  --color-accent-dim: #4a6fa5;
-  --color-surface: #252840;
-  --color-border: #363850;
-  --color-highlight: #f0c674;
-}
-
-section {
-  background: var(--color-bg);
-  color: var(--color-fg);
-  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
-  font-size: 28px;
-  letter-spacing: 0.01em;
-  padding: 50px 60px;
-  text-align: left;
-}
-
-h1 {
-  color: var(--color-accent);
-  font-size: 1.5em;
-  font-weight: 600;
-  border-bottom: 2px solid var(--color-border);
-  padding-bottom: 0.25em;
-  margin-bottom: 0.6em;
-}
-
-h2 { color: var(--color-accent-dim); font-weight: 400; }
-
-strong { color: var(--color-highlight); font-weight: 600; }
-
-a { color: var(--color-accent); }
-
-/* ── Code ── */
-
-code {
-  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
-  font-size: 0.85em;
-  background: var(--color-surface) !important;
-  color: var(--color-fg) !important;
-  padding: 0.1em 0.35em;
-  border-radius: 4px;
-}
-
-pre {
-  background: var(--color-surface) !important;
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: 0.8em 1em !important;
-  margin: 0.5em 0;
-  line-height: 1.45;
-  text-align: left;
-}
-
-pre code {
-  background: transparent !important;
-  color: var(--color-fg) !important;
-  padding: 0;
-  font-size: 0.82em;
-  text-align: left;
-}
-
-/* ── Table ── */
-
-table {
-  font-size: 0.82em;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-table th {
-  background: var(--color-surface);
-  color: var(--color-accent);
-  font-weight: 600;
-  border-bottom: 2px solid var(--color-accent-dim);
-  padding: 0.5em 0.8em;
-  text-align: left;
-}
-
-table td {
-  border-bottom: 1px solid var(--color-border);
-  padding: 0.45em 0.8em;
-  text-align: left;
-}
-
-/* ── Blockquote ── */
-
-blockquote {
-  font-size: 0.88em;
-  border-left: 3px solid var(--color-accent-dim);
-  background: var(--color-surface);
-  padding: 0.5em 1em;
-  border-radius: 0 6px 6px 0;
-  color: #a8abbe;
-}
-
-blockquote strong { color: var(--color-highlight); }
-
-/* ── List ── */
-
-ul, ol { margin: 0.3em 0; }
-li { margin: 0.2em 0; line-height: 1.5; }
-li::marker { color: var(--color-accent-dim); }
-
-/* ── Lead slides ── */
-
-section.lead {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-section.lead h1 {
-  font-size: 2.2em;
-  border-bottom: none;
-  padding-bottom: 0;
-  margin-bottom: 0.3em;
-  letter-spacing: 0.02em;
-}
-
-section.lead h2 {
-  font-size: 1.05em;
-  color: #7a7d94;
-  font-weight: 300;
-  margin-top: 0;
-}
-
-section.lead p {
-  color: #8a8da6;
-  font-size: 0.95em;
-}
-
-/* ── Dense slides ── */
-
-section.dense {
-  font-size: 22px;
-  padding: 35px 50px;
-}
-
-section.dense h1 {
-  font-size: 1.4em;
-  margin-bottom: 0.35em;
-}
-
-section.dense pre {
-  padding: 0.6em 0.9em !important;
-  margin: 0.35em 0;
-}
-
-section.dense pre code { font-size: 0.8em; }
-section.dense table { font-size: 0.88em; }
-section.dense blockquote { font-size: 0.9em; }
-
-/* ── Page number ── */
-
-section::after {
-  color: #4a4d64;
-  font-size: 0.6em;
-}
-" lang="en-US" class="invert" data-marpit-pagination="31" style="--class:invert;--paginate:true;--theme:default;--style::root {
-  --color-bg: #1b1d2a;
-  --color-fg: #d4d6e4;
-  --color-accent: #7cacf8;
-  --color-accent-dim: #4a6fa5;
-  --color-surface: #252840;
-  --color-border: #363850;
-  --color-highlight: #f0c674;
-}
-
-section {
-  background: var(--color-bg);
-  color: var(--color-fg);
-  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
-  font-size: 28px;
-  letter-spacing: 0.01em;
-  padding: 50px 60px;
-  text-align: left;
-}
-
-h1 {
-  color: var(--color-accent);
-  font-size: 1.5em;
-  font-weight: 600;
-  border-bottom: 2px solid var(--color-border);
-  padding-bottom: 0.25em;
-  margin-bottom: 0.6em;
-}
-
-h2 { color: var(--color-accent-dim); font-weight: 400; }
-
-strong { color: var(--color-highlight); font-weight: 600; }
-
-a { color: var(--color-accent); }
-
-/* ── Code ── */
-
-code {
-  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
-  font-size: 0.85em;
-  background: var(--color-surface) !important;
-  color: var(--color-fg) !important;
-  padding: 0.1em 0.35em;
-  border-radius: 4px;
-}
-
-pre {
-  background: var(--color-surface) !important;
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: 0.8em 1em !important;
-  margin: 0.5em 0;
-  line-height: 1.45;
-  text-align: left;
-}
-
-pre code {
-  background: transparent !important;
-  color: var(--color-fg) !important;
-  padding: 0;
-  font-size: 0.82em;
-  text-align: left;
-}
-
-/* ── Table ── */
-
-table {
-  font-size: 0.82em;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-table th {
-  background: var(--color-surface);
-  color: var(--color-accent);
-  font-weight: 600;
-  border-bottom: 2px solid var(--color-accent-dim);
-  padding: 0.5em 0.8em;
-  text-align: left;
-}
-
-table td {
-  border-bottom: 1px solid var(--color-border);
-  padding: 0.45em 0.8em;
-  text-align: left;
-}
-
-/* ── Blockquote ── */
-
-blockquote {
-  font-size: 0.88em;
-  border-left: 3px solid var(--color-accent-dim);
-  background: var(--color-surface);
-  padding: 0.5em 1em;
-  border-radius: 0 6px 6px 0;
-  color: #a8abbe;
-}
-
-blockquote strong { color: var(--color-highlight); }
-
-/* ── List ── */
-
-ul, ol { margin: 0.3em 0; }
-li { margin: 0.2em 0; line-height: 1.5; }
-li::marker { color: var(--color-accent-dim); }
-
-/* ── Lead slides ── */
-
-section.lead {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-section.lead h1 {
-  font-size: 2.2em;
-  border-bottom: none;
-  padding-bottom: 0;
-  margin-bottom: 0.3em;
-  letter-spacing: 0.02em;
-}
-
-section.lead h2 {
-  font-size: 1.05em;
-  color: #7a7d94;
-  font-weight: 300;
-  margin-top: 0;
-}
-
-section.lead p {
-  color: #8a8da6;
-  font-size: 0.95em;
-}
-
-/* ── Dense slides ── */
-
-section.dense {
-  font-size: 22px;
-  padding: 35px 50px;
-}
-
-section.dense h1 {
-  font-size: 1.4em;
-  margin-bottom: 0.35em;
-}
-
-section.dense pre {
-  padding: 0.6em 0.9em !important;
-  margin: 0.35em 0;
-}
-
-section.dense pre code { font-size: 0.8em; }
-section.dense table { font-size: 0.88em; }
-section.dense blockquote { font-size: 0.9em; }
-
-/* ── Page number ── */
-
-section::after {
-  color: #4a4d64;
-  font-size: 0.6em;
-}
-;" data-marpit-pagination-total="36">
-<h1 id="generator-%E2%86%94-freer-%E3%81%AE%E5%AF%BE%E5%BF%9C">Generator <img class="emoji" draggable="false" alt="↔" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2194.svg" data-marp-twemoji=""/> Freer の対応</h1>
-<table>
-<thead>
-<tr>
-<th>Freer (Haskell)</th>
-<th>Generator (TypeScript)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Bind fx k</code></td>
-<td><code>yield instruction</code></td>
-</tr>
-<tr>
-<td><code>fx</code> — 命令</td>
-<td><code>instruction</code> — yield された値</td>
-</tr>
-<tr>
-<td><code>k</code> — 限定継続</td>
-<td>yield 後の関数本体の残り</td>
-</tr>
-<tr>
-<td>パターンマッチで処理</td>
-<td><code>gen.next(value)</code> で値を渡す</td>
-</tr>
-<tr>
-<td><code>send</code> = shift</td>
-<td><code>yield</code> = shift</td>
-</tr>
-<tr>
-<td>インタプリタ = reset</td>
-<td><code>while</code> ループ = reset</td>
-</tr>
-</tbody>
-</table>
-<p><strong>重要な違い</strong>: Freer の <code>k</code> は何度でも呼べる (multi-shot)<br />
-Generator は一度しか再開できない (one-shot)</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="32" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
@@ -10903,7 +10863,372 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
+;" data-marpit-pagination-total="37">
+<h1 id="generator-%E2%86%94-freer-%E3%81%AE%E5%AF%BE%E5%BF%9C">Generator <img class="emoji" draggable="false" alt="↔" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2194.svg" data-marp-twemoji=""/> Freer の対応</h1>
+<table>
+<thead>
+<tr>
+<th>Freer (Haskell)</th>
+<th>Generator (TypeScript)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Bind fx k</code></td>
+<td><code>yield instruction</code></td>
+</tr>
+<tr>
+<td><code>fx</code> — 命令</td>
+<td><code>instruction</code> — yield された値</td>
+</tr>
+<tr>
+<td><code>k</code> — 限定継続</td>
+<td>yield 後の関数本体の残り</td>
+</tr>
+<tr>
+<td>パターンマッチで処理</td>
+<td><code>gen.next(value)</code> で値を渡す</td>
+</tr>
+<tr>
+<td><code>send</code> = shift</td>
+<td><code>yield</code> = shift</td>
+</tr>
+<tr>
+<td>インタプリタ = reset</td>
+<td><code>while</code> ループ = reset</td>
+</tr>
+</tbody>
+</table>
+<p><strong>重要な違い</strong>: Freer の <code>k</code> は何度でも呼べる (multi-shot)<br />
+Generator は一度しか再開できない (one-shot)</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="33" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
+  --color-bg: #1b1d2a;
+  --color-fg: #d4d6e4;
+  --color-accent: #7cacf8;
+  --color-accent-dim: #4a6fa5;
+  --color-surface: #252840;
+  --color-border: #363850;
+  --color-highlight: #f0c674;
+}
+
+section {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.01em;
+  padding: 50px 60px;
+  text-align: left;
+}
+
+h1 {
+  color: var(--color-accent);
+  font-size: 1.5em;
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: 0.25em;
+  margin-bottom: 0.6em;
+}
+
+h2 { color: var(--color-accent-dim); font-weight: 400; }
+
+strong { color: var(--color-highlight); font-weight: 600; }
+
+a { color: var(--color-accent); }
+
+/* ── Code ── */
+
+code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+  font-size: 0.85em;
+  background: var(--color-surface) !important;
+  color: var(--color-fg) !important;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+
+pre {
+  background: var(--color-surface) !important;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.8em 1em !important;
+  margin: 0.5em 0;
+  line-height: 1.45;
+  text-align: left;
+}
+
+pre code {
+  background: transparent !important;
+  color: var(--color-fg) !important;
+  padding: 0;
+  font-size: 0.82em;
+  text-align: left;
+}
+
+/* ── Table ── */
+
+table {
+  font-size: 0.82em;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table th {
+  background: var(--color-surface);
+  color: var(--color-accent);
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-accent-dim);
+  padding: 0.5em 0.8em;
+  text-align: left;
+}
+
+table td {
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.45em 0.8em;
+  text-align: left;
+}
+
+/* ── Blockquote ── */
+
+blockquote {
+  font-size: 0.88em;
+  border-left: 3px solid var(--color-accent-dim);
+  background: var(--color-surface);
+  padding: 0.5em 1em;
+  border-radius: 0 6px 6px 0;
+  color: #a8abbe;
+}
+
+blockquote strong { color: var(--color-highlight); }
+
+/* ── List ── */
+
+ul, ol { margin: 0.3em 0; }
+li { margin: 0.2em 0; line-height: 1.5; }
+li::marker { color: var(--color-accent-dim); }
+
+/* ── Lead slides ── */
+
+section.lead {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+section.lead h1 {
+  font-size: 2.2em;
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0.3em;
+  letter-spacing: 0.02em;
+}
+
+section.lead h2 {
+  font-size: 1.05em;
+  color: #7a7d94;
+  font-weight: 300;
+  margin-top: 0;
+}
+
+section.lead p {
+  color: #8a8da6;
+  font-size: 0.95em;
+}
+
+/* ── Dense slides ── */
+
+section.dense {
+  font-size: 22px;
+  padding: 35px 50px;
+}
+
+section.dense h1 {
+  font-size: 1.4em;
+  margin-bottom: 0.35em;
+}
+
+section.dense pre {
+  padding: 0.6em 0.9em !important;
+  margin: 0.35em 0;
+}
+
+section.dense pre code { font-size: 0.8em; }
+section.dense table { font-size: 0.88em; }
+section.dense blockquote { font-size: 0.9em; }
+
+/* ── Page number ── */
+
+section::after {
+  color: #4a4d64;
+  font-size: 0.6em;
+}
+" lang="en-US" class="invert" data-marpit-pagination="33" style="--class:invert;--paginate:true;--theme:default;--style::root {
+  --color-bg: #1b1d2a;
+  --color-fg: #d4d6e4;
+  --color-accent: #7cacf8;
+  --color-accent-dim: #4a6fa5;
+  --color-surface: #252840;
+  --color-border: #363850;
+  --color-highlight: #f0c674;
+}
+
+section {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.01em;
+  padding: 50px 60px;
+  text-align: left;
+}
+
+h1 {
+  color: var(--color-accent);
+  font-size: 1.5em;
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: 0.25em;
+  margin-bottom: 0.6em;
+}
+
+h2 { color: var(--color-accent-dim); font-weight: 400; }
+
+strong { color: var(--color-highlight); font-weight: 600; }
+
+a { color: var(--color-accent); }
+
+/* ── Code ── */
+
+code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+  font-size: 0.85em;
+  background: var(--color-surface) !important;
+  color: var(--color-fg) !important;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+
+pre {
+  background: var(--color-surface) !important;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.8em 1em !important;
+  margin: 0.5em 0;
+  line-height: 1.45;
+  text-align: left;
+}
+
+pre code {
+  background: transparent !important;
+  color: var(--color-fg) !important;
+  padding: 0;
+  font-size: 0.82em;
+  text-align: left;
+}
+
+/* ── Table ── */
+
+table {
+  font-size: 0.82em;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table th {
+  background: var(--color-surface);
+  color: var(--color-accent);
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-accent-dim);
+  padding: 0.5em 0.8em;
+  text-align: left;
+}
+
+table td {
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.45em 0.8em;
+  text-align: left;
+}
+
+/* ── Blockquote ── */
+
+blockquote {
+  font-size: 0.88em;
+  border-left: 3px solid var(--color-accent-dim);
+  background: var(--color-surface);
+  padding: 0.5em 1em;
+  border-radius: 0 6px 6px 0;
+  color: #a8abbe;
+}
+
+blockquote strong { color: var(--color-highlight); }
+
+/* ── List ── */
+
+ul, ol { margin: 0.3em 0; }
+li { margin: 0.2em 0; line-height: 1.5; }
+li::marker { color: var(--color-accent-dim); }
+
+/* ── Lead slides ── */
+
+section.lead {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+section.lead h1 {
+  font-size: 2.2em;
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0.3em;
+  letter-spacing: 0.02em;
+}
+
+section.lead h2 {
+  font-size: 1.05em;
+  color: #7a7d94;
+  font-weight: 300;
+  margin-top: 0;
+}
+
+section.lead p {
+  color: #8a8da6;
+  font-size: 0.95em;
+}
+
+/* ── Dense slides ── */
+
+section.dense {
+  font-size: 22px;
+  padding: 35px 50px;
+}
+
+section.dense h1 {
+  font-size: 1.4em;
+  margin-bottom: 0.35em;
+}
+
+section.dense pre {
+  padding: 0.6em 0.9em !important;
+  margin: 0.35em 0;
+}
+
+section.dense pre code { font-size: 0.8em; }
+section.dense table { font-size: 0.88em; }
+section.dense blockquote { font-size: 0.9em; }
+
+/* ── Page number ── */
+
+section::after {
+  color: #4a4d64;
+  font-size: 0.6em;
+}
+;" data-marpit-pagination-total="37">
 <h1 id="%E5%91%BD%E4%BB%A4%E5%AE%9A%E7%BE%A9%E3%81%A8-dsl-%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0">命令定義と DSL プログラム</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-typescript"><span class="hljs-keyword">type</span> <span class="hljs-title class_">Ask</span> = { <span class="hljs-keyword">readonly</span> <span class="hljs-attr">tag</span>: <span class="hljs-string">&quot;ask&quot;</span>; <span class="hljs-keyword">readonly</span> <span class="hljs-attr">prompt</span>: <span class="hljs-built_in">string</span> };
 <span class="hljs-keyword">type</span> <span class="hljs-title class_">Tell</span> = { <span class="hljs-keyword">readonly</span> <span class="hljs-attr">tag</span>: <span class="hljs-string">&quot;tell&quot;</span>; <span class="hljs-keyword">readonly</span> <span class="hljs-attr">message</span>: <span class="hljs-built_in">string</span> };
@@ -10911,8 +11236,8 @@ section::after {
 <span class="hljs-keyword">function</span>* <span class="hljs-title function_">ask</span>(<span class="hljs-attr">prompt</span>: <span class="hljs-built_in">string</span>): <span class="hljs-title class_">Generator</span>&lt;<span class="hljs-title class_">Ask</span>, <span class="hljs-built_in">string</span>, <span class="hljs-built_in">string</span>&gt; {
   <span class="hljs-keyword">return</span> (<span class="hljs-keyword">yield</span> { <span class="hljs-attr">tag</span>: <span class="hljs-string">&quot;ask&quot;</span>, prompt }) <span class="hljs-keyword">as</span> <span class="hljs-built_in">string</span>;
 }
-</code></pre>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-typescript"><span class="hljs-keyword">const</span> <span class="hljs-attr">greetProgram</span>: <span class="hljs-title class_">Program</span>&lt;<span class="hljs-built_in">string</span>&gt; = <span class="hljs-keyword">function</span>* () {
+
+<span class="hljs-keyword">const</span> <span class="hljs-attr">greetProgram</span>: <span class="hljs-title class_">Program</span>&lt;<span class="hljs-built_in">string</span>&gt; = <span class="hljs-keyword">function</span>* () {
   <span class="hljs-keyword">const</span> name = <span class="hljs-keyword">yield</span>* <span class="hljs-title function_">ask</span>(<span class="hljs-string">&quot;名前を入力してください&quot;</span>);
   <span class="hljs-keyword">yield</span>* <span class="hljs-title function_">tell</span>(<span class="hljs-string">`こんにちは、<span class="hljs-subst">${name}</span>さん！`</span>);
   <span class="hljs-keyword">return</span> name;
@@ -10920,7 +11245,7 @@ section::after {
 </code></pre>
 <p><code>Program&lt;A&gt; = () =&gt; Generator&lt;...&gt;</code> — サンク化で不変性を担保</p>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="33" data-class="dense" data-paginate="true" data-theme="default" data-style=":root {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="34" data-class="dense" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
   --color-fg: #d4d6e4;
   --color-accent: #7cacf8;
@@ -11083,7 +11408,7 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-" lang="en-US" class="dense" data-marpit-pagination="33" style="--class:dense;--paginate:true;--theme:default;--style::root {
+" lang="en-US" class="dense" data-marpit-pagination="34" style="--class:dense;--paginate:true;--theme:default;--style::root {
   --color-bg: #1b1d2a;
   --color-fg: #d4d6e4;
   --color-accent: #7cacf8;
@@ -11246,7 +11571,7 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
+;" data-marpit-pagination-total="37">
 <h1 id="%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%97%E3%83%AA%E3%82%BF">インタプリタ</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-typescript"><span class="hljs-keyword">function</span> runPure&lt;A&gt;(
   <span class="hljs-attr">program</span>: <span class="hljs-title class_">Program</span>&lt;A&gt;,
@@ -11273,7 +11598,7 @@ section::after {
 }
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="34" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="35" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
   --color-fg: #d4d6e4;
   --color-accent: #7cacf8;
@@ -11436,7 +11761,7 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-" lang="en-US" class="invert" data-marpit-pagination="34" style="--class:invert;--paginate:true;--theme:default;--style::root {
+" lang="en-US" class="invert" data-marpit-pagination="35" style="--class:invert;--paginate:true;--theme:default;--style::root {
   --color-bg: #1b1d2a;
   --color-fg: #d4d6e4;
   --color-accent: #7cacf8;
@@ -11599,7 +11924,7 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
+;" data-marpit-pagination-total="37">
 <h1 id="%E8%A3%9C%E9%81%BA-codensity">補遺: Codensity</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-type">Bind</span> fx k &gt;&gt;= f = <span class="hljs-type">Bind</span> fx ((&gt;&gt;= f) . k)
 <span class="hljs-comment">-- 左結合チェーンで継続がネスト → 実行時 O(n²)</span>
@@ -11617,7 +11942,7 @@ section::after {
 → Generator では <code>yield*</code> が本質的に右結合で左結合問題が発生しない</p>
 </blockquote>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="35" data-class="lead" data-paginate="true" data-theme="default" data-style=":root {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="36" data-class="lead" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
   --color-fg: #d4d6e4;
   --color-accent: #7cacf8;
@@ -11780,7 +12105,7 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-" lang="en-US" class="lead" data-marpit-pagination="35" style="--class:lead;--paginate:true;--theme:default;--style::root {
+" lang="en-US" class="lead" data-marpit-pagination="36" style="--class:lead;--paginate:true;--theme:default;--style::root {
   --color-bg: #1b1d2a;
   --color-fg: #d4d6e4;
   --color-accent: #7cacf8;
@@ -11943,10 +12268,10 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
+;" data-marpit-pagination-total="37">
 <h1 id="%E3%81%BE%E3%81%A8%E3%82%81">まとめ</h1>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="36" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="37" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
   --color-fg: #d4d6e4;
   --color-accent: #7cacf8;
@@ -12109,7 +12434,7 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-" lang="en-US" class="invert" data-marpit-pagination="36" style="--class:invert;--paginate:true;--theme:default;--style::root {
+" lang="en-US" class="invert" data-marpit-pagination="37" style="--class:invert;--paginate:true;--theme:default;--style::root {
   --color-bg: #1b1d2a;
   --color-fg: #d4d6e4;
   --color-accent: #7cacf8;
@@ -12272,7 +12597,7 @@ section::after {
   color: #4a4d64;
   font-size: 0.6em;
 }
-;" data-marpit-pagination-total="36">
+;" data-marpit-pagination-total="37">
 <h1 id="haskell-%E2%86%94-typescript-%E5%AF%BE%E5%BF%9C%E8%A1%A8">Haskell <img class="emoji" draggable="false" alt="↔" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2194.svg" data-marp-twemoji=""/> TypeScript 対応表</h1>
 <table>
 <thead>
