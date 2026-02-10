@@ -6088,19 +6088,21 @@ section::after {
   font-size: 0.6em;
 }
 ;" data-marpit-pagination-total="37">
-<h1 id="%E3%82%B9%E3%83%86%E3%83%83%E3%83%97%E5%AE%9F%E8%A1%8C%E3%81%AE%E8%AA%8D%E8%AD%98">ステップ実行の認識</h1>
-<p><code>runTalkIO</code> は何をしている？</p>
+<h1 id="free-%E3%81%AE%E8%AA%B2%E9%A1%8C">Free の課題</h1>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-type">Free</span> fx &gt;&gt;= f = <span class="hljs-type">Free</span> (fmap (&gt;&gt;= f) fx)
+</code></pre>
+<p><strong>2つの問題:</strong></p>
 <ol>
-<li>プログラムの <strong>先頭を覗く</strong>（<code>Pure</code> か <code>Free</code> か）</li>
-<li>命令を <strong>処理する</strong>（<code>putStrLn</code>、<code>getLine</code>）</li>
-<li>継続に <strong>結果を渡す</strong>（<code>next input</code>）</li>
-<li>再帰的に <strong>次のステップへ</strong></li>
+<li><strong>Functor 制約</strong>: <code>fmap</code> のために <code>f</code> が Functor でなければならない
+<ul>
+<li><code>Ask</code> の <code>(String -&gt; next)</code> は <code>fmap</code> のためだけに存在</li>
+<li>命令の本質には不要</li>
+</ul>
+</li>
+<li><strong>性能</strong>: <code>&gt;&gt;=</code> のたびに構造全体を走査 → O(n²)</li>
 </ol>
-<p>これは <strong>ステップ実行</strong> — プログラムを一命令ずつ処理するパターン</p>
-<blockquote>
-<p>このパターンが可能なのは、プログラムが Free で<strong>データとして具象化</strong>されているから<br />
-一般のモナド（<code>IO</code>、<code>Reader</code>）の <code>&gt;&gt;=</code> では中を覗けない</p>
-</blockquote>
+<p>どちらも <code>fmap</code> で<strong>命令の内部に潜る</strong>構造に起因している</p>
+<p>→ 内部に潜らずに済む構造はないか？ — これは次章で</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="19" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
@@ -6429,21 +6431,15 @@ section::after {
   font-size: 0.6em;
 }
 ;" data-marpit-pagination-total="37">
-<h1 id="free-%E3%81%AE%E8%AA%B2%E9%A1%8C">Free の課題</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-type">Free</span> fx &gt;&gt;= f = <span class="hljs-type">Free</span> (fmap (&gt;&gt;= f) fx)
-</code></pre>
-<p><strong>2つの問題:</strong></p>
-<ol>
-<li><strong>Functor 制約</strong>: <code>fmap</code> のために <code>f</code> が Functor でなければならない
-<ul>
-<li><code>Ask</code> の <code>(String -&gt; next)</code> は <code>fmap</code> のためだけに存在</li>
-<li>命令の本質には不要</li>
-</ul>
-</li>
-<li><strong>性能</strong>: <code>&gt;&gt;=</code> のたびに構造全体を走査 → O(n²)</li>
-</ol>
-<p>どちらも <code>fmap</code> で<strong>命令の内部に潜る</strong>構造に起因している</p>
-<p>→ 内部に潜らずに済む構造はないか？</p>
+<h1 id="%E3%82%B9%E3%83%86%E3%83%83%E3%83%97%E5%AE%9F%E8%A1%8C%E3%81%AE%E8%AA%8D%E8%AD%98">ステップ実行の認識</h1>
+<p><code>runTalkIO</code> をもう一度見ると — 先頭を覗き、命令を処理し、継続に結果を渡す</p>
+<p>これは <strong>ステップ実行</strong> — プログラムを一命令ずつ処理するパターン</p>
+<blockquote>
+<p>このパターンが可能なのは、プログラムが Free で<strong>データとして具象化</strong>されているから<br />
+一般のモナド（<code>IO</code>、<code>Reader</code>）の <code>&gt;&gt;=</code> では中を覗けない</p>
+</blockquote>
+<p><code>bindCont</code> で「計算を鎖のように繋げる」と言ったその構造が<br />
+→ データのパターンマッチとして目に見える形で動いている</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="20" data-class="lead" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
@@ -7784,7 +7780,7 @@ section::after {
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code>Free (Coyoneda f (Free (Coyoneda f) a))
 = Free (∃x. (x → Free (Coyoneda f) a, f x))
 </code></pre>
-<p>存在量化された <code>x</code> + ペア <code>(f x, x → ...)</code> → まさに分離</p>
+<p>存在量化された <code>x</code> + ペア <code>(f x, x → ...)</code> → 命令と継続の分離</p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-class"><span class="hljs-keyword">data</span> <span class="hljs-type">Freer</span> f a where</span>
   <span class="hljs-type">Pure</span> :: a -&gt; <span class="hljs-type">Freer</span> f a
   <span class="hljs-type">Bind</span> :: f x -&gt; (x -&gt; <span class="hljs-type">Freer</span> f a) -&gt; <span class="hljs-type">Freer</span> f a
@@ -9482,7 +9478,7 @@ section::after {
 }
 ;" data-marpit-pagination-total="37">
 <h1 id="step--typescript-%E3%81%AE-iteratorresult">Step = TypeScript の IteratorResult</h1>
-<p>TypeScript の <code>IteratorResult</code> がまさにこの <code>Step</code>:</p>
+<p><code>Step</code> は TypeScript の <code>IteratorResult</code> にそのまま対応する:</p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-typescript"><span class="hljs-keyword">const</span> step = gen.<span class="hljs-title function_">next</span>();    <span class="hljs-comment">// viewFreer に対応</span>
 </code></pre>
 <table>
