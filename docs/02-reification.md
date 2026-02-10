@@ -168,9 +168,13 @@ applyCont Done       x = x
 data ContChain a
   = DoneChain
   | forall b. StepChain (a -> b) (ContChain b)
-  -- forall b. はデータ構築子の中では「存在量化」として働く
-  -- （Haskell では ExistentialQuantification または GADTs 拡張が必要）
 ```
+
+> **存在量化（existential quantification）**
+>
+> 数学で ∀x. P(x) が「すべての x について P(x)」、∃x. P(x) が「ある x が存在して P(x)」を意味するように、型にも全称量化と存在量化があります。Haskell の `forall b.` は通常は全称量化（∀b）ですが、**データ構築子の中**に書くと存在量化（∃b）として働きます。
+>
+> `StepChain` を**構築する側**は `b` を具体的に選べます（例: `b = Int` にして `StepChain square DoneChain` を作る）。しかしパターンマッチで `StepChain` を**受け取る側**には `b` が何であるか分かりません——分かるのは `(a -> b)` と `ContChain b` が同じ `b` を共有していることだけです。いわば「中身の型ラベルが消された箱」であり、外からは `b` の具体的な型に依存する操作ができません。
 
 `ContChain` は、`bindCont` で継続を連鎖させるときの構造——「値を受け取り次の計算を行う」関数のチェーン——をデータとして保持しようとした型です。しかし、`StepChain` の中間型 `b` は存在量化で隠蔽されるため、**外からはこのチェーンの最終結果を取り出す型安全な方法がありません**。
 

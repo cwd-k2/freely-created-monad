@@ -2707,6 +2707,9 @@ section::after {
   = <span class="hljs-type">DoneChain</span>
   | <span class="hljs-keyword">forall</span> b. <span class="hljs-type">StepChain</span> (a -&gt; b) (<span class="hljs-type">ContChain</span> b)
 </code></pre>
+<blockquote>
+<p><code>forall b.</code> はデータ構築子内では<strong>存在量化</strong>（∃b）— 構築側は <code>b</code> を選べるが、受取側には不透明</p>
+</blockquote>
 <p>命令列は構造化できたが…</p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code>StepChain  (a -&gt; b)         (ContChain b)
             ^^^^^^^^         ^^^^^^^^^^^^
