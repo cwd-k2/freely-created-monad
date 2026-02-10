@@ -782,7 +782,7 @@ newtype Codensity m a = Codensity
 | ---------------- | ------------------------------------ | --------------------- |
 | 命令セット       | GADT                                 | Tagged union          |
 | 継続             | `(x -> Freer f a)`                   | Generator の残り      |
-| 継続の性質       | 素: multi-shot / Codensity: one-shot | one-shot              |
+| 継続の性質       | multi-shot（通常の関数）             | one-shot（内部状態）  |
 | モナド合成       | `>>=` / do 記法                      | `yield*` / Generator  |
 | プログラム再利用 | 純粋データ                           | サンク                |
 | インタプリタ     | パターンマッチ                       | switch + `gen.next()` |

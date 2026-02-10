@@ -142,12 +142,12 @@ function runPure<A>(program: Program<A>, inputs: string[]): { result: A; outputs
 |---|---|---|
 | 命令セット | GADT | Tagged union |
 | 継続 | `(x -> Freer f a)` | Generator の残り |
-| 継続の性質 | 素の Freer: multi-shot / Codensity 適用時: one-shot | one-shot |
+| 継続の性質 | multi-shot（通常の関数） | one-shot（内部状態を持つ） |
 | モナド合成 | `>>=` / do 記法 | `yield*` / Generator |
 | プログラムの再利用 | 純粋なデータ（自由に共有可能） | サンク（呼び出すたびに新規生成） |
 | インタプリタ | パターンマッチ | switch + `gen.next()` |
 
-素の Freer の `k` は通常の関数なので multi-shot（同じ継続を複数回呼べる）ですが、Codensity で最適化すると継続の再結合が起きるため、実質的に one-shot 前提の動作になります。Generator の one-shot 制約は、この Codensity 適用後の Haskell 側と同じ地平に立っています。
+Haskell の Freer における継続 `k` は通常の関数なので、同じ `k` に異なる値を何度でも渡せます（multi-shot）。Codensity で最適化しても継続は通常の関数のままであり、この性質は変わりません。一方、Generator の継続は内部状態を持つため一度しか再開できず（one-shot）、非決定性のような multi-shot を必要とするインタプリタは直接表現できません。ただし、本資料の DSL（対話プログラム）のように継続を一度しか使わないユースケースでは、両者は同じプロトコルで動作します。
 
 Freer モナドの本質——**プログラムをデータとして記述し、実行を後から決める**——は、言語が変わっても同じです。Generator による実装は one-shot 制約などの違いがありますが、「命令の発行 → 中断 → インタプリタが値を供給して再開」というプロトコルは共通しています。
 
