@@ -61,7 +61,7 @@ data Coyoneda f a where
   Coyoneda :: (x -> a) -> f x -> Coyoneda f a
 ```
 
-`Coyoneda f a` は「`f x` の値と、結果を `x` から `a` に変換する関数のペア」です（GADT 構築子内の型変数 `x` は ch02 で見た存在量化で、構築時に具体型を選べますが外からは不透明です）。`fmap` を実際に `f` に適用するのではなく、変換関数を蓄積しておきます。
+`Coyoneda f a` は「`f x` の値と、結果を `x` から `a` に変換する関数のペア」です（GADT コンストラクタ内の型変数 `x` は ch02 で見た存在量化で、構築時に具体型を選べますが外からは不透明です）。`fmap` を実際に `f` に適用するのではなく、変換関数を蓄積しておきます。
 
 この構成の鍵は、**`f` が Functor でなくても `Coyoneda f` は Functor になる**ことです。
 
@@ -71,7 +71,7 @@ instance Functor (Coyoneda f) where
   -- g の適用を関数合成で蓄積するだけ。f の fmap は一切使わない。
 ```
 
-`Coyoneda` は任意の型構成子 `f :: * -> *` から Functor を生み出す普遍的な構成であり、圏論の余米田の補題（co-Yoneda lemma）に由来します。Freer の導出で使うのは、**`Coyoneda f` が常に Functor になる**という事実です。
+`Coyoneda` は任意の型コンストラクタ `f :: * -> *` から Functor を生み出す普遍的な構成であり、圏論の余米田の補題（co-Yoneda lemma）に由来します。Freer の導出で使うのは、**`Coyoneda f` が常に Functor になる**という事実です。
 
 ## Freer モナドの導出
 
@@ -96,7 +96,7 @@ data Freer f a where
   Bind :: f x -> (x -> Freer f a) -> Freer f a
 ```
 
-各構成子の意味：
+各コンストラクタの意味：
 
 - `Pure a` — 計算完了、値 `a` を持つ（Free の `Pure` と同じ）
 - `Bind fx k` — 命令 `fx`（結果の型は `x`）を実行し、結果を継続 `k` に渡す（Coyoneda 分解で得られた構造）
