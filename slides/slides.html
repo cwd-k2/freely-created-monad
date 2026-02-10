@@ -1343,7 +1343,7 @@ section::after {
   font-size: 0.6em;
 }
 ;" data-marpit-pagination-total="37">
-<h1 id="ch2--%E8%A8%88%E7%AE%97%E3%81%AE%E5%85%B7%E8%B1%A1%E5%8C%96">Ch.2 — 計算の具象化</h1>
+<h1 id="ch2--%E8%A8%88%E7%AE%97%E3%81%AE%E5%85%B7%E8%B1%A1%E5%8C%96-reification">Ch.2 — 計算の具象化 (reification)</h1>
 <p>実行を差し替えるには、インタプリタが命令を識別できる必要がある<br />
 → 制御フローを <strong>データとして見える形</strong> にする</p>
 </section>
@@ -1674,7 +1674,7 @@ section::after {
   font-size: 0.6em;
 }
 ;" data-marpit-pagination-total="37">
-<h1 id="cps-%E5%85%B7%E8%B1%A1%E5%8C%96%E3%81%AE%E7%AC%AC%E4%B8%80%E6%AE%B5%E9%9A%8E">CPS: 具象化の第一段階</h1>
+<h1 id="cps-reification-%E3%81%AE%E7%AC%AC%E4%B8%80%E6%AE%B5%E9%9A%8E">CPS: reification の第一段階</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-haskell"><span class="hljs-comment">-- Direct Style: 値を返す</span>
 <span class="hljs-title">add</span> :: <span class="hljs-type">Int</span> -&gt; <span class="hljs-type">Int</span> -&gt; <span class="hljs-type">Int</span>
 <span class="hljs-title">add</span> x y = x + y
@@ -1685,7 +1685,7 @@ section::after {
 </code></pre>
 <p><strong>継続 <code>k</code></strong> = 「この値を受け取って、残りの計算を行う関数」</p>
 <ul>
-<li>「計算の残り」が <strong>関数として明示化</strong> される — 具象化の第一段階</li>
+<li>「計算の残り」が <strong>関数として明示化</strong> される — reification の第一段階</li>
 <li>ただし関数は <strong>中身が見えない</strong> → DSL のインタプリタは命令を判別できない</li>
 </ul>
 <p>→ 関数を <strong>データ</strong> にする必要がある</p>
@@ -2708,7 +2708,7 @@ section::after {
   | <span class="hljs-keyword">forall</span> b. <span class="hljs-type">StepChain</span> (a -&gt; b) (<span class="hljs-type">ContChain</span> b)
 </code></pre>
 <blockquote>
-<p><code>forall b.</code> はデータ構築子内では<strong>存在量化</strong>（∃b）— 構築側は <code>b</code> を選べるが、受取側には不透明</p>
+<p><code>forall b.</code> はデータコンストラクタ内では<strong>存在量化</strong>（∃b）— 構築側は <code>b</code> を選べるが、受取側には不透明</p>
 </blockquote>
 <p>命令列は構造化できたが…</p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code>StepChain  (a -&gt; b)         (ContChain b)
@@ -3707,7 +3707,7 @@ section::after {
 <p>一般の <code>(a -&gt; b)</code> は Defunc できない — 可能な関数が無限にある</p>
 <p>ただし <strong>DSL</strong> の文脈では仮定を置ける:</p>
 <blockquote>
-<p>「プログラムは <strong>離散的な命令の列</strong>（ないし木構造）である」<br />
+<p>「プログラムは <strong>個々の命令の列</strong>（ないし木構造）である」<br />
 → <code>(a -&gt; b)</code> の「何かをする」= 命令を一つ実行すること<br />
 → <strong>命令データ + 結果を受け取る継続</strong> に分解できる</p>
 </blockquote>
@@ -6437,7 +6437,7 @@ section::after {
 <p><code>runTalkIO</code> をもう一度見ると — 先頭を覗き、命令を処理し、継続に結果を渡す</p>
 <p>これは <strong>ステップ実行</strong> — プログラムを一命令ずつ処理するパターン</p>
 <blockquote>
-<p>このパターンが可能なのは、プログラムが Free で<strong>データとして具象化</strong>されているから<br />
+<p>このパターンが可能なのは、プログラムが Free で<strong>データとして具象化 (reify)</strong> されているから<br />
 一般のモナド（<code>IO</code>、<code>Reader</code>）の <code>&gt;&gt;=</code> では中を覗けない</p>
 </blockquote>
 <p><code>bindCont</code> で「計算を鎖のように繋げる」と言ったその構造が<br />
