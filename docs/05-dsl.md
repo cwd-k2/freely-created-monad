@@ -16,6 +16,8 @@ function* myGen(): Generator<string, number, boolean> {
 
 Freer との対応：
 
+> 以下は概念的な役割の対応であり、構造的な同型ではありません。特に継続の性質（multi-shot vs one-shot）が異なります。
+
 | Freer (Haskell) | Generator (TypeScript) |
 |---|---|
 | `Bind fx k` | `yield instruction` |
@@ -62,9 +64,9 @@ function* tell(message: string): Generator<Tell, void, void> {
 type Program<A> = () => Generator<TalkInstruction, A, any>;
 ```
 
-この `() => Generator<...>` という型が本質的です。Generator は one-shot——一度イテレートすると内部状態が進み、巻き戻せません。つまり `Generator` そのものは**可変で使い捨て**のオブジェクトです。
+この `() => Generator<...>` という型が本質的です。Generator は one-shot で、一度イテレートすると内部状態が進み、巻き戻せません。つまり `Generator` そのものは**可変で使い捨て**のオブジェクトです。
 
-しかし Generator **関数**（`function*`）は、呼ぶたびに新しい Generator を返します。関数自体は何度呼んでも同じ振る舞いをし、状態を持ちません。つまり `() => Generator<...>` は**不変なプログラム表現**です。
+一方、Generator **関数**（`function*`）は、呼ぶたびに新しい Generator を返します。関数自体は何度呼んでも同じ振る舞いをし、状態を持ちません。つまり `() => Generator<...>` は**不変なプログラム表現**です。
 
 | | Haskell (Freer) | TypeScript (Generator) |
 |---|---|---|
@@ -85,7 +87,7 @@ const greetProgram: Program<string> = function* () {
 };
 ```
 
-Haskell の do 記法と同じ見た目で DSL が書けます。`greetProgram` はまだ実行されていません——Generator 関数として保持されているだけです。インタプリタが `greetProgram()` を呼んで初めて Generator が生成され、実行が始まります。そして別のインタプリタがもう一度 `greetProgram()` を呼べば、また新しい Generator で最初から実行できます。
+Haskell の do 記法と同じ見た目で DSL が書けます。`greetProgram` はまだ実行されていません。Generator 関数として保持されているだけです。インタプリタが `greetProgram()` を呼んで初めて Generator が生成され、実行が始まります。そして別のインタプリタがもう一度 `greetProgram()` を呼べば、また新しい Generator で最初から実行できます。
 
 ### インタプリタの実装
 
@@ -136,5 +138,7 @@ function runPure<A>(program: Program<A>, inputs: string[]): { result: A; outputs
 | インタプリタ | パターンマッチ | switch + `gen.next()` |
 
 継続の性質（multi-shot vs one-shot）が最も大きな違いです。Haskell の `k` は通常の関数なので同じ値を何度でも渡せますが、Generator の継続は内部状態を持ち一度しか再開できません。本資料の DSL のように継続を一度しか使わないユースケースでは、この違いは問題になりません。
+
+なお、Freer の `>>=` が左結合チェーンで O(n²) になる性能問題と、それを解決する **Codensity モナド** については補遺で扱います。
 
 > 📖 対応コード: [`typescript/src/dsl-example.ts`](../typescript/src/dsl-example.ts)

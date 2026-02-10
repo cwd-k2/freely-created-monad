@@ -365,8 +365,9 @@ TalkF:      Ask "名前？" (String -> next)
 
 - **命令部分** (`Ask "名前？"`) → データとして識別可能になった
 - **継続部分** (`String -> next`) → 関数のまま残っている
+- `StepChain` の並列構造が `next` を介した**入れ子**に変化
 
-> **命令の Defunctionalization + 継続の構造化**
+> **命令の Defunctionalization + 継続の分解**
 
 ---
 
@@ -589,7 +590,7 @@ type TalkInstruction = Ask | Tell;
 
 # Step — ステップ実行の型
 
-命令と継続が分離されたことで、ステップ実行を型として表現できる:
+命令と継続が分離されたことで、ステップ実行を型として表現できる（`IteratorResult` との対応も見える）:
 
 ```haskell
 data Step f a where
@@ -640,7 +641,7 @@ const step = gen.next();    // viewFreer に対応
 
 # 限定継続としての Freer
 
-ステップ実行は **限定継続** の shift/reset に概念的に対応する
+ステップ実行は **限定継続** の shift/reset に概念的に対応する — Generator の `yield`/`next` が同じプロトコルであることへの橋渡し
 
 | 限定継続           | Freer                                   |
 | ------------------ | --------------------------------------- |
@@ -677,6 +678,8 @@ send (Ask "名前は？") >>= \name -> send (Tell ("こんにちは、" ++ name)
 ---
 
 # Generator ↔ Freer の対応
+
+> 概念的な役割の対応であり、構造的な同型ではない
 
 | Freer (Haskell)      | Generator (TypeScript)         |
 | -------------------- | ------------------------------ |
