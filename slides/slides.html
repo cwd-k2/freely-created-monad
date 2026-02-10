@@ -1686,7 +1686,7 @@ section::after {
 <p><strong>継続 <code>k</code></strong> = 「この値を受け取って、残りの計算を行う関数」</p>
 <ul>
 <li>「計算の残り」が <strong>関数として明示化</strong> される — 具象化の第一段階</li>
-<li>しかし関数は <strong>中身が見えない</strong> → DSL のインタプリタは命令を判別できない</li>
+<li>ただし関数は <strong>中身が見えない</strong> → DSL のインタプリタは命令を判別できない</li>
 </ul>
 <p>→ 関数を <strong>データ</strong> にする必要がある</p>
 </section>
@@ -3705,7 +3705,7 @@ section::after {
 ;" data-marpit-pagination-total="37">
 <h1 id="contchain-%E3%81%AE%E5%A3%81%E3%81%A8%E7%AA%81%E7%A0%B4%E5%8F%A3">ContChain の壁と突破口</h1>
 <p>一般の <code>(a -&gt; b)</code> は Defunc できない — 可能な関数が無限にある</p>
-<p>しかし <strong>DSL</strong> の文脈では仮定を置ける:</p>
+<p>ただし <strong>DSL</strong> の文脈では仮定を置ける:</p>
 <blockquote>
 <p>「プログラムは <strong>離散的な命令の列</strong>（ないし木構造）である」<br />
 → <code>(a -&gt; b)</code> の「何かをする」= 命令を一つ実行すること<br />
@@ -9150,7 +9150,7 @@ section::after {
   <span class="hljs-type">Await</span> (<span class="hljs-type">Tell</span> msg) k -&gt; <span class="hljs-keyword">do</span>
     putStrLn msg; runStepIO (k ())
 </code></pre>
-<p>Free 版と同じ構造——<strong>先頭を覗き、命令を処理し、継続に値を渡す</strong></p>
+<p>Free 版と同じ構造（<strong>先頭を覗き、命令を処理し、継続に値を渡す</strong>）</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="28" data-class="invert" data-paginate="true" data-theme="default" data-style=":root {
   --color-bg: #1b1d2a;
@@ -10864,7 +10864,7 @@ section::after {
 ;" data-marpit-pagination-total="37">
 <h1 id="generator-%E2%86%94-freer-%E3%81%AE%E5%AF%BE%E5%BF%9C">Generator <img class="emoji" draggable="false" alt="↔" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2194.svg" data-marp-twemoji=""/> Freer の対応</h1>
 <blockquote>
-<p>概念的な役割の対応であり、構造的な同型ではない</p>
+<p>前章で述べたように、構造的な同型ではなく概念的な役割の対応</p>
 </blockquote>
 <table>
 <thead>
