@@ -5,4 +5,5 @@ haskell/dist-newstyle/
 typescript/node_modules/
 
 # Claude Code
-.claude/
+.claude/*
+!.claude/skills/
