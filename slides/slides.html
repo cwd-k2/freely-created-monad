@@ -3376,7 +3376,7 @@ section::after {
 <p>一般の <code>(a -&gt; b)</code> は Defunc できない — 可能な関数が無限にある</p>
 <p>しかし <strong>DSL</strong> の文脈では仮定を置ける:</p>
 <blockquote>
-<p>「プログラムは <strong>離散的な命令の列</strong> である」<br />
+<p>「プログラムは <strong>離散的な命令の列</strong>（ないし木構造）である」<br />
 → <code>(a -&gt; b)</code> = 命令を実行 → 結果を受け取る → 次へ進む</p>
 </blockquote>
 <p>ここで「結果を受け取って<strong>次を選ぶ</strong>」がポイント:</p>
@@ -9512,7 +9512,7 @@ section::after {
 }
 ;" data-marpit-pagination-total="36">
 <h1 id="%E9%99%90%E5%AE%9A%E7%B6%99%E7%B6%9A%E3%81%A8%E3%81%97%E3%81%A6%E3%81%AE-freer">限定継続としての Freer</h1>
-<p>ステップ実行は <strong>限定継続</strong> の shift/reset 構造そのもの</p>
+<p>ステップ実行は <strong>限定継続</strong> の shift/reset に概念的に対応する</p>
 <table>
 <thead>
 <tr>
@@ -11611,7 +11611,7 @@ section::after {
 <blockquote>
 <p>do 記法は <strong>右結合</strong> にデシュガーされるため O(n²) は発生しない<br />
 → DSL 実装では Codensity は <strong>省略</strong><br />
-→ one-shot な Generator ではそもそも Codensity は <strong>適用不可</strong></p>
+→ Generator では <code>yield*</code> が本質的に右結合で左結合問題が発生しない</p>
 </blockquote>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="35" data-class="lead" data-paginate="true" data-theme="default" data-style=":root {

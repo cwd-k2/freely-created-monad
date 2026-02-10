@@ -22,8 +22,15 @@ instance Functor f => Monad (Free f) where
 ```
 Free (Ask "名前" (\name -> Free (Tell name (Pure ()))))  >>= g
 
--- fmap が再帰的に潜っていく:
+-- Free fx >>= g = Free (fmap (>>= g) fx) を適用:
+= Free (Ask "名前" (\name -> Free (Tell name (Pure ())) >>= g))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              (>>= g) が継続の返り値に合成される
+
+-- 内側の Free (Tell ...) >>= g にも同じ規則を適用:
 = Free (Ask "名前" (\name -> Free (Tell name (Pure () >>= g))))
+
+-- Pure a >>= g = g a:
 = Free (Ask "名前" (\name -> Free (Tell name (g ()))))
 ```
 
@@ -64,7 +71,7 @@ instance Functor (Coyoneda f) where
   -- g の適用を関数合成で蓄積するだけ。f の fmap は一切使わない。
 ```
 
-`Coyoneda` は任意の型構成子 `f :: * -> *` から Functor を生み出す普遍的な構成であり、圏論における**米田の補題（Yoneda Lemma）** に由来する名前です。`f` が Functor である場合には `Coyoneda f a ≅ f a` が成り立ちますが、Freer の導出で使うのは同型性ではなく、**`Coyoneda f` が常に Functor になる**という構成的事実のほうです。
+`Coyoneda` は任意の型構成子 `f :: * -> *` から Functor を生み出す普遍的な構成であり、圏論における**余米田の補題（co-Yoneda lemma）**——米田の補題の双対——に由来する名前です。"Co-" 接頭辞がこの双対性を示しています。`f` が Functor である場合には `Coyoneda f a ≅ f a` が成り立ちますが、Freer の導出で使うのは同型性ではなく、**`Coyoneda f` が常に Functor になる**という構成的事実のほうです。
 
 ## Freer モナドの導出
 
@@ -228,7 +235,7 @@ reset (1 + (2 * shift k => ...))
 
 ### Freer における限定継続
 
-前節のステップ実行は、まさにこの shift/reset の構造です。
+前節のステップ実行は、この shift/reset の構造に概念的に対応します（形式的な同型ではなく、構造の類似性に基づくアナロジーです）。同様の構造は**代数的エフェクト**（algebraic effects）の perform/handler にも見られ、Freer モナドは代数的エフェクトの Haskell における実現と見なすこともできます。
 
 ```haskell
 data Freer f a where
@@ -263,7 +270,7 @@ send (Ask "名前は？") >>= \name -> send (Tell ("こんにちは、" ++ name)
 = Bind (Ask "名前は？") (\name -> send (Tell ("こんにちは、" ++ name)))
 ```
 
-`Bind` の第2引数 `(\name -> ...)` が限定継続です。「`Ask` の結果 `name` を受け取って、残りの計算を続ける」という、次の `send`（= `shift`）までの範囲を捕捉しています。
+`Bind` の第2引数 `(\name -> ...)` が限定継続です。「`Ask` の結果 `name` を受け取って、残りの計算全体を続ける」関数であり、インタプリタ（= `reset`）の境界まで——すなわちプログラムの末尾の `Pure` まで——を捕捉しています。インタプリタが `k` を呼ぶと次の `Bind`（次の命令）が返ってくるため、一命令ずつステップ実行できますが、`k` 自体が保持しているのは「次の命令まで」ではなく残りの計算全体です。
 
 前節のインタプリタを改めて読むと、`case viewFreer m of` が `reset`（境界の設定）、`Await` のパターンマッチが `shift` で中断された地点の処理、`k input` が限定継続への値の供給です。
 
