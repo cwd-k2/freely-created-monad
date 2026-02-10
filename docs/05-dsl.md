@@ -16,7 +16,7 @@ function* myGen(): Generator<string, number, boolean> {
 
 Freer との対応：
 
-> 以下は概念的な役割の対応であり、構造的な同型ではありません。特に継続の性質（multi-shot vs one-shot）が異なります。
+> 前章で述べたように、以下は構造的な同型ではなく概念的な役割の対応です。特に継続の性質（multi-shot vs one-shot）が異なります。
 
 | Freer (Haskell) | Generator (TypeScript) |
 |---|---|
@@ -54,7 +54,9 @@ function* tell(message: string): Generator<Tell, void, void> {
 }
 ```
 
-`ask` や `tell` は `yield` で命令を外に渡し、自身は中断します。`as string` は TypeScript の Generator 型が `yield` の返り値型を単一の `TNext` パラメータで管理するための制約に対する型アサーションで、インタプリタが正しい型の値を供給する前提のもとで安全です。プログラム側ではこれらを `yield*` で呼びます。`yield*` は**サブジェネレータへの委譲**——呼び出し先の Generator が `yield` した値をそのまま外側に伝播し、外側から供給された値を呼び出し先に戻します。つまり `yield*` が Haskell の do 記法（`>>=` による合成）に対応するモナド合成の仕組みです。
+`ask` や `tell` は `yield` で命令を外に渡し、自身は中断します。`as string` は TypeScript の Generator 型が `yield` の返り値型を単一の `TNext` パラメータで管理するための制約に対する型アサーションで、インタプリタが正しい型の値を供給する前提のもとで安全です。
+
+プログラム側ではこれらを `yield*` で呼びます。`yield*` は**サブジェネレータへの委譲**です。呼び出し先の Generator が `yield` した値をそのまま外側に伝播し、外側から供給された値を呼び出し先に戻します。つまり `yield*` が Haskell の do 記法（`>>=` による合成）に対応するモナド合成の仕組みです。
 
 ### プログラム型: `() => Generator` の意味
 
@@ -136,8 +138,6 @@ function runPure<A>(program: Program<A>, inputs: string[]): { result: A; outputs
 | モナド合成 | `>>=` / do 記法 | `yield*` / Generator |
 | プログラムの再利用 | 純粋なデータ（自由に共有可能） | サンク（呼び出すたびに新規生成） |
 | インタプリタ | パターンマッチ | switch + `gen.next()` |
-
-継続の性質（multi-shot vs one-shot）が最も大きな違いです。Haskell の `k` は通常の関数なので同じ値を何度でも渡せますが、Generator の継続は内部状態を持ち一度しか再開できません。本資料の DSL のように継続を一度しか使わないユースケースでは、この違いは問題になりません。
 
 なお、Freer の `>>=` が左結合チェーンで O(n²) になる性能問題と、それを解決する **Codensity モナド** については補遺で扱います。
 
